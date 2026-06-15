@@ -1,0 +1,907 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Suivi entreprises — Homneo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f4ee;
+    --bg-deep:#efeae0;
+    --surface:#fffdf8;
+    --ink:#16140f;
+    --ink-soft:#4a463d;
+    --ink-mute:#8a8576;
+    --line:#e3ddce;
+    --line-soft:#ece7d9;
+    --accent:#b8421d;
+    --accent-soft:#f3d7c8;
+    --good:#3f6b3a;
+    --good-soft:#dde9d8;
+    --warn:#a06a18;
+    --warn-soft:#f4e3c4;
+    --shadow: 0 1px 0 rgba(22,20,15,.04), 0 8px 24px -12px rgba(22,20,15,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Geist", system-ui, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+  button{font-family:inherit}
+
+  /* Header */
+  header.top{
+    border-bottom:1px solid var(--line);
+    position:sticky; top:0; z-index:60;
+    backdrop-filter:saturate(140%) blur(8px);
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+  .top-inner{
+    max-width:1320px; margin:0 auto;
+    padding:18px 28px 16px;
+    display:flex; align-items:center; gap:24px; flex-wrap:wrap;
+  }
+  .brand{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:30px;
+    line-height:1;
+    letter-spacing:-0.02em;
+  }
+  .brand em{ font-style:italic; font-weight:400; color:var(--accent); }
+  .brand small{
+    display:block;
+    font-family:"Geist Mono", monospace;
+    font-size:11px; letter-spacing:.14em; text-transform:uppercase;
+    color:var(--ink-mute); font-weight:400; margin-top:7px;
+  }
+  .top-actions{ margin-left:auto; display:flex; gap:10px; flex-wrap:wrap; align-items:center; }
+
+  /* Buttons */
+  .btn{
+    appearance:none; border:1px solid var(--line);
+    background:var(--surface); color:var(--ink-soft);
+    border-radius:999px; padding:9px 15px;
+    font-size:13px; font-weight:500; cursor:pointer;
+    transition:all .15s; display:inline-flex; align-items:center; gap:7px;
+    white-space:nowrap;
+  }
+  .btn:hover{ border-color:var(--ink-mute); color:var(--ink); }
+  .btn svg{ width:15px; height:15px; }
+  .btn.primary{ background:var(--ink); color:var(--bg); border-color:var(--ink); }
+  .btn.primary:hover{ background:#000; color:#fff; }
+  .btn.accent{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .btn.accent:hover{ filter:brightness(1.06); color:#fff; }
+  .btn.danger{ color:var(--accent); border-color:var(--accent-soft); }
+  .btn.danger:hover{ background:var(--accent-soft); border-color:var(--accent); }
+
+  /* Layout */
+  .shell{ max-width:1320px; margin:0 auto; padding:22px 28px 80px;
+    display:grid; grid-template-columns:280px 1fr; gap:28px; align-items:start; }
+
+  /* Sidebar */
+  aside{ position:sticky; top:108px; display:flex; flex-direction:column; gap:14px; }
+  .panel{
+    background:var(--surface); border:1px solid var(--line);
+    border-radius:16px; box-shadow:var(--shadow); overflow:hidden;
+  }
+  .panel-head{
+    padding:13px 16px; border-bottom:1px solid var(--line-soft);
+    display:flex; align-items:center; justify-content:space-between; gap:8px;
+  }
+  .panel-head h2{
+    margin:0; font-family:"Fraunces",serif; font-size:16px; font-weight:600;
+  }
+  .panel-head .pill{
+    font-family:"Geist Mono",monospace; font-size:11px;
+    color:var(--ink-mute); background:var(--bg-deep);
+    border-radius:999px; padding:3px 9px;
+  }
+  .dossier-search{ padding:10px 12px; border-bottom:1px solid var(--line-soft); }
+  .dossier-search input{
+    width:100%; border:1px solid var(--line); background:var(--bg);
+    border-radius:999px; padding:9px 14px; font:inherit; font-size:13px;
+    outline:none; transition:border-color .15s, box-shadow .15s;
+  }
+  .dossier-search input:focus{ border-color:var(--ink);
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--ink) 8%, transparent); }
+  .dossier-list{ max-height:46vh; overflow:auto; }
+  .dossier{
+    width:100%; text-align:left; border:none; background:none; cursor:pointer;
+    padding:11px 16px; border-bottom:1px solid var(--line-soft);
+    display:flex; align-items:center; gap:11px; transition:background .12s;
+  }
+  .dossier:hover{ background:var(--bg); }
+  .dossier.active{ background:var(--accent-soft); }
+  .dossier .ring{ flex:0 0 auto; }
+  .dossier .d-body{ min-width:0; flex:1; }
+  .dossier .d-name{
+    font-weight:600; font-size:13.5px; white-space:nowrap;
+    overflow:hidden; text-overflow:ellipsis;
+  }
+  .dossier .d-meta{
+    font-family:"Geist Mono",monospace; font-size:10.5px; color:var(--ink-mute);
+    white-space:nowrap; overflow:hidden; text-overflow:ellipsis; margin-top:2px;
+  }
+  .dossier .d-dot{
+    width:7px; height:7px; border-radius:50%; flex:0 0 auto;
+  }
+  .empty-list{ padding:22px 16px; color:var(--ink-mute); font-size:13px; text-align:center; }
+
+  /* Progress ring */
+  .ring{ position:relative; width:34px; height:34px; }
+  .ring svg{ transform:rotate(-90deg); }
+  .ring .num{
+    position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+    font-family:"Geist Mono",monospace; font-size:9.5px; font-weight:500; color:var(--ink-soft);
+  }
+  .ring.big{ width:60px; height:60px; }
+  .ring.big .num{ font-size:14px; }
+
+  /* Main column */
+  main{ display:flex; flex-direction:column; gap:18px; min-width:0; }
+
+  .hero{
+    background:var(--surface); border:1px solid var(--line); border-radius:18px;
+    box-shadow:var(--shadow); padding:20px 22px;
+    display:flex; gap:20px; align-items:center; flex-wrap:wrap;
+  }
+  .hero .ring.big{ flex:0 0 auto; }
+  .hero-text{ flex:1; min-width:200px; }
+  .hero-text .eyebrow{
+    font-family:"Geist Mono",monospace; font-size:11px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-mute);
+  }
+  .hero-name{
+    font-family:"Fraunces",serif; font-size:24px; font-weight:600; line-height:1.1;
+    margin:4px 0 6px; word-break:break-word;
+  }
+  .hero-name em{ font-style:italic; color:var(--ink-mute); font-weight:400; }
+  .hero-bars{ display:flex; gap:22px; flex-wrap:wrap; margin-top:8px; }
+  .bar-block{ min-width:160px; flex:1; }
+  .bar-block .lbl{
+    display:flex; justify-content:space-between; font-size:12px; color:var(--ink-soft);
+    margin-bottom:5px;
+  }
+  .bar-block .lbl b{ font-family:"Geist Mono",monospace; font-weight:500; }
+  .bar{ height:7px; border-radius:999px; background:var(--bg-deep); overflow:hidden; }
+  .bar > span{ display:block; height:100%; border-radius:999px; transition:width .35s ease; }
+
+  /* Missing checklist */
+  .todo{
+    border:1px solid var(--warn-soft); background:var(--warn-soft);
+    border-radius:16px; padding:14px 18px;
+  }
+  .todo.done{ border-color:var(--good-soft); background:var(--good-soft); }
+  .todo h3{
+    margin:0 0 8px; font-family:"Fraunces",serif; font-size:15px; font-weight:600;
+    display:flex; align-items:center; gap:8px;
+  }
+  .todo ul{ margin:0; padding:0; list-style:none; display:flex; flex-wrap:wrap; gap:8px; }
+  .todo li button{
+    border:1px solid color-mix(in srgb, var(--warn) 30%, transparent);
+    background:var(--surface); color:var(--ink-soft);
+    border-radius:999px; padding:5px 12px; font-size:12.5px; cursor:pointer;
+    transition:all .12s;
+  }
+  .todo li button:hover{ border-color:var(--warn); color:var(--ink); }
+  .todo .alldone{ color:var(--good); font-size:13.5px; }
+
+  /* Sections */
+  section.block{
+    background:var(--surface); border:1px solid var(--line); border-radius:16px;
+    box-shadow:var(--shadow); overflow:hidden;
+  }
+  .block-head{
+    width:100%; text-align:left; border:none; background:none; cursor:pointer;
+    padding:16px 20px; display:flex; align-items:center; gap:14px;
+  }
+  .block-head .ic{
+    width:38px; height:38px; border-radius:11px; flex:0 0 auto;
+    background:var(--bg-deep); display:flex; align-items:center; justify-content:center;
+    font-size:19px;
+  }
+  .block-head .bh-text{ flex:1; min-width:0; }
+  .block-head h2{
+    margin:0; font-family:"Fraunces",serif; font-size:18px; font-weight:600;
+  }
+  .block-head .sub{ font-size:12.5px; color:var(--ink-mute); margin-top:2px; }
+  .block-head .sec-state{
+    font-family:"Geist Mono",monospace; font-size:11px; color:var(--ink-mute);
+    display:flex; align-items:center; gap:7px;
+  }
+  .block-head .chev{ width:18px; height:18px; color:var(--ink-mute); transition:transform .2s; flex:0 0 auto; }
+  section.block.collapsed .chev{ transform:rotate(-90deg); }
+  .block-body{ padding:4px 20px 22px; }
+  section.block.collapsed .block-body{ display:none; }
+
+  .grid-fields{ display:grid; grid-template-columns:repeat(2,1fr); gap:14px 18px; }
+  .field.full{ grid-column:1 / -1; }
+  .field label{
+    display:block; font-size:12.5px; font-weight:500; color:var(--ink-soft);
+    margin-bottom:5px;
+  }
+  .field label .req{ color:var(--accent); margin-left:3px; }
+  .field .help{ font-size:11.5px; color:var(--ink-mute); margin-top:4px; }
+  .field input, .field textarea, .field select{
+    width:100%; border:1px solid var(--line); background:var(--bg);
+    border-radius:10px; padding:10px 12px; font:inherit; font-size:14px;
+    color:var(--ink); outline:none; transition:border-color .15s, box-shadow .15s, background .15s;
+  }
+  .field textarea{ resize:vertical; min-height:74px; line-height:1.45; }
+  .field input:focus, .field textarea:focus, .field select:focus{
+    border-color:var(--ink); background:var(--surface);
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--ink) 7%, transparent);
+  }
+  .field.filled input, .field.filled textarea, .field.filled select{
+    border-color:color-mix(in srgb, var(--good) 40%, var(--line));
+  }
+  select.sel{
+    appearance:none;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%238a8576' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/></svg>");
+    background-repeat:no-repeat; background-position:right 12px center; padding-right:34px;
+  }
+
+  /* Rating */
+  .rating{ display:flex; gap:7px; flex-wrap:wrap; }
+  .rating button{
+    border:1px solid var(--line); background:var(--bg); color:var(--ink-soft);
+    border-radius:9px; padding:8px 0; width:42px; cursor:pointer; font-size:14px;
+    font-family:"Geist Mono",monospace; transition:all .12s;
+  }
+  .rating button:hover{ border-color:var(--ink-mute); }
+  .rating button.on{ background:var(--accent); color:#fff; border-color:var(--accent); }
+  .rating .rlabel{ align-self:center; font-size:12px; color:var(--ink-mute); margin-left:4px; }
+
+  /* Checkbox group */
+  .checks{ display:flex; flex-direction:column; gap:8px; }
+  .checks.inline{ flex-direction:row; flex-wrap:wrap; }
+  .chk{
+    display:flex; align-items:center; gap:10px; cursor:pointer;
+    border:1px solid var(--line); background:var(--bg); border-radius:10px;
+    padding:9px 12px; font-size:13.5px; transition:all .12s; user-select:none;
+  }
+  .chk:hover{ border-color:var(--ink-mute); }
+  .chk.on{ background:var(--good-soft); border-color:color-mix(in srgb,var(--good) 45%,var(--line)); }
+  .chk .box{
+    width:18px; height:18px; border-radius:6px; border:1.5px solid var(--ink-mute);
+    flex:0 0 auto; display:flex; align-items:center; justify-content:center;
+    transition:all .12s;
+  }
+  .chk.on .box{ background:var(--good); border-color:var(--good); }
+  .chk .box svg{ width:12px; height:12px; color:#fff; opacity:0; transition:opacity .12s; }
+  .chk.on .box svg{ opacity:1; }
+
+  /* Toast */
+  .toast{
+    position:fixed; bottom:24px; left:50%; transform:translateX(-50%) translateY(20px);
+    background:var(--ink); color:var(--bg); padding:11px 20px; border-radius:999px;
+    font-size:13.5px; box-shadow:0 12px 30px -8px rgba(0,0,0,.4);
+    opacity:0; pointer-events:none; transition:all .25s; z-index:200;
+    display:flex; align-items:center; gap:9px;
+  }
+  .toast.show{ opacity:1; transform:translateX(-50%) translateY(0); }
+  .toast svg{ width:16px; height:16px; }
+
+  /* Empty state */
+  .blank{
+    grid-column:1 / -1; text-align:center; padding:70px 24px; color:var(--ink-mute);
+  }
+  .blank h2{ font-family:"Fraunces",serif; color:var(--ink); font-size:24px; margin:0 0 8px; }
+  .blank p{ max-width:440px; margin:0 auto 20px; }
+
+  footer{
+    max-width:1320px; margin:0 auto; padding:8px 28px 30px;
+    display:flex; justify-content:space-between; gap:14px; flex-wrap:wrap;
+    font-family:"Geist Mono",monospace; font-size:11px; color:var(--ink-mute);
+  }
+
+  @media (max-width:900px){
+    .shell{ grid-template-columns:1fr; }
+    aside{ position:static; }
+    .dossier-list{ max-height:none; }
+    .grid-fields{ grid-template-columns:1fr; }
+  }
+
+  @media print{
+    header.top, aside, .top-actions, .block-head .chev, .todo, footer, .toast{ display:none !important; }
+    body{ background:#fff; }
+    .shell{ display:block; padding:0; }
+    section.block{ box-shadow:none; border-color:#ccc; break-inside:avoid; margin-bottom:12px; }
+    section.block.collapsed .block-body{ display:block !important; }
+    .block-head{ cursor:default; }
+    .hero{ box-shadow:none; }
+    .field input, .field textarea, .field select{ background:#fff; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">Suivi <em>entreprises</em>
+      <small>Homneo · qualification &amp; besoins formation</small>
+    </div>
+    <div class="top-actions">
+      <button class="btn" id="btn-import" title="Importer un fichier .json">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M7 10l5 5 5-5"/><path d="M12 15V3"/></svg>
+        Importer
+      </button>
+      <button class="btn" id="btn-export" title="Exporter tous les suivis">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="M17 8l-5-5-5 5"/><path d="M12 3v12"/></svg>
+        Exporter
+      </button>
+      <button class="btn accent" id="btn-new">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+        Nouveau suivi
+      </button>
+    </div>
+  </div>
+</header>
+
+<div class="shell">
+  <aside>
+    <div class="panel">
+      <div class="panel-head">
+        <h2>Mes suivis</h2>
+        <span class="pill" id="dossier-count">0</span>
+      </div>
+      <div class="dossier-search">
+        <input id="dossier-q" type="search" placeholder="Filtrer une entreprise…" autocomplete="off">
+      </div>
+      <div class="dossier-list" id="dossier-list"></div>
+    </div>
+    <div class="panel" id="legend-panel">
+      <div class="panel-head"><h2>Repères</h2></div>
+      <div style="padding:12px 16px; font-size:12.5px; color:var(--ink-soft); display:flex; flex-direction:column; gap:9px;">
+        <div style="display:flex;align-items:center;gap:9px;"><span class="d-dot" style="width:9px;height:9px;border-radius:50%;background:var(--good)"></span> Complet</div>
+        <div style="display:flex;align-items:center;gap:9px;"><span class="d-dot" style="width:9px;height:9px;border-radius:50%;background:var(--warn)"></span> En cours</div>
+        <div style="display:flex;align-items:center;gap:9px;"><span class="d-dot" style="width:9px;height:9px;border-radius:50%;background:var(--accent)"></span> À démarrer</div>
+        <div style="margin-top:4px;color:var(--ink-mute);font-size:11.5px;line-height:1.5">Les données sont enregistrées dans ce navigateur. Pensez à <b>exporter</b> pour partager ou sauvegarder.</div>
+      </div>
+    </div>
+  </aside>
+
+  <main id="main"><!-- rendered --></main>
+</div>
+
+<footer>
+  <span>Homneo — Outil interne de suivi entreprises</span>
+  <span id="save-state">—</span>
+</footer>
+
+<div class="toast" id="toast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="M20 6 9 17l-5-5"/></svg><span id="toast-msg">Enregistré</span></div>
+
+<input type="file" id="file-input" accept="application/json,.json" style="display:none">
+
+<script>
+(() => {
+  "use strict";
+  const LS_KEY = "homneo_suivis_v1";
+  const $ = (s, r=document) => r.querySelector(s);
+
+  /* ---------- Configuration des sections ---------- */
+  const SECTIONS = [
+    {
+      id:"identite", icon:"🏢", title:"Identité de l'entreprise",
+      sub:"Qui est l'entreprise et avec quel financement",
+      fields:[
+        {k:"raison_sociale", l:"Raison sociale", t:"text", req:true, full:true, ph:"Nom de l'entreprise"},
+        {k:"siret", l:"SIRET", t:"text", ph:"14 chiffres"},
+        {k:"secteur", l:"Secteur d'activité", t:"text", ph:"Commerce, BTP, services…"},
+        {k:"effectif", l:"Effectif", t:"select", opts:["1 à 10 salariés","11 à 49 salariés","50 à 249 salariés","250 salariés et +"]},
+        {k:"opco", l:"OPCO", t:"select", opts:["AKTO","ATLAS","OCAPIAT","Constructys","AFDAS","Uniformation","OPCO 2i","OPCO EP","OPCO Mobilités","OPCO Santé","Autre / à confirmer"], help:"Opérateur de compétences — clé pour le financement"},
+        {k:"convention", l:"Convention collective", t:"text", ph:"IDCC ou intitulé"},
+        {k:"adresse", l:"Adresse", t:"text", full:true},
+        {k:"cp", l:"Code postal", t:"text"},
+        {k:"ville", l:"Ville", t:"text"},
+        {k:"site", l:"Site web / réseaux", t:"text", full:true, ph:"https://…"}
+      ]
+    },
+    {
+      id:"contacts", icon:"👤", title:"Interlocuteurs & contexte du suivi",
+      sub:"Décideurs, tuteur, et cadre de l'échange",
+      fields:[
+        {k:"date_suivi", l:"Date du suivi", t:"date", req:true},
+        {k:"realise_par", l:"Réalisé par (Homneo)", t:"text", ph:"Conseiller / chargé de relation"},
+        {k:"canal", l:"Modalité", t:"select", opts:["Visite sur site","Téléphone","Visioconférence","E-mail","Salon / événement"]},
+        {k:"relation", l:"Ancienneté de la relation", t:"select", opts:["Prospect / 1er contact","Nouveau partenaire","Partenaire récurrent","Partenaire historique"]},
+        {k:"dirigeant_nom", l:"Dirigeant — nom", t:"text"},
+        {k:"dirigeant_fonction", l:"Dirigeant — fonction", t:"text", ph:"Gérant, PDG…"},
+        {k:"rh_nom", l:"Décideur formation / RH — nom", t:"text"},
+        {k:"rh_contact", l:"RH — tél. / e-mail", t:"text"},
+        {k:"tuteur_nom", l:"Maître d'apprentissage / tuteur", t:"text"},
+        {k:"tuteur_contact", l:"Tuteur — tél. / e-mail", t:"text"}
+      ]
+    },
+    {
+      id:"alternants", icon:"🎓", title:"Alternants & contrats en cours",
+      sub:"Suivi des apprenants déjà en poste",
+      fields:[
+        {k:"nb_alternants", l:"Nombre d'alternants en poste", t:"number"},
+        {k:"alternants_detail", l:"Détail (apprenant · formation · échéance)", t:"textarea", full:true, ph:"Ex : Léa M. — BTS NDRC — fin 08/2026"},
+        {k:"integration", l:"Qualité de l'intégration", t:"rating", help:"1 = difficile · 5 = excellente"},
+        {k:"satisfaction_tuteur", l:"Satisfaction du tuteur", t:"rating"},
+        {k:"vigilance", l:"Points de vigilance / difficultés", t:"textarea", full:true, ph:"Assiduité, montée en compétences, relationnel…"}
+      ]
+    },
+    {
+      id:"bilan", icon:"📋", title:"Bilan de la collaboration",
+      sub:"Satisfaction globale et axes de progrès",
+      fields:[
+        {k:"satisfaction_globale", l:"Satisfaction globale Homneo", t:"rating", req:true},
+        {k:"recommander", l:"Recommanderait Homneo ?", t:"select", opts:["Oui","Plutôt oui","Mitigé","Non"]},
+        {k:"points_forts", l:"Points forts soulignés", t:"textarea", full:true},
+        {k:"axes_amelioration", l:"Attentes / axes d'amélioration", t:"textarea", full:true}
+      ]
+    },
+    {
+      id:"besoins", icon:"🎯", title:"Couverture des besoins en formation",
+      sub:"Le cœur du suivi : a-t-on exploré tous les besoins ?",
+      fields:[
+        {k:"axes", l:"Axes explorés avec l'entreprise", t:"checks", req:true, full:true,
+          help:"Cochez chaque piste réellement abordée pendant l'échange",
+          opts:[
+            "Recrutement en alternance à venir",
+            "Renouvellement des contrats actuels",
+            "Montée en compétences des salariés (formation continue)",
+            "Reconversion / mobilité interne",
+            "Certifications / VAE",
+            "Formations réglementaires & obligatoires",
+            "Management & soft skills",
+            "Digital & outils métiers"
+          ]},
+        {k:"postes", l:"Postes / métiers à pourvoir", t:"textarea", full:true, ph:"Métiers en tension, fonctions recherchées…"},
+        {k:"nb_recrutements", l:"Recrutements alternance envisagés", t:"number"},
+        {k:"periode_recrutement", l:"Période de recrutement visée", t:"text", ph:"Ex : rentrée sept. 2026"},
+        {k:"competences", l:"Compétences / profils recherchés", t:"textarea", full:true},
+        {k:"financement", l:"Pistes de financement", t:"checks", full:true, inline:true,
+          opts:["OPCO","Plan de développement des compétences","CPF","France Travail","Autofinancement","À déterminer"]},
+        {k:"formations_proposees", l:"Formations Homneo proposées en réponse", t:"textarea", full:true, ph:"Réponses concrètes apportées au besoin"},
+        {k:"besoin_couvert", l:"Niveau de couverture du besoin", t:"rating", req:true, help:"1 = besoin non couvert · 5 = totalement couvert / offre envoyée"}
+      ]
+    },
+    {
+      id:"action", icon:"✅", title:"Plan d'action & relance",
+      sub:"Ce que l'on s'engage à faire ensuite",
+      fields:[
+        {k:"actions", l:"Prochaines actions", t:"textarea", req:true, full:true, ph:"Envoyer devis, proposer un candidat, planifier visite…"},
+        {k:"responsable", l:"Responsable de l'action", t:"text"},
+        {k:"date_relance", l:"Date de relance", t:"date"},
+        {k:"priorite", l:"Priorité", t:"select", opts:["Haute","Moyenne","Basse"]},
+        {k:"statut", l:"Statut du dossier", t:"select", opts:["À démarrer","En cours","En attente entreprise","Clôturé"]}
+      ]
+    }
+  ];
+
+  // Index rapide des champs requis (pour la checklist "il reste à compléter")
+  const REQUIRED = [];
+  SECTIONS.forEach(s => s.fields.forEach(f => { if(f.req) REQUIRED.push({sec:s.id, secTitle:s.title, key:f.k, label:f.l, type:f.t}); }));
+
+  /* ---------- État ---------- */
+  let store = load();
+  let currentId = null;
+  let dossierFilter = "";
+  let saveTimer = null;
+
+  function load(){
+    try{ const r = JSON.parse(localStorage.getItem(LS_KEY)); return (r && typeof r==="object") ? r : {}; }
+    catch(e){ return {}; }
+  }
+  function persist(){
+    localStorage.setItem(LS_KEY, JSON.stringify(store));
+    const t = new Date();
+    $("#save-state").textContent = "Sauvegardé à " + t.toLocaleTimeString("fr-FR",{hour:"2-digit",minute:"2-digit"});
+  }
+  function uid(){ return "s_" + Date.now().toString(36) + Math.random().toString(36).slice(2,6); }
+
+  /* ---------- Logique de complétude ---------- */
+  function isFilled(f, v){
+    if(v === undefined || v === null) return false;
+    if(f.t === "checks") return Array.isArray(v) && v.length > 0;
+    if(f.t === "rating" || f.t === "number") return v !== "" && v !== 0 && !Number.isNaN(v);
+    return String(v).trim() !== "";
+  }
+  function completion(d){
+    const data = d.data || {};
+    let reqTotal = REQUIRED.length, reqDone = 0;
+    REQUIRED.forEach(r => {
+      const f = SECTIONS.find(s=>s.id===r.sec).fields.find(x=>x.k===r.key);
+      if(isFilled(f, data[r.key])) reqDone++;
+    });
+    // Complétude globale = tous les champs (donne une jauge plus douce)
+    let allTotal=0, allDone=0;
+    SECTIONS.forEach(s => s.fields.forEach(f => { allTotal++; if(isFilled(f, data[f.k])) allDone++; }));
+    return {
+      reqPct: reqTotal ? Math.round(reqDone/reqTotal*100) : 0,
+      reqDone, reqTotal,
+      allPct: allTotal ? Math.round(allDone/allTotal*100) : 0,
+      missing: REQUIRED.filter(r => {
+        const f = SECTIONS.find(s=>s.id===r.sec).fields.find(x=>x.k===r.key);
+        return !isFilled(f, data[r.key]);
+      })
+    };
+  }
+  function sectionCompletion(sec, data){
+    let total=0, done=0;
+    sec.fields.forEach(f => { total++; if(isFilled(f, data[f.k])) done++; });
+    return {total, done, pct: total?Math.round(done/total*100):0};
+  }
+  function statusColor(pct){ return pct>=100 ? "var(--good)" : pct>0 ? "var(--warn)" : "var(--accent)"; }
+
+  /* ---------- SVG ring ---------- */
+  function ringSVG(pct, size){
+    const r = size/2 - 3, c = 2*Math.PI*r, off = c*(1-pct/100);
+    const col = statusColor(pct);
+    return `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}">
+      <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="var(--bg-deep)" stroke-width="3"/>
+      <circle cx="${size/2}" cy="${size/2}" r="${r}" fill="none" stroke="${col}" stroke-width="3"
+        stroke-linecap="round" stroke-dasharray="${c}" stroke-dashoffset="${off}"/>
+    </svg>`;
+  }
+
+  /* ---------- Rendu liste de dossiers ---------- */
+  function renderList(){
+    const list = $("#dossier-list");
+    const ids = Object.keys(store).sort((a,b)=> (store[b].updated||0)-(store[a].updated||0));
+    const f = dossierFilter.toLowerCase();
+    const shown = ids.filter(id => {
+      const n = (store[id].data && store[id].data.raison_sociale || "").toLowerCase();
+      return !f || n.includes(f);
+    });
+    $("#dossier-count").textContent = ids.length;
+    if(!shown.length){
+      list.innerHTML = `<div class="empty-list">${ids.length ? "Aucun résultat." : "Aucun suivi pour l'instant.<br>Créez votre premier suivi."}</div>`;
+      return;
+    }
+    list.innerHTML = shown.map(id => {
+      const d = store[id];
+      const comp = completion(d);
+      const name = (d.data && d.data.raison_sociale) ? d.data.raison_sociale : "Sans nom";
+      const status = (d.data && d.data.statut) || "À démarrer";
+      const date = (d.data && d.data.date_suivi) ? d.data.date_suivi.split("-").reverse().join("/") : "—";
+      return `<button class="dossier ${id===currentId?"active":""}" data-id="${id}">
+        <span class="ring">${ringSVG(comp.reqPct,34)}<span class="num">${comp.reqPct}%</span></span>
+        <span class="d-body">
+          <span class="d-name">${esc(name)}</span>
+          <span class="d-meta">${esc(status)} · ${date}</span>
+        </span>
+        <span class="d-dot" style="background:${statusColor(comp.reqPct)}"></span>
+      </button>`;
+    }).join("");
+    list.querySelectorAll(".dossier").forEach(b => b.addEventListener("click", () => select(b.dataset.id)));
+  }
+
+  /* ---------- Rendu du formulaire ---------- */
+  function renderMain(){
+    const main = $("#main");
+    if(!currentId || !store[currentId]){
+      main.innerHTML = `<div class="hero blank">
+        <h2>Assurez un suivi complet de vos entreprises partenaires</h2>
+        <p>Créez un suivi par entreprise pour vérifier, point par point, que toutes les informations
+        sont collectées et que <b>l'ensemble des besoins en formation</b> a bien été couvert.</p>
+        <button class="btn accent" id="blank-new">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M12 5v14M5 12h14"/></svg>
+          Créer un suivi
+        </button>
+      </div>`;
+      $("#blank-new").addEventListener("click", newDossier);
+      return;
+    }
+    const d = store[currentId];
+    const data = d.data;
+    const comp = completion(d);
+    const name = data.raison_sociale || "Nouveau suivi";
+
+    const hero = `<div class="hero">
+      <span class="ring big">${ringSVG(comp.reqPct,60)}<span class="num">${comp.reqPct}%</span></span>
+      <div class="hero-text">
+        <div class="eyebrow">Suivi entreprise</div>
+        <div class="hero-name">${data.raison_sociale ? esc(data.raison_sociale) : "<em>Entreprise sans nom</em>"}</div>
+        <div class="hero-bars">
+          <div class="bar-block">
+            <div class="lbl"><span>Informations essentielles</span><b>${comp.reqDone}/${comp.reqTotal}</b></div>
+            <div class="bar"><span style="width:${comp.reqPct}%;background:${statusColor(comp.reqPct)}"></span></div>
+          </div>
+          <div class="bar-block">
+            <div class="lbl"><span>Détail renseigné</span><b>${comp.allPct}%</b></div>
+            <div class="bar"><span style="width:${comp.allPct}%;background:var(--ink-soft)"></span></div>
+          </div>
+        </div>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:8px;">
+        <button class="btn" id="act-print"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 9V2h12v7"/><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"/><rect x="6" y="14" width="12" height="8"/></svg>Imprimer / PDF</button>
+        <button class="btn" id="act-copy"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copier la synthèse</button>
+        <button class="btn danger" id="act-del"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18"/><path d="M8 6V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"/></svg>Supprimer</button>
+      </div>
+    </div>`;
+
+    const todo = comp.missing.length
+      ? `<div class="todo"><h3>⚠️ Pour valider ce suivi, il reste à compléter</h3>
+          <ul>${comp.missing.map(m=>`<li><button data-jump="${m.sec}" data-key="${m.key}">${esc(m.label)}</button></li>`).join("")}</ul></div>`
+      : `<div class="todo done"><h3 style="color:var(--good)">✓ Suivi complet</h3>
+          <span class="alldone">Toutes les informations essentielles et la couverture des besoins formation sont renseignées.</span></div>`;
+
+    const blocks = SECTIONS.map(sec => {
+      const sc = sectionCompletion(sec, data);
+      const collapsed = d.collapsed && d.collapsed[sec.id] ? "collapsed" : "";
+      return `<section class="block ${collapsed}" data-sec="${sec.id}">
+        <button class="block-head" data-toggle="${sec.id}">
+          <span class="ic">${sec.icon}</span>
+          <span class="bh-text"><h2>${sec.title}</h2><div class="sub">${sec.sub}</div></span>
+          <span class="sec-state"><span class="d-dot" style="width:8px;height:8px;border-radius:50%;background:${statusColor(sc.pct)}"></span>${sc.done}/${sc.total}</span>
+          <svg class="chev" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="m6 9 6 6 6-6"/></svg>
+        </button>
+        <div class="block-body"><div class="grid-fields">
+          ${sec.fields.map(f => fieldHTML(f, data[f.k])).join("")}
+        </div></div>
+      </section>`;
+    }).join("");
+
+    main.innerHTML = hero + todo + blocks;
+    wireMain();
+  }
+
+  function fieldHTML(f, v){
+    const filled = isFilled(f, v) ? "filled" : "";
+    const req = f.req ? '<span class="req">*</span>' : "";
+    const help = f.help ? `<div class="help">${esc(f.help)}</div>` : "";
+    let inner = "";
+    if(f.t === "textarea"){
+      inner = `<textarea data-key="${f.k}" placeholder="${esc(f.ph||"")}">${esc(v||"")}</textarea>`;
+    } else if(f.t === "select"){
+      inner = `<select class="sel" data-key="${f.k}"><option value="">—</option>${
+        f.opts.map(o=>`<option ${v===o?"selected":""}>${esc(o)}</option>`).join("")}</select>`;
+    } else if(f.t === "rating"){
+      inner = `<div class="rating" data-key="${f.k}">${
+        [1,2,3,4,5].map(n=>`<button data-val="${n}" class="${Number(v)===n?"on":""}">${n}</button>`).join("")}
+        <span class="rlabel">${v?("noté "+v+"/5"):"non évalué"}</span></div>`;
+    } else if(f.t === "checks"){
+      const arr = Array.isArray(v)?v:[];
+      inner = `<div class="checks ${f.inline?"inline":""}" data-key="${f.k}">${
+        f.opts.map(o=>`<label class="chk ${arr.includes(o)?"on":""}" data-opt="${esc(o)}">
+          <span class="box"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3"><path d="M20 6 9 17l-5-5"/></svg></span>
+          <span>${esc(o)}</span></label>`).join("")}</div>`;
+    } else {
+      const type = f.t==="number"?"number":f.t==="date"?"date":"text";
+      inner = `<input type="${type}" data-key="${f.k}" value="${esc(v??"")}" placeholder="${esc(f.ph||"")}">`;
+    }
+    return `<div class="field ${f.full?"full":""} ${filled}" data-field="${f.k}">
+      <label>${esc(f.l)}${req}</label>${inner}${help}</div>`;
+  }
+
+  /* ---------- Câblage des interactions ---------- */
+  function wireMain(){
+    const main = $("#main");
+    // collapse sections
+    main.querySelectorAll("[data-toggle]").forEach(b => b.addEventListener("click", () => {
+      const id = b.dataset.toggle, d = store[currentId];
+      d.collapsed = d.collapsed || {};
+      d.collapsed[id] = !d.collapsed[id];
+      b.closest(".block").classList.toggle("collapsed");
+    }));
+    // text / textarea / number / date
+    main.querySelectorAll("input[data-key], textarea[data-key]").forEach(el => {
+      el.addEventListener("input", () => update(el.dataset.key, el.type==="number" ? (el.value===""?"":Number(el.value)) : el.value, el));
+    });
+    // selects
+    main.querySelectorAll("select[data-key]").forEach(el => {
+      el.addEventListener("change", () => update(el.dataset.key, el.value, el));
+    });
+    // ratings
+    main.querySelectorAll(".rating").forEach(r => r.querySelectorAll("button").forEach(btn => btn.addEventListener("click", () => {
+      const key = r.dataset.key, val = Number(btn.dataset.val);
+      const cur = store[currentId].data[key];
+      update(key, cur===val ? "" : val); // re-click = désélection
+      refreshSoft();
+    })));
+    // checks
+    main.querySelectorAll(".checks").forEach(c => c.querySelectorAll(".chk").forEach(lab => lab.addEventListener("click", () => {
+      const key = c.dataset.key, opt = lab.dataset.opt;
+      const arr = Array.isArray(store[currentId].data[key]) ? [...store[currentId].data[key]] : [];
+      const i = arr.indexOf(opt);
+      if(i>=0) arr.splice(i,1); else arr.push(opt);
+      update(key, arr);
+      lab.classList.toggle("on");
+      refreshSoft();
+    })));
+    // hero actions
+    $("#act-print").addEventListener("click", () => window.print());
+    $("#act-copy").addEventListener("click", copySynthese);
+    $("#act-del").addEventListener("click", delDossier);
+    // jump-to-missing
+    main.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => {
+      const sec = b.dataset.jump, key = b.dataset.key;
+      const block = main.querySelector(`section[data-sec="${sec}"]`);
+      if(block){
+        block.classList.remove("collapsed");
+        store[currentId].collapsed = store[currentId].collapsed || {};
+        store[currentId].collapsed[sec] = false;
+        const field = block.querySelector(`[data-field="${key}"]`);
+        (field||block).scrollIntoView({behavior:"smooth", block:"center"});
+        const input = field && field.querySelector("input,textarea,select,button");
+        if(input) setTimeout(()=>input.focus(),300);
+      }
+    }));
+  }
+
+  // mise à jour valeur + sauvegarde différée + rafraîchissement léger
+  function update(key, val, el){
+    const d = store[currentId];
+    d.data[key] = val;
+    d.updated = Date.now();
+    if(el){
+      const field = el.closest(".field");
+      if(field) field.classList.toggle("filled", isFilled(SECTIONS.flatMap(s=>s.fields).find(f=>f.k===key), val));
+    }
+    if(key === "raison_sociale" || key === "statut" || key === "date_suivi") refreshSoft();
+    clearTimeout(saveTimer);
+    saveTimer = setTimeout(()=>{ persist(); refreshSoft(); }, 450);
+  }
+
+  // rafraîchit la liste latérale + hero + sections (sans tout reconstruire le formulaire)
+  function refreshSoft(){
+    renderList();
+    if(!currentId || !store[currentId]) return;
+    const comp = completion(store[currentId]);
+    const data = store[currentId].data;
+    // hero
+    const ringWrap = $("#main .hero .ring.big");
+    if(ringWrap){ ringWrap.innerHTML = ringSVG(comp.reqPct,60) + `<span class="num">${comp.reqPct}%</span>`; }
+    const hn = $("#main .hero-name");
+    if(hn) hn.innerHTML = data.raison_sociale ? esc(data.raison_sociale) : "<em>Entreprise sans nom</em>";
+    const bars = $("#main .hero-bars");
+    if(bars){
+      bars.innerHTML = `
+        <div class="bar-block"><div class="lbl"><span>Informations essentielles</span><b>${comp.reqDone}/${comp.reqTotal}</b></div>
+          <div class="bar"><span style="width:${comp.reqPct}%;background:${statusColor(comp.reqPct)}"></span></div></div>
+        <div class="bar-block"><div class="lbl"><span>Détail renseigné</span><b>${comp.allPct}%</b></div>
+          <div class="bar"><span style="width:${comp.allPct}%;background:var(--ink-soft)"></span></div></div>`;
+    }
+    // todo
+    const todo = $("#main .todo");
+    if(todo){
+      if(comp.missing.length){
+        todo.className = "todo";
+        todo.innerHTML = `<h3>⚠️ Pour valider ce suivi, il reste à compléter</h3>
+          <ul>${comp.missing.map(m=>`<li><button data-jump="${m.sec}" data-key="${m.key}">${esc(m.label)}</button></li>`).join("")}</ul>`;
+      } else {
+        todo.className = "todo done";
+        todo.innerHTML = `<h3 style="color:var(--good)">✓ Suivi complet</h3>
+          <span class="alldone">Toutes les informations essentielles et la couverture des besoins formation sont renseignées.</span>`;
+      }
+      todo.querySelectorAll("[data-jump]").forEach(b => b.addEventListener("click", () => {
+        const sec=b.dataset.jump,key=b.dataset.key, block=$(`#main section[data-sec="${sec}"]`);
+        if(block){ block.classList.remove("collapsed");
+          store[currentId].collapsed=store[currentId].collapsed||{}; store[currentId].collapsed[sec]=false;
+          const field=block.querySelector(`[data-field="${key}"]`);
+          (field||block).scrollIntoView({behavior:"smooth",block:"center"});
+          const inp=field&&field.querySelector("input,textarea,select,button"); if(inp) setTimeout(()=>inp.focus(),300);
+        }
+      }));
+    }
+    // section dots
+    SECTIONS.forEach(sec => {
+      const block = $(`#main section[data-sec="${sec.id}"]`);
+      if(!block) return;
+      const sc = sectionCompletion(sec, data);
+      const st = block.querySelector(".sec-state");
+      if(st) st.innerHTML = `<span class="d-dot" style="width:8px;height:8px;border-radius:50%;background:${statusColor(sc.pct)}"></span>${sc.done}/${sc.total}`;
+    });
+    // rating labels
+    $("#main").querySelectorAll(".rating").forEach(r => {
+      const v = data[r.dataset.key];
+      const lab = r.querySelector(".rlabel");
+      if(lab) lab.textContent = v ? ("noté "+v+"/5") : "non évalué";
+      r.querySelectorAll("button").forEach(btn => btn.classList.toggle("on", Number(v)===Number(btn.dataset.val)));
+    });
+  }
+
+  /* ---------- Actions dossier ---------- */
+  function newDossier(){
+    const id = uid();
+    store[id] = { id, created:Date.now(), updated:Date.now(), data:{ statut:"À démarrer" }, collapsed:{} };
+    persist(); currentId = id;
+    renderList(); renderMain();
+    const inp = $('#main input[data-key="raison_sociale"]'); if(inp) inp.focus();
+    toast("Nouveau suivi créé");
+  }
+  function select(id){ currentId = id; renderList(); renderMain(); window.scrollTo({top:0,behavior:"smooth"}); }
+  function delDossier(){
+    if(!currentId) return;
+    const name = store[currentId].data.raison_sociale || "ce suivi";
+    if(!confirm(`Supprimer le suivi de « ${name} » ? Cette action est définitive.`)) return;
+    delete store[currentId]; persist();
+    currentId = Object.keys(store).sort((a,b)=>(store[b].updated||0)-(store[a].updated||0))[0] || null;
+    renderList(); renderMain(); toast("Suivi supprimé");
+  }
+
+  /* ---------- Synthèse texte ---------- */
+  function syntheseText(d){
+    const data = d.data, out = [];
+    out.push("SUIVI ENTREPRISE — " + (data.raison_sociale||"Sans nom"));
+    out.push("=".repeat(48));
+    SECTIONS.forEach(sec => {
+      const lines = [];
+      sec.fields.forEach(f => {
+        const v = data[f.k];
+        if(!isFilled(f,v)) return;
+        let val = v;
+        if(f.t==="checks") val = v.join(", ");
+        if(f.t==="rating") val = v + "/5";
+        lines.push("  - " + f.l + " : " + val);
+      });
+      if(lines.length){ out.push(""); out.push(sec.icon + " " + sec.title.toUpperCase()); out.push(lines.join("\n")); }
+    });
+    const comp = completion(d);
+    out.push(""); out.push("-".repeat(48));
+    out.push("Complétude essentielle : " + comp.reqPct + "% (" + comp.reqDone + "/" + comp.reqTotal + ")");
+    if(comp.missing.length) out.push("Reste à compléter : " + comp.missing.map(m=>m.label).join(", "));
+    return out.join("\n");
+  }
+  function copySynthese(){
+    const txt = syntheseText(store[currentId]);
+    navigator.clipboard.writeText(txt).then(()=>toast("Synthèse copiée"))
+      .catch(()=>{ // fallback
+        const ta=document.createElement("textarea"); ta.value=txt; document.body.appendChild(ta);
+        ta.select(); document.execCommand("copy"); ta.remove(); toast("Synthèse copiée");
+      });
+  }
+
+  /* ---------- Import / Export ---------- */
+  function exportAll(){
+    const blob = new Blob([JSON.stringify(store,null,2)], {type:"application/json"});
+    const url = URL.createObjectURL(blob), a = document.createElement("a");
+    a.href = url; a.download = "suivis-entreprises-" + new Date().toISOString().slice(0,10) + ".json";
+    a.click(); URL.revokeObjectURL(url); toast("Export téléchargé");
+  }
+  function importFile(file){
+    const reader = new FileReader();
+    reader.onload = () => {
+      try{
+        const obj = JSON.parse(reader.result);
+        if(!obj || typeof obj!=="object") throw 0;
+        let n=0;
+        Object.keys(obj).forEach(id => {
+          if(obj[id] && obj[id].data){ store[obj[id].id||id] = obj[id]; n++; }
+        });
+        persist(); renderList();
+        currentId = currentId && store[currentId] ? currentId : Object.keys(store)[0]||null;
+        renderMain(); toast(n + " suivi(s) importé(s)");
+      }catch(e){ toast("Fichier invalide"); }
+    };
+    reader.readAsText(file);
+  }
+
+  /* ---------- Utilitaires ---------- */
+  function esc(s){ return (s==null?"":String(s)).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;").replace(/"/g,"&quot;").replace(/'/g,"&#39;"); }
+  let toastTimer=null;
+  function toast(msg){
+    $("#toast-msg").textContent = msg;
+    const t=$("#toast"); t.classList.add("show");
+    clearTimeout(toastTimer); toastTimer=setTimeout(()=>t.classList.remove("show"),1900);
+  }
+
+  /* ---------- Boot ---------- */
+  $("#btn-new").addEventListener("click", newDossier);
+  $("#btn-export").addEventListener("click", exportAll);
+  $("#btn-import").addEventListener("click", ()=>$("#file-input").click());
+  $("#file-input").addEventListener("change", e => { if(e.target.files[0]) importFile(e.target.files[0]); e.target.value=""; });
+  $("#dossier-q").addEventListener("input", e => { dossierFilter = e.target.value; renderList(); });
+
+  currentId = Object.keys(store).sort((a,b)=>(store[b].updated||0)-(store[a].updated||0))[0] || null;
+  renderList(); renderMain();
+  if(Object.keys(store).length) $("#save-state").textContent = "Données locales chargées";
+})();
+</script>
+</body>
+</html>
