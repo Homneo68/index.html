@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html lang="fr" data-scroll-behavior="smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>L'Académie des formateurs — Formation continue des formateurs</title>
+<meta name="description" content="La formation continue dédiée aux formateurs internes et externes. 12 modules à la carte et un parcours certifiant pour développer vos compétences pédagogiques." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  /* ====== Palette EXACTE du site original ====== */
+  --brand-50:#ecfaff;--brand-100:#d2f2fc;--brand-200:#aae6f8;--brand-300:#71d5f1;--brand-400:#34bfe5;--brand-500:#14b2d5;--brand-600:#0d8dae;--brand-700:#11718d;--brand-800:#165d74;--brand-900:#184d62;--brand-950:#0a3343;
+  --accent-400:#ff8a6b;--accent-500:#ff6a47;--accent-600:#ec4d29;
+  --emerald-400:#00d294;--emerald-500:#00bb7f;--teal-400:#00d3bd;--teal-600:#009588;
+  --fuchsia-400:#ec6cff;--purple-600:#9810fa;
+
+  --text:#0b2530;--muted:#3f5a64;--subtle:#688590;
+  --bg:#ffffff;--surface:#f6fdff;--border:#e1f0f6;
+  --font-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-head:"Poppins",var(--font-sans);
+  --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.5rem;--s6:2rem;--s7:3rem;--s8:4rem;--s9:6rem;
+  --r-sm:8px;--r-md:14px;--r-lg:22px;--r-xl:30px;--r-full:9999px;
+  --shadow-sm:0 1px 3px rgba(10,51,67,.08);
+  --shadow-md:0 8px 24px rgba(10,51,67,.10);
+  --shadow-lg:0 24px 60px rgba(10,51,67,.16);
+  --shadow-brand:0 18px 40px rgba(13,141,174,.28);
+  --ease:cubic-bezier(.4,0,.2,1);--maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-sans);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-head);line-height:1.12;margin:0;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--s5)}
+:focus-visible{outline:3px solid var(--brand-400);outline-offset:2px;border-radius:6px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-weight:600;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-600)}
+.eyebrow i{width:16px;height:16px}
+.muted{color:var(--muted)}
+.lucide{width:1.25em;height:1.25em;stroke-width:1.7}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--font-head);font-weight:600;font-size:.95rem;min-height:52px;padding:0 1.6rem;border-radius:var(--r-full);border:1.5px solid transparent;cursor:pointer;transition:transform .18s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);white-space:nowrap}
+.btn .lucide{width:18px;height:18px}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(135deg,var(--brand-500),var(--brand-700));color:#fff;box-shadow:var(--shadow-brand)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 48px rgba(13,141,174,.4)}
+.btn-primary .lucide{transition:transform .25s var(--ease)}
+.btn-primary:hover .lucide{transform:translateX(4px)}
+.btn-accent{background:linear-gradient(135deg,var(--accent-400),var(--accent-600));color:#fff;box-shadow:0 16px 36px rgba(236,77,41,.32)}
+.btn-accent:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.7);color:var(--brand-700);border-color:var(--brand-200);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:#fff;border-color:var(--brand-400);transform:translateY(-2px)}
+.btn-sm{min-height:44px;font-size:.88rem;padding:0 1.1rem}
+.btn-light{background:#fff;color:var(--brand-700)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-outline-light:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* ===== Header ===== */
+header.nav{position:sticky;top:0;z-index:50;transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+header.nav.scrolled{background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 var(--border),0 10px 30px rgba(10,51,67,.06)}
+.nav-inner{display:flex;align-items:center;gap:var(--s5);height:74px}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand-badge{width:46px;height:46px;border-radius:14px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand-400),var(--brand-700));box-shadow:var(--shadow-brand)}
+.brand-badge .lucide{width:24px;height:24px}
+.brand-name{font-family:var(--font-head);font-weight:700;font-size:1.02rem;line-height:1.05;color:var(--brand-900)}
+.brand-name span{display:block;color:var(--brand-500);font-weight:600;font-size:.82rem}
+.nav-links{display:none;gap:.3rem;margin-inline:auto}
+.nav-links a{font-weight:500;font-size:.94rem;color:var(--muted);padding:.5rem .8rem;border-radius:var(--r-full);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--brand-700);background:var(--brand-50)}
+.nav-actions{display:flex;align-items:center;gap:.4rem;margin-left:auto}
+.icon-btn{width:46px;height:46px;display:grid;place-items:center;border-radius:var(--r-full);color:var(--brand-700);background:transparent;border:none;cursor:pointer;transition:background .2s}
+.icon-btn:hover{background:var(--brand-50)}
+.menu-toggle{display:grid}
+@media(min-width:1024px){.nav-links{display:flex}.menu-toggle{display:none}.nav-actions{margin-left:0}}
+.mobile-menu{display:none;flex-direction:column;gap:.2rem;padding:var(--s4) var(--s5) var(--s5);background:#fff;border-top:1px solid var(--border)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:.8rem .6rem;border-radius:var(--r-sm);font-weight:500;color:var(--muted)}
+.mobile-menu a:hover{background:var(--brand-50);color:var(--brand-700)}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:var(--s8) 0 var(--s9);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:
+  radial-gradient(60% 50% at 85% 0%,rgba(52,191,229,.22),transparent 70%),
+  radial-gradient(50% 45% at 0% 30%,rgba(255,138,107,.16),transparent 70%),
+  linear-gradient(180deg,var(--brand-50),#fff 60%)}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1;animation:float 16s var(--ease) infinite}
+.blob.b1{width:380px;height:380px;background:var(--brand-300);top:-120px;right:-60px}
+.blob.b2{width:300px;height:300px;background:var(--accent-400);bottom:-100px;left:-80px;animation-delay:-6s}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,30px)}}
+.hero-grid{display:grid;gap:var(--s7);align-items:center}
+@media(min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.badge-pill{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--brand-200);color:var(--brand-700);font-weight:600;font-size:.82rem;padding:.5rem 1rem;border-radius:var(--r-full);box-shadow:var(--shadow-sm)}
+.badge-pill .lucide{width:16px;height:16px;color:var(--accent-500)}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;margin:var(--s4) 0;color:var(--brand-950)}
+.hero h1 .grad{background:linear-gradient(120deg,var(--brand-500),var(--accent-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.12rem;color:var(--muted);max-width:44ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:var(--s5)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--border)}
+.stat .n{font-family:var(--font-head);font-weight:800;font-size:1.7rem;color:var(--brand-700);line-height:1}
+.stat .l{font-size:.82rem;color:var(--subtle);margin-top:4px}
+/* hero visual */
+.hero-visual{position:relative}
+.hero-img{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/4.4}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,51,67,.45),transparent 45%)}
+.float-card{position:absolute;left:-8px;bottom:24px;z-index:2;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid #fff;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:1.1rem 1.3rem;max-width:270px;animation:rise 1s var(--ease) both .3s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.float-card .qual{display:inline-flex;align-items:center;gap:.4rem;color:var(--emerald-500);font-weight:600;font-size:.8rem;margin-bottom:.5rem}
+.float-card .qual .lucide{width:16px;height:16px}
+.float-card .t{font-family:var(--font-head);font-weight:700;color:var(--brand-900);line-height:1.2}
+.float-card .price{margin:.6rem 0 .3rem;font-family:var(--font-head);font-weight:800;font-size:1.5rem;color:var(--brand-600)}
+.float-card .price small{font-weight:500;font-size:.72rem;color:var(--subtle);display:block}
+.float-card a{font-size:.84rem;font-weight:600;color:var(--accent-600);display:inline-flex;align-items:center;gap:4px}
+
+/* ===== Sections ===== */
+section{padding:var(--s9) 0}
+.sec-head{max-width:680px;margin:0 auto var(--s7);text-align:center}
+.sec-head h2{font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:700;color:var(--brand-950);margin:.6rem 0}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.bg-soft{background:linear-gradient(180deg,#fff,var(--brand-50))}
+
+/* feature cards */
+.grid-4{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.feature{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5);transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+.feature:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--brand-200)}
+.feature .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand-400),var(--brand-600));box-shadow:var(--shadow-brand);margin-bottom:var(--s4)}
+.feature:nth-child(2) .ic{background:linear-gradient(135deg,var(--accent-400),var(--accent-600));box-shadow:0 16px 36px rgba(236,77,41,.28)}
+.feature:nth-child(3) .ic{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.feature:nth-child(4) .ic{background:linear-gradient(135deg,var(--fuchsia-400),var(--purple-600))}
+.feature h3{font-size:1.15rem;font-weight:700;color:var(--brand-900);margin-bottom:.4rem}
+.feature p{color:var(--muted);font-size:.95rem;margin:0}
+
+/* module cards */
+.modules{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.mod{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.mod:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.mod-head{height:120px;position:relative;display:flex;align-items:flex-end;padding:var(--s4)}
+.mh1{background:linear-gradient(135deg,var(--brand-400),var(--brand-600))}
+.mh2{background:linear-gradient(135deg,var(--fuchsia-400),var(--purple-600))}
+.mh3{background:linear-gradient(135deg,var(--accent-400),var(--accent-600))}
+.mh4{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.mod-num{position:absolute;top:14px;left:16px;font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:rgba(255,255,255,.85)}
+.mod-cert{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);color:var(--brand-700);font-weight:700;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .6rem;border-radius:var(--r-full)}
+.mod-cat{color:#fff;font-weight:600;font-size:.8rem;text-shadow:0 1px 4px rgba(0,0,0,.25)}
+.mod-body{padding:var(--s4) var(--s5) var(--s5);display:flex;flex-direction:column;flex:1}
+.mod-body h3{font-size:1.1rem;font-weight:700;color:var(--brand-900);margin-bottom:.4rem}
+.mod-body p{color:var(--muted);font-size:.92rem;margin:0 0 var(--s4)}
+.mod-meta{display:flex;gap:var(--s4);color:var(--subtle);font-size:.82rem;margin-bottom:var(--s4)}
+.mod-meta span{display:inline-flex;align-items:center;gap:.3rem}
+.mod-meta .lucide{width:15px;height:15px}
+.mod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--border)}
+.mod-price small{display:block;font-size:.7rem;color:var(--subtle)}
+.mod-price b{font-family:var(--font-head);font-size:1.3rem;color:var(--brand-600)}
+.mod-link{font-weight:600;font-size:.86rem;color:var(--accent-600);display:inline-flex;align-items:center;gap:4px;transition:gap .2s}
+.mod-link:hover{gap:9px}
+.center-link{display:flex;justify-content:center;margin-top:var(--s6)}
+
+/* two formats */
+.formats{display:grid;gap:var(--s5)}
+@media(min-width:840px){.formats{grid-template-columns:1fr 1fr}}
+.format{position:relative;border-radius:var(--r-xl);padding:var(--s7) var(--s6);border:1px solid var(--border);background:#fff;transition:transform .25s var(--ease),box-shadow .25s}
+.format:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.format.reco{background:linear-gradient(155deg,var(--brand-700),var(--brand-950));color:#fff;border:none;box-shadow:var(--shadow-lg)}
+.format .ribbon{position:absolute;top:-14px;right:24px;background:linear-gradient(135deg,var(--accent-400),var(--accent-600));color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:.4rem .9rem;border-radius:var(--r-full);box-shadow:0 10px 24px rgba(236,77,41,.4)}
+.format h3{font-size:1.5rem;font-weight:700;margin-bottom:.6rem;color:var(--brand-900)}
+.format.reco h3{color:#fff}
+.format>p{color:var(--muted);margin:0 0 var(--s5)}
+.format.reco>p{color:rgba(255,255,255,.82)}
+.checklist{list-style:none;padding:0;margin:0 0 var(--s6);display:flex;flex-direction:column;gap:.7rem}
+.checklist li{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem}
+.checklist .lucide{width:20px;height:20px;color:var(--emerald-500);flex-shrink:0;margin-top:1px}
+.format.reco .checklist .lucide{color:var(--brand-300)}
+
+/* trust */
+.trust{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.trust .item{display:flex;gap:var(--s4);align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5)}
+.trust .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--brand-50);color:var(--brand-600);flex-shrink:0}
+.trust h3{font-size:1.05rem;font-weight:700;color:var(--brand-900);margin-bottom:.3rem}
+.trust p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* testimonials */
+.quotes{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.quote{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6);position:relative;transition:transform .25s var(--ease),box-shadow .25s}
+.quote:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.quote .qi{color:var(--brand-200);width:38px;height:38px;margin-bottom:var(--s3)}
+.quote p{font-size:1rem;color:var(--text);margin:0 0 var(--s5);font-style:italic}
+.quote .who{display:flex;align-items:center;gap:.8rem}
+.avatar{width:46px;height:46px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-family:var(--font-head);font-weight:700;background:linear-gradient(135deg,var(--brand-400),var(--brand-700))}
+.quote:nth-child(2) .avatar{background:linear-gradient(135deg,var(--accent-400),var(--accent-600))}
+.quote:nth-child(3) .avatar{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.who b{font-family:var(--font-head);color:var(--brand-900);display:block;font-size:.95rem}
+.who small{color:var(--subtle)}
+
+/* final cta */
+.cta-final{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:var(--s9) var(--s6);text-align:center;color:#fff;background:linear-gradient(140deg,var(--brand-600),var(--brand-950))}
+.cta-final::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,138,107,.35),transparent 70%);top:-150px;right:-80px}
+.cta-final::after{content:"";position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(52,191,229,.4),transparent 70%);bottom:-160px;left:-60px}
+.cta-final .inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.cta-final h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;margin-bottom:var(--s4)}
+.cta-final p{color:rgba(255,255,255,.85);font-size:1.1rem;margin-bottom:var(--s6)}
+.cta-final .hero-cta{justify-content:center}
+
+/* footer */
+footer{background:var(--brand-950);color:rgba(255,255,255,.7);padding:var(--s9) 0 var(--s6)}
+.foot-grid{display:grid;gap:var(--s6);grid-template-columns:1fr;margin-bottom:var(--s7)}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}}
+.foot-brand .brand-name,.foot-brand .brand-name span{color:#fff}
+.foot-brand p{font-size:.9rem;margin:var(--s4) 0;max-width:34ch}
+.foot-contact{display:flex;flex-direction:column;gap:.5rem;font-size:.88rem}
+.foot-contact a,.foot-contact span{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.7)}
+.foot-contact .lucide{width:16px;height:16px;color:var(--brand-300)}
+footer h4{color:#fff;font-size:.95rem;font-weight:600;margin-bottom:var(--s4)}
+footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+footer ul a{font-size:.88rem;transition:color .2s}
+footer ul a:hover{color:var(--brand-300)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--s5);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;font-size:.82rem}
+.foot-badges{display:flex;gap:.6rem}
+.foot-badges span{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.08);padding:.4rem .8rem;border-radius:var(--r-full);color:#fff}
+.foot-badges .lucide{width:15px;height:15px;color:var(--emerald-400)}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-badge"><i data-lucide="graduation-cap"></i></span>
+      <span class="brand-name">L'Académie<span>des formateurs</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#academie">L'Académie</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#parcours">Parcours certifiant</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Panier"><i data-lucide="shopping-cart"></i></button>
+      <button class="icon-btn" aria-label="Connexion"><i data-lucide="user-round"></i></button>
+      <a href="#" class="btn btn-primary btn-sm">Créer mon compte</a>
+      <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Menu"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#academie">L'Académie</a>
+    <a href="#catalogue">Catalogue</a>
+    <a href="#parcours">Parcours certifiant</a>
+    <a href="#temoignages">Témoignages</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="badge-pill"><i data-lucide="sparkles"></i> Écosystème HOMNEO · Formation &amp; alternance</span>
+      <h1>Devenez le formateur <span class="grad">qui marque les esprits</span></h1>
+      <p class="lead">L'Académie des formateurs accompagne les formateurs internes et externes dans le développement de leurs compétences pédagogiques, techniques et humaines. 12 modules à la carte, un parcours certifiant, et toujours au plus près du terrain.</p>
+      <div class="hero-cta">
+        <a href="#catalogue" class="btn btn-primary">Découvrir le catalogue <i data-lucide="arrow-right"></i></a>
+        <a href="#" class="btn btn-ghost">Créer mon compte</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">12</div><div class="l">modules thématiques</div></div>
+        <div class="stat"><div class="n">1</div><div class="l">parcours certifiant</div></div>
+        <div class="stat"><div class="n">100 %</div><div class="l">ancré sur le terrain</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img">
+        <img src="https://academie-des-formateurs.vercel.app/accueil-formateurs.jpg" alt="Formateurs en session de formation" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--brand-400),var(--brand-700))';this.style.display='none'">
+      </div>
+      <div class="float-card">
+        <span class="qual"><i data-lucide="badge-check"></i> Certifié Qualiopi</span>
+        <div class="t">Parcours certifiant<br>Formateur professionnel</div>
+        <div class="price"><small>Tarif du parcours</small>2 950 €</div>
+        <a href="#parcours">En savoir plus <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POURQUOI ============ -->
+<section id="academie" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="compass"></i> Pourquoi l'Académie</span>
+      <h2>Une académie pensée pour les formateurs</h2>
+      <p>Quatre engagements guident chacune de nos formations, pour faire grandir les compétences pédagogiques au service de l'impact terrain.</p>
+    </div>
+    <div class="grid-4">
+      <div class="feature reveal"><div class="ic"><i data-lucide="layers"></i></div><h3>Un espace de formation continue</h3><p>Offrir aux formateurs internes et externes un lieu dédié pour entretenir et développer leurs compétences tout au long de leur parcours.</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="target"></i></div><h3>Des réponses concrètes</h3><p>Répondre aux besoins du terrain : animation, gestion de groupe, outils pédagogiques, intelligence artificielle, Qualiopi…</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="trending-up"></i></div><h3>Une qualité en amélioration continue</h3><p>Garantir l'amélioration continue de la qualité des formations dispensées au sein de l'écosystème HOMNEO.</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="messages-square"></i></div><h3>Une culture pédagogique partagée</h3><p>Créer un langage commun et une communauté de pratique où l'expérience de chacun nourrit le collectif.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOGUE ============ -->
+<section id="catalogue">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="sparkles"></i> Catalogue</span>
+      <h2>Des modules phares pour commencer</h2>
+      <p>Chaque module est indépendant : composez votre parcours selon vos besoins du moment.</p>
+    </div>
+    <div class="modules">
+      <article class="mod reveal">
+        <div class="mod-head mh1"><span class="mod-num">01</span><span class="mod-cert">Certifiant</span><span class="mod-cat">Animation &amp; groupe</span></div>
+        <div class="mod-body">
+          <h3>Animer un groupe avec aisance et impact</h3>
+          <p>Affirmez votre posture d'animation et transformez la dynamique de vos groupes.</p>
+          <div class="mod-meta"><span><i data-lucide="clock"></i> 14 h · 2 jours</span><span><i data-lucide="map-pin"></i> Présentiel</span></div>
+          <div class="mod-foot"><div class="mod-price"><small>À partir de</small><b>690 €</b></div><a class="mod-link" href="#">Voir le module <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a></div>
+        </div>
+      </article>
+      <article class="mod reveal">
+        <div class="mod-head mh2"><span class="mod-num">04</span><span class="mod-cat">Innovation &amp; IA</span></div>
+        <div class="mod-body">
+          <h3>Former à l'ère de l'IA : intégrer l'intelligence artificielle</h3>
+          <p>Faites de l'IA un allié pour concevoir plus vite et enrichir vos pratiques.</p>
+          <div class="mod-meta"><span><i data-lucide="clock"></i> 14 h · 2 jours</span><span><i data-lucide="map-pin"></i> Hybride</span></div>
+          <div class="mod-foot"><div class="mod-price"><small>À partir de</small><b>750 €</b></div><a class="mod-link" href="#">Voir le module <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a></div>
+        </div>
+      </article>
+      <article class="mod reveal">
+        <div class="mod-head mh3"><span class="mod-num">11</span><span class="mod-cert">Certifiant</span><span class="mod-cat">Communication</span></div>
+        <div class="mod-body">
+          <h3>Prendre la parole avec confiance et impact</h3>
+          <p>Captez l'attention dès les premières secondes et marquez durablement les esprits.</p>
+          <div class="mod-meta"><span><i data-lucide="clock"></i> 14 h · 2 jours</span><span><i data-lucide="map-pin"></i> Présentiel</span></div>
+          <div class="mod-foot"><div class="mod-price"><small>À partir de</small><b>690 €</b></div><a class="mod-link" href="#">Voir le module <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a></div>
+        </div>
+      </article>
+      <article class="mod reveal">
+        <div class="mod-head mh4"><span class="mod-num">05</span><span class="mod-cert">Certifiant</span><span class="mod-cat">Qualité &amp; Qualiopi</span></div>
+        <div class="mod-body">
+          <h3>Former en respectant les exigences de Qualiopi</h3>
+          <p>Maîtrisez les critères Qualiopi et sécurisez la traçabilité de vos formations.</p>
+          <div class="mod-meta"><span><i data-lucide="clock"></i> 7 h · 1 jour</span><span><i data-lucide="map-pin"></i> Présentiel</span></div>
+          <div class="mod-foot"><div class="mod-price"><small>À partir de</small><b>420 €</b></div><a class="mod-link" href="#">Voir le module <i data-lucide="arrow-right" style="width:15px;height:15px"></i></a></div>
+        </div>
+      </article>
+    </div>
+    <div class="center-link reveal"><a href="#" class="btn btn-ghost">Voir les 12 modules <i data-lucide="arrow-right"></i></a></div>
+  </div>
+</section>
+
+<!-- ============ DEUX FORMATS ============ -->
+<section id="parcours" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="git-fork"></i> Deux façons de se former</span>
+      <h2>Modules à la carte ou parcours certifiant</h2>
+      <p>Choisissez la formule qui correspond à votre besoin : une montée en compétence ciblée, ou un parcours structurant et certifiant.</p>
+    </div>
+    <div class="formats">
+      <div class="format reveal">
+        <h3>Modules à la carte</h3>
+        <p>Inscrivez-vous à un ou plusieurs modules indépendants, selon vos priorités. Chaque module donne lieu à une attestation ou un open badge.</p>
+        <ul class="checklist">
+          <li><i data-lucide="check"></i> Liberté totale de composition</li>
+          <li><i data-lucide="check"></i> Sessions en présentiel ou à distance</li>
+          <li><i data-lucide="check"></i> Idéal pour un besoin précis et rapide</li>
+        </ul>
+        <a href="#catalogue" class="btn btn-primary">Explorer le catalogue <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="format reco reveal">
+        <span class="ribbon">Recommandé</span>
+        <h3>Parcours certifiant</h3>
+        <p>Six modules articulés en un parcours cohérent, avec suivi individualisé et certification « Formateur professionnel ».</p>
+        <ul class="checklist">
+          <li><i data-lucide="check"></i> Un fil rouge pédagogique structurant</li>
+          <li><i data-lucide="check"></i> Un référent de parcours dédié</li>
+          <li><i data-lucide="check"></i> Un certificat et un open badge reconnus</li>
+        </ul>
+        <a href="#" class="btn btn-accent">Découvrir le parcours <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section>
+  <div class="container">
+    <div class="trust">
+      <div class="item reveal"><div class="ic"><i data-lucide="shield-check"></i></div><div><h3>Organisme certifié Qualiopi</h3><p>Des formations conformes aux exigences qualité de la formation professionnelle.</p></div></div>
+      <div class="item reveal"><div class="ic"><i data-lucide="award"></i></div><div><h3>Attestations &amp; open badges</h3><p>Chaque module validé donne lieu à une attestation ou un open badge numérique.</p></div></div>
+      <div class="item reveal"><div class="ic"><i data-lucide="users"></i></div><div><h3>Des formateurs experts</h3><p>Des intervenants praticiens, ancrés dans la réalité du métier de formateur.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEMOIGNAGES ============ -->
+<section id="temoignages" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="message-circle-heart"></i> Ils nous font confiance</span>
+      <h2>La parole aux formateurs</h2>
+      <p>Des retours d'expérience de formateurs passés par l'Académie.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le module sur l'animation de groupe a transformé ma posture. J'ai des outils concrets que j'utilise dès le lundi suivant. »</p><div class="who"><span class="avatar">C</span><div><b>Camille D.</b><small>Formatrice en alternance</small></div></div></div>
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le parcours certifiant m'a donné un cadre et une vraie reconnaissance. L'open badge est un atout sur mon profil. »</p><div class="who"><span class="avatar">Y</span><div><b>Yann M.</b><small>Formateur indépendant</small></div></div></div>
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Nous inscrivons toute notre équipe de formateurs. La culture commune qui en ressort fait une vraie différence. »</p><div class="who"><span class="avatar">S</span><div><b>Sofia B.</b><small>Responsable pédagogique</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section>
+  <div class="container">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <h2>Faites grandir vos compétences de formateur dès aujourd'hui</h2>
+        <p>Créez votre compte, explorez le catalogue et inscrivez-vous en ligne en quelques minutes.</p>
+        <div class="hero-cta">
+          <a href="#catalogue" class="btn btn-light">Découvrir le catalogue <i data-lucide="arrow-right"></i></a>
+          <a href="#" class="btn btn-outline-light">Créer mon compte</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <span class="brand-badge"><i data-lucide="graduation-cap"></i></span>
+          <span class="brand-name">L'Académie<span>Écosystème HOMNEO</span></span>
+        </div>
+        <p>La formation continue dédiée aux formateurs internes et externes : développez vos compétences pédagogiques, techniques et humaines, au plus près du terrain.</p>
+        <div class="foot-contact">
+          <span><i data-lucide="map-pin"></i> HOMNEO Business School — France</span>
+          <a href="mailto:academie@homneo.fr"><i data-lucide="mail"></i> academie@homneo.fr</a>
+          <span><i data-lucide="phone"></i> 01 00 00 00 00</span>
+        </div>
+      </div>
+      <div><h4>Se former</h4><ul><li><a href="#catalogue">Catalogue des formations</a></li><li><a href="#parcours">Parcours certifiant</a></li><li><a href="#">Calendrier des sessions</a></li><li><a href="#">Mon panier</a></li></ul></div>
+      <div><h4>L'Académie</h4><ul><li><a href="#academie">Notre mission</a></li><li><a href="#">Questions fréquentes</a></li><li><a href="#contact">Nous contacter</a></li><li><a href="#">Espace apprenant</a></li></ul></div>
+      <div><h4>Informations</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Conditions générales de vente</a></li><li><a href="#">Confidentialité &amp; RGPD</a></li><li><a href="#">Certification Qualiopi</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 L'Académie des formateurs — Groupe HOMNEO. Tous droits réservés.</span>
+      <div class="foot-badges"><span><i data-lucide="badge-check"></i> Certifié Qualiopi</span><span><i data-lucide="award"></i> Actions de formation</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  // sticky header bg
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>10);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  // mobile menu
+  const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+  mb.addEventListener('click',()=>mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el);});
+</script>
+</body>
+</html>
