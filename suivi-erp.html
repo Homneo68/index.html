@@ -1,0 +1,874 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Suivi ERP — Conformité des bâtiments</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=Geist:wght@300;400;500;600;700&family=Geist+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f7f4ee;
+    --bg-deep:#efeae0;
+    --surface:#fffdf8;
+    --ink:#16140f;
+    --ink-soft:#4a463d;
+    --ink-mute:#8a8576;
+    --line:#e3ddce;
+    --line-soft:#ece7d9;
+    --accent:#b8421d;
+    --accent-soft:#f3d7c8;
+    --good:#3f6b3a;
+    --good-soft:#dde9d8;
+    --warn:#a06a18;
+    --warn-soft:#f4e3c4;
+    --shadow: 0 1px 0 rgba(22,20,15,.04), 0 8px 24px -12px rgba(22,20,15,.12);
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0}
+  body{
+    font-family:"Geist", system-ui, sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    font-size:15px;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit}
+
+  /* Header */
+  header.top{
+    border-bottom:1px solid var(--line);
+    background:var(--bg);
+    position:sticky; top:0; z-index:50;
+    backdrop-filter:saturate(140%) blur(8px);
+    background:color-mix(in srgb, var(--bg) 88%, transparent);
+  }
+  .top-inner{
+    max-width:1320px; margin:0 auto;
+    padding:18px 28px 14px;
+    display:flex; align-items:flex-end; gap:32px; flex-wrap:wrap;
+  }
+  .brand{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:30px;
+    line-height:1;
+    letter-spacing:-0.02em;
+  }
+  .brand em{
+    font-style:italic; font-weight:400;
+    color:var(--accent);
+  }
+  .meta{
+    display:flex; gap:22px; flex-wrap:wrap;
+    margin-left:auto;
+    font-family:"Geist Mono", monospace;
+    font-size:11.5px;
+    text-transform:uppercase;
+    letter-spacing:0.08em;
+    color:var(--ink-mute);
+  }
+  .meta strong{
+    color:var(--ink);
+    font-weight:500;
+    font-size:13px;
+    letter-spacing:0.02em;
+    display:block;
+    margin-top:2px;
+    text-transform:none;
+  }
+  .meta strong .num{
+    font-family:"Fraunces", serif;
+    font-weight:600;
+    font-size:22px;
+    margin-right:4px;
+  }
+  .num.good{ color:var(--good) }
+  .num.warn{ color:var(--warn) }
+  .num.bad{ color:var(--accent) }
+
+  /* Filters */
+  .filters{
+    max-width:1320px; margin:0 auto;
+    padding:18px 28px 8px;
+    display:grid;
+    gap:14px;
+  }
+  .filter-row{
+    display:flex; gap:10px; flex-wrap:wrap; align-items:center;
+  }
+  .search{
+    flex:1; min-width:280px;
+    position:relative;
+  }
+  .search input{
+    width:100%;
+    border:1px solid var(--line);
+    background:var(--surface);
+    border-radius:999px;
+    padding:13px 18px 13px 44px;
+    font:inherit; color:var(--ink);
+    outline:none;
+    transition:border-color .15s, box-shadow .15s;
+  }
+  .search input:focus{
+    border-color:var(--ink);
+    box-shadow:0 0 0 4px color-mix(in srgb, var(--ink) 8%, transparent);
+  }
+  .search svg{
+    position:absolute; left:16px; top:50%; transform:translateY(-50%);
+    width:18px; height:18px; color:var(--ink-mute);
+  }
+  .chip{
+    appearance:none;
+    border:1px solid var(--line);
+    background:var(--surface);
+    color:var(--ink-soft);
+    border-radius:999px;
+    padding:9px 14px;
+    font:inherit; font-size:13px; font-weight:500;
+    cursor:pointer;
+    transition:all .15s;
+    display:inline-flex; align-items:center; gap:6px;
+    white-space:nowrap;
+  }
+  .chip:hover{ border-color:var(--ink-mute); color:var(--ink) }
+  .chip.active{
+    background:var(--ink); color:var(--bg);
+    border-color:var(--ink);
+  }
+  .chip .count{
+    font-family:"Geist Mono", monospace;
+    font-size:11px;
+    opacity:.6;
+  }
+  .chip-group-label{
+    font-family:"Geist Mono", monospace;
+    font-size:10.5px;
+    letter-spacing:0.1em;
+    text-transform:uppercase;
+    color:var(--ink-mute);
+    margin-right:4px;
+  }
+  select.chip{
+    padding-right:32px;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 8'><path d='M1 1l5 5 5-5' stroke='%238a8576' stroke-width='1.5' fill='none' stroke-linecap='round'/></svg>");
+    background-repeat:no-repeat;
+    background-position:right 12px center;
+  }
+
+  /* Result bar */
+  .resultbar{
+    max-width:1320px; margin:0 auto;
+    padding:6px 28px 18px;
+    display:flex; align-items:baseline; gap:16px;
+    border-bottom:1px solid var(--line-soft);
+    flex-wrap:wrap;
+  }
+  .count-result{
+    font-family:"Fraunces", serif;
+    font-size:18px; font-weight:600;
+  }
+  .count-result em{
+    font-style:italic; font-weight:400;
+    color:var(--ink-mute);
+  }
+  .reset{
+    background:none; border:none; cursor:pointer;
+    color:var(--accent); font:inherit; font-size:13px;
+    text-decoration:underline; text-underline-offset:3px;
+    padding:0;
+  }
+  .reset:hover{ color:var(--ink) }
+
+  /* Grid */
+  .grid{
+    max-width:1320px; margin:0 auto;
+    padding:24px 28px 80px;
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(360px, 1fr));
+    gap:14px;
+  }
+  .card{
+    background:var(--surface);
+    border:1px solid var(--line);
+    border-radius:14px;
+    padding:18px 20px 16px;
+    display:flex; flex-direction:column;
+    transition:border-color .15s, transform .15s, box-shadow .15s;
+  }
+  .card:hover{
+    border-color:var(--ink-mute);
+    transform:translateY(-1px);
+    box-shadow:var(--shadow);
+  }
+  .card.is-bad{ border-left:3px solid var(--accent) }
+  .card.is-warn{ border-left:3px solid var(--warn) }
+  .card.is-ok{ border-left:3px solid var(--good) }
+  .card-head{
+    display:flex; gap:10px; align-items:flex-start;
+    margin-bottom:10px;
+  }
+  .card-head .name{
+    font-family:"Fraunces", serif;
+    font-size:18px; font-weight:600;
+    line-height:1.2;
+    letter-spacing:-0.01em;
+    flex:1;
+  }
+  .badge{
+    font-family:"Geist Mono", monospace;
+    font-size:10px;
+    font-weight:500;
+    letter-spacing:0.06em;
+    text-transform:uppercase;
+    padding:4px 8px;
+    border-radius:6px;
+    white-space:nowrap;
+  }
+  .badge.ok{ background:var(--good-soft); color:var(--good) }
+  .badge.warn{ background:var(--warn-soft); color:var(--warn) }
+  .badge.bad{ background:var(--accent-soft); color:var(--accent) }
+
+  .usage{
+    color:var(--ink-soft);
+    font-size:14px;
+    margin-bottom:12px;
+    font-weight:500;
+  }
+
+  /* Type / catégorie tags */
+  .tags{ display:flex; gap:6px; flex-wrap:wrap; margin-bottom:14px }
+  .tag{
+    font-family:"Geist Mono", monospace;
+    font-size:10.5px; letter-spacing:0.04em; text-transform:uppercase;
+    padding:4px 8px; border-radius:6px;
+    background:var(--bg-deep); color:var(--ink-soft);
+    border:1px solid var(--line);
+  }
+  .tag.erp{ background:var(--ink); color:var(--bg); border-color:var(--ink) }
+  .tag.cat{ background:var(--accent-soft); color:var(--accent); border-color:transparent }
+
+  .meta-row{
+    display:flex; gap:18px; flex-wrap:wrap;
+    font-family:"Geist Mono", monospace;
+    font-size:11.5px;
+    color:var(--ink-mute);
+    margin-bottom:14px;
+    padding-bottom:14px;
+    border-bottom:1px dashed var(--line);
+  }
+  .meta-row span{ display:inline-flex; align-items:center; gap:5px }
+  .meta-row b{ color:var(--ink); font-weight:500 }
+
+  /* Commission */
+  .commission{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    font-size:12.5px; margin-bottom:12px;
+  }
+  .commission .lbl{
+    font-family:"Geist Mono", monospace; font-size:10.5px;
+    letter-spacing:0.08em; text-transform:uppercase; color:var(--ink-mute);
+  }
+  .avis{ font-weight:500 }
+  .avis.fav{ color:var(--good) }
+  .avis.presc{ color:var(--warn) }
+  .avis.defav{ color:var(--accent) }
+
+  /* Vérifications */
+  .verifs{
+    display:grid; gap:6px;
+    margin:2px 0 14px;
+    padding-bottom:14px;
+    border-bottom:1px dashed var(--line);
+  }
+  .verif{
+    display:flex; justify-content:space-between; align-items:center; gap:10px;
+    font-size:12.5px;
+  }
+  .verif-label{ color:var(--ink-soft) }
+  .pill{
+    font-family:"Geist Mono", monospace;
+    font-size:10.5px; font-weight:500;
+    padding:3px 8px; border-radius:999px; white-space:nowrap;
+  }
+  .pill.ok{ background:var(--good-soft); color:var(--good) }
+  .pill.watch{ background:var(--warn-soft); color:var(--warn) }
+  .pill.soon{ background:var(--accent-soft); color:var(--accent) }
+  .pill.over{ background:var(--accent); color:#fff }
+
+  /* Anomalies */
+  .anoms{ display:grid; gap:6px; margin-bottom:14px }
+  .anom{
+    display:flex; gap:8px; align-items:flex-start;
+    font-size:12.5px; color:var(--ink-soft);
+    background:var(--accent-soft); border-radius:8px;
+    padding:7px 10px;
+  }
+  .anom.moyenne{ background:var(--warn-soft) }
+  .anom .grav{
+    font-family:"Geist Mono", monospace; font-size:9.5px;
+    text-transform:uppercase; letter-spacing:0.06em;
+    font-weight:500; flex-shrink:0; padding-top:1px;
+  }
+  .anom.critique .grav{ color:var(--accent) }
+  .anom.moyenne .grav{ color:var(--warn) }
+  .no-anom{
+    font-size:12.5px; color:var(--good);
+    display:inline-flex; align-items:center; gap:6px;
+    margin-bottom:14px;
+  }
+
+  /* Contact / exploitant */
+  .contact{
+    margin-top:auto;
+    display:grid; gap:5px;
+    font-size:13px;
+  }
+  .contact .who{
+    font-weight:500; color:var(--ink);
+    margin-bottom:1px;
+  }
+  .contact .who .role{
+    font-weight:400; color:var(--ink-mute); font-size:12px;
+  }
+  .contact a, .contact .nocontact{
+    display:inline-flex; align-items:center; gap:6px;
+    color:var(--ink-soft); text-decoration:none;
+    font-size:12.5px;
+  }
+  .contact a:hover{ color:var(--accent); text-decoration:underline; text-underline-offset:2px }
+  .contact .ico{
+    width:13px; height:13px; flex-shrink:0; color:var(--ink-mute);
+  }
+  .presta{
+    margin-top:6px; font-size:11.5px; color:var(--ink-mute);
+    font-family:'Geist Mono', monospace;
+  }
+
+  .empty{
+    grid-column:1/-1;
+    text-align:center;
+    padding:80px 20px;
+    color:var(--ink-mute);
+  }
+  .empty h3{
+    font-family:"Fraunces", serif;
+    font-style:italic;
+    font-weight:400;
+    font-size:24px;
+    color:var(--ink);
+    margin:0 0 8px;
+  }
+
+  footer{
+    border-top:1px solid var(--line);
+    padding:22px 28px;
+    max-width:1320px; margin:0 auto;
+    color:var(--ink-mute);
+    font-size:12px;
+    font-family:"Geist Mono", monospace;
+    display:flex; justify-content:space-between; gap:20px; flex-wrap:wrap;
+  }
+
+  @media (max-width:680px){
+    .top-inner{ padding:14px 18px 12px; gap:14px }
+    .brand{ font-size:24px }
+    .meta{ width:100%; margin-left:0; gap:14px }
+    .filters{ padding:14px 18px 6px }
+    .resultbar{ padding:6px 18px 14px }
+    .grid{ padding:18px 18px 60px; grid-template-columns:1fr }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="top-inner">
+    <div class="brand">Suivi <em>ERP</em> · Conformité des bâtiments</div>
+    <div class="meta">
+      <div>Bâtiments<strong><span class="num" id="kpi-total">0</span></strong></div>
+      <div>Conformes<strong><span class="num good" id="kpi-ok">0</span></strong></div>
+      <div>Échéances &lt; 90 j<strong><span class="num warn" id="kpi-ech">0</span></strong></div>
+      <div>Anomalies<strong><span class="num bad" id="kpi-anom">0</span></strong></div>
+    </div>
+  </div>
+
+  <div class="filters">
+    <div class="filter-row">
+      <div class="search">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m20 20-3.5-3.5"/></svg>
+        <input id="q" type="search" placeholder="Rechercher un bâtiment, une ville, un exploitant, un type…" autocomplete="off">
+      </div>
+      <select id="sort" class="chip" aria-label="Trier">
+        <option value="echeance">Tri : prochaine échéance ↑</option>
+        <option value="name">Tri : bâtiment A→Z</option>
+        <option value="cat">Tri : catégorie</option>
+        <option value="anom">Tri : anomalies ↓</option>
+      </select>
+      <button id="reset" class="reset">Réinitialiser</button>
+    </div>
+    <div class="filter-row" id="type-row">
+      <span class="chip-group-label">Type ERP</span>
+    </div>
+    <div class="filter-row" id="cat-row">
+      <span class="chip-group-label">Catégorie</span>
+    </div>
+    <div class="filter-row" id="status-row">
+      <span class="chip-group-label">Conformité</span>
+    </div>
+  </div>
+
+  <div class="resultbar">
+    <span class="count-result"><span id="count">0</span> <em>bâtiment(s) affiché(s)</em></span>
+  </div>
+</header>
+
+<main class="grid" id="grid"></main>
+
+<footer>
+  <span>Suivi réglementaire ERP / ERT — registre de sécurité, vérifications périodiques &amp; commissions de sécurité</span>
+  <span id="updated"></span>
+</footer>
+
+<script id="data" type="application/json">
+[
+  {
+    "nom":"Siège social — Tour Helios",
+    "usage":"Immeuble de bureaux et accueil administratif",
+    "type_erp":"W","type_libelle":"Administrations, banques, bureaux",
+    "categorie":3,
+    "adresse":"14 avenue de la République","code_postal":"75011","ville":"Paris",
+    "effectif_public":120,"effectif_personnel":85,"surface":2400,
+    "statut":"conforme",
+    "registre":"à jour",
+    "commission":{"derniere":"2024-09-12","avis":"favorable","prochaine":"2027-09-12","periodicite":"3 ans"},
+    "verifications":[
+      {"label":"Installations électriques (Q18)","derniere":"2025-11-05","prochaine":"2026-11-05"},
+      {"label":"SSI / alarme incendie (type 4)","derniere":"2026-01-15","prochaine":"2026-07-15"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-10-02","prochaine":"2026-10-02"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-11-05","prochaine":"2026-11-05"},
+      {"label":"Désenfumage","derniere":"2025-12-01","prochaine":"2026-12-01"},
+      {"label":"Ascenseurs","derniere":"2026-03-20","prochaine":"2026-09-20"}
+    ],
+    "anomalies":[],
+    "exploitant_nom":"Sophie Carré","exploitant_fonction":"Responsable sécurité",
+    "exploitant_tel":"01 44 12 88 00","exploitant_mail":"s.carre@homneo.fr",
+    "prestataire":"APAVE (vérifications) · Chubb (SSI)"
+  },
+  {
+    "nom":"Magasin Centre-Ville","usage":"Surface de vente — équipement de la maison",
+    "type_erp":"M","type_libelle":"Magasins de vente, centres commerciaux",
+    "categorie":2,
+    "adresse":"3 rue du Commerce","code_postal":"59000","ville":"Lille",
+    "effectif_public":950,"effectif_personnel":60,"surface":3800,
+    "statut":"surveiller",
+    "registre":"à jour",
+    "commission":{"derniere":"2023-06-20","avis":"favorable avec prescriptions","prochaine":"2026-06-20","periodicite":"3 ans"},
+    "verifications":[
+      {"label":"SSI / désenfumage asservi (cat. 1)","derniere":"2026-01-02","prochaine":"2026-07-02"},
+      {"label":"Installations électriques (Q18)","derniere":"2025-08-12","prochaine":"2026-08-12"},
+      {"label":"RIA (robinets d'incendie armés)","derniere":"2025-10-10","prochaine":"2026-10-10"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-09-15","prochaine":"2026-09-15"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-12-18","prochaine":"2026-12-18","statut":"anomalie"}
+    ],
+    "anomalies":[
+      {"libelle":"Bloc autonome d'éclairage de sécurité HS au niveau -1 (réserve)","gravite":"moyenne","date":"2026-05-18"}
+    ],
+    "exploitant_nom":"Karim Benali","exploitant_fonction":"Directeur de magasin",
+    "exploitant_tel":"03 20 55 14 02","exploitant_mail":"k.benali@homneo.fr",
+    "prestataire":"Bureau Veritas · Desautel (extincteurs)"
+  },
+  {
+    "nom":"Restaurant Le Quai","usage":"Restauration commerciale avec cuisine gaz",
+    "type_erp":"N","type_libelle":"Restaurants et débits de boissons",
+    "categorie":4,
+    "adresse":"22 quai des Tanneurs","code_postal":"67000","ville":"Strasbourg",
+    "effectif_public":180,"effectif_personnel":14,"surface":420,
+    "statut":"conforme",
+    "registre":"à jour",
+    "commission":{"derniere":"2023-04-11","avis":"favorable","prochaine":"2028-04-11","periodicite":"5 ans"},
+    "verifications":[
+      {"label":"Installations gaz (cuisine)","derniere":"2026-01-09","prochaine":"2026-07-09"},
+      {"label":"Conduits & hottes — ramonage/dégraissage","derniere":"2025-12-20","prochaine":"2026-06-20","statut":"anomalie"},
+      {"label":"Installations électriques (Q18)","derniere":"2025-10-04","prochaine":"2026-10-04"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-11-11","prochaine":"2026-11-11"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-10-04","prochaine":"2026-10-04"}
+    ],
+    "anomalies":[],
+    "exploitant_nom":"Émilie Roth","exploitant_fonction":"Gérante",
+    "exploitant_tel":"03 88 32 19 47","exploitant_mail":"contact@lequai.fr",
+    "prestataire":"Hygiène Conseil Est"
+  },
+  {
+    "nom":"Hôtel des Voyageurs","usage":"Hôtel avec locaux à sommeil (38 chambres)",
+    "type_erp":"O","type_libelle":"Hôtels et pensions de famille",
+    "categorie":4,
+    "adresse":"5 place de la Gare","code_postal":"69002","ville":"Lyon",
+    "effectif_public":90,"effectif_personnel":12,"surface":1100,
+    "statut":"non-conforme",
+    "registre":"à compléter",
+    "commission":{"derniere":"2025-02-14","avis":"défavorable","prochaine":"2026-02-14","periodicite":"levée de prescriptions"},
+    "verifications":[
+      {"label":"SSI / détection incendie (type 2b)","derniere":"2025-12-30","prochaine":"2026-06-30"},
+      {"label":"Installations électriques (Q18)","derniere":"2025-05-20","prochaine":"2026-05-20","statut":"anomalie"},
+      {"label":"Désenfumage cages d'escalier","derniere":"2026-01-12","prochaine":"2026-07-12"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-11-08","prochaine":"2026-11-08"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-11-08","prochaine":"2026-11-08"}
+    ],
+    "anomalies":[
+      {"libelle":"Cloisonnement coupe-feu défaillant entre la réception et la cage d'escalier — prescription commission","gravite":"critique","date":"2025-02-14"},
+      {"libelle":"Détecteur de fumée hors service chambre 14","gravite":"moyenne","date":"2026-06-02"}
+    ],
+    "exploitant_nom":"Marc Lefèvre","exploitant_fonction":"Directeur",
+    "exploitant_tel":"04 78 37 22 10","exploitant_mail":"direction@hotel-voyageurs.fr",
+    "prestataire":"Eurofeu · SOCOTEC"
+  },
+  {
+    "nom":"Centre de formation Amplitude","usage":"Établissement d'enseignement et formation continue",
+    "type_erp":"R","type_libelle":"Établissements d'enseignement, crèches",
+    "categorie":3,
+    "adresse":"8 boulevard Pasteur","code_postal":"33000","ville":"Bordeaux",
+    "effectif_public":480,"effectif_personnel":35,"surface":2100,
+    "statut":"conforme",
+    "registre":"à jour",
+    "commission":{"derniere":"2024-11-08","avis":"favorable","prochaine":"2027-11-08","periodicite":"3 ans"},
+    "verifications":[
+      {"label":"SSI / alarme incendie (type 4)","derniere":"2026-02-03","prochaine":"2026-08-03"},
+      {"label":"Installations électriques (Q18)","derniere":"2025-11-22","prochaine":"2026-11-22"},
+      {"label":"Désenfumage","derniere":"2025-11-22","prochaine":"2026-11-22"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-10-30","prochaine":"2026-10-30"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-11-22","prochaine":"2026-11-22"}
+    ],
+    "anomalies":[],
+    "exploitant_nom":"Nadia Fontaine","exploitant_fonction":"Responsable de site",
+    "exploitant_tel":"05 56 44 09 71","exploitant_mail":"n.fontaine@homneo.fr",
+    "prestataire":"DEKRA"
+  },
+  {
+    "nom":"Entrepôt logistique Sud","usage":"Stockage et préparation de commandes (ERT)",
+    "type_erp":"ERT","type_libelle":"Établissement recevant des travailleurs",
+    "categorie":0,
+    "adresse":"ZI des Pradeaux, voie 4","code_postal":"13127","ville":"Vitrolles",
+    "effectif_public":0,"effectif_personnel":45,"surface":6500,
+    "statut":"surveiller",
+    "registre":"à jour",
+    "commission":null,
+    "verifications":[
+      {"label":"Installations électriques (annuelle)","derniere":"2025-09-01","prochaine":"2026-09-01"},
+      {"label":"RIA (robinets d'incendie armés)","derniere":"2025-07-14","prochaine":"2026-07-14"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-08-25","prochaine":"2026-08-25"},
+      {"label":"Désenfumage de toiture (exutoires)","derniere":"2025-11-30","prochaine":"2026-11-30"},
+      {"label":"Portes sectionnelles & quais","derniere":"2026-02-10","prochaine":"2026-08-10"},
+      {"label":"Chariots élévateurs (VGP)","derniere":"2026-01-05","prochaine":"2026-07-05"}
+    ],
+    "anomalies":[
+      {"libelle":"Pression insuffisante sur le RIA n°3 (allée C) — à reprendre","gravite":"moyenne","date":"2026-06-10"}
+    ],
+    "exploitant_nom":"Thomas Girard","exploitant_fonction":"Responsable d'exploitation",
+    "exploitant_tel":"04 42 89 33 56","exploitant_mail":"t.girard@homneo.fr",
+    "prestataire":"APAVE · Manutention Provence (VGP)"
+  },
+  {
+    "nom":"Complexe sportif Aréna","usage":"Salle multisports couverte et tribunes",
+    "type_erp":"X","type_libelle":"Établissements sportifs couverts",
+    "categorie":3,
+    "adresse":"Parc des Sports, allée Jesse Owens","code_postal":"44000","ville":"Nantes",
+    "effectif_public":350,"effectif_personnel":18,"surface":1800,
+    "statut":"conforme",
+    "registre":"à jour",
+    "commission":{"derniere":"2025-05-22","avis":"favorable","prochaine":"2028-05-22","periodicite":"3 ans"},
+    "verifications":[
+      {"label":"Installations électriques (Q18)","derniere":"2026-03-15","prochaine":"2027-03-15"},
+      {"label":"SSI / alarme incendie (type 4)","derniere":"2026-03-15","prochaine":"2026-09-15"},
+      {"label":"Chauffage / aérothermes gaz","derniere":"2025-10-01","prochaine":"2026-10-01"},
+      {"label":"Extincteurs (maintenance)","derniere":"2026-03-15","prochaine":"2027-03-15"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2026-03-15","prochaine":"2027-03-15"}
+    ],
+    "anomalies":[],
+    "exploitant_nom":"Julien Mercier","exploitant_fonction":"Gestionnaire d'équipement",
+    "exploitant_tel":"02 40 12 67 88","exploitant_mail":"j.mercier@homneo.fr",
+    "prestataire":"QUALICONSULT"
+  },
+  {
+    "nom":"Cabinet médical Les Tilleuls","usage":"Pôle de santé pluridisciplinaire",
+    "type_erp":"U","type_libelle":"Établissements sanitaires",
+    "categorie":5,
+    "adresse":"17 rue des Tilleuls","code_postal":"31000","ville":"Toulouse",
+    "effectif_public":60,"effectif_personnel":9,"surface":380,
+    "statut":"conforme",
+    "registre":"à jour",
+    "commission":{"derniere":null,"avis":"non soumis (5e cat. sans locaux à sommeil)","prochaine":null,"periodicite":"sur demande"},
+    "verifications":[
+      {"label":"Installations électriques (Q18)","derniere":"2025-12-05","prochaine":"2026-12-05"},
+      {"label":"Alarme incendie (type 4)","derniere":"2026-01-20","prochaine":"2027-01-20"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-12-05","prochaine":"2026-12-05"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-12-05","prochaine":"2026-12-05"}
+    ],
+    "anomalies":[],
+    "exploitant_nom":"Dr Hélène Masson","exploitant_fonction":"Référente sécurité",
+    "exploitant_tel":"05 61 23 78 40","exploitant_mail":"contact@pole-tilleuls.fr",
+    "prestataire":"Sicli (extincteurs)"
+  },
+  {
+    "nom":"Showroom & Espace Expo","usage":"Hall d'exposition et salons professionnels",
+    "type_erp":"T","type_libelle":"Salles d'exposition à vocation commerciale",
+    "categorie":2,
+    "adresse":"Parc Expo, hall 2","code_postal":"35000","ville":"Rennes",
+    "effectif_public":800,"effectif_personnel":22,"surface":2600,
+    "statut":"surveiller",
+    "registre":"à jour",
+    "commission":{"derniere":"2024-03-15","avis":"favorable","prochaine":"2027-03-15","periodicite":"3 ans"},
+    "verifications":[
+      {"label":"Désenfumage — commande manuelle","derniere":"2026-01-05","prochaine":"2026-07-05","statut":"anomalie"},
+      {"label":"SSI / alarme incendie (type 2a)","derniere":"2026-01-20","prochaine":"2026-07-20"},
+      {"label":"Installations électriques (Q18)","derniere":"2025-09-10","prochaine":"2026-09-10"},
+      {"label":"Extincteurs (maintenance)","derniere":"2025-09-10","prochaine":"2026-09-10"},
+      {"label":"Éclairage de sécurité (BAES)","derniere":"2025-09-10","prochaine":"2026-09-10"}
+    ],
+    "anomalies":[
+      {"libelle":"Commande manuelle de désenfumage du hall 2 défectueuse — intervention prestataire programmée","gravite":"moyenne","date":"2026-06-12"}
+    ],
+    "exploitant_nom":"Laure Bigot","exploitant_fonction":"Responsable exploitation site",
+    "exploitant_tel":"02 99 18 54 23","exploitant_mail":"l.bigot@homneo.fr",
+    "prestataire":"SOCOTEC · NSI Désenfumage"
+  }
+]
+</script>
+
+<script>
+(() => {
+  const DATA = JSON.parse(document.getElementById('data').textContent);
+  const today = new Date(); today.setHours(0,0,0,0);
+
+  const norm = s => (s||'').toString().toLowerCase()
+    .normalize('NFD').replace(/[̀-ͯ]/g,'');
+
+  const MONTHS = ['janv.','févr.','mars','avr.','mai','juin','juil.','août','sept.','oct.','nov.','déc.'];
+  const fmtDate = iso => {
+    if(!iso) return '—';
+    const d = new Date(iso+'T00:00:00');
+    return `${String(d.getDate()).padStart(2,'0')} ${MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+  };
+  const daysUntil = iso => {
+    if(!iso) return null;
+    const d = new Date(iso+'T00:00:00'); d.setHours(0,0,0,0);
+    return Math.round((d - today)/86400000);
+  };
+  const urgency = (iso, forced) => {
+    if(forced === 'anomalie') return 'over';
+    const dd = daysUntil(iso);
+    if(dd === null) return 'ok';
+    if(dd < 0) return 'over';
+    if(dd <= 30) return 'soon';
+    if(dd <= 90) return 'watch';
+    return 'ok';
+  };
+  const relLabel = (iso, forced) => {
+    if(forced === 'anomalie') return 'anomalie';
+    const dd = daysUntil(iso);
+    if(dd === null) return '—';
+    if(dd < 0) return `échu (${Math.abs(dd)} j)`;
+    if(dd === 0) return "aujourd'hui";
+    if(dd <= 90) return `dans ${dd} j`;
+    return fmtDate(iso);
+  };
+  const phoneClean = s => (s||'').replace(/[^0-9+]/g,'');
+
+  // ---- Derived fields ----
+  DATA.forEach(b => {
+    const dues = b.verifications.map(v => daysUntil(v.prochaine)).filter(x => x !== null);
+    if(b.commission && b.commission.prochaine) dues.push(daysUntil(b.commission.prochaine));
+    b._next = dues.length ? Math.min(...dues) : 9999;
+    b._anomCount = (b.anomalies ? b.anomalies.length : 0);
+    // count of verifications échues or anomalie-flagged
+    b._alerts = b.verifications.filter(v => v.statut === 'anomalie' || daysUntil(v.prochaine) < 0).length
+              + (b.commission && b.commission.prochaine && daysUntil(b.commission.prochaine) < 0 ? 1 : 0);
+    b._catLabel = b.categorie === 0 ? 'ERT' : `${b.categorie}ᵉ cat.`;
+  });
+
+  // ---- KPIs ----
+  document.getElementById('kpi-total').textContent = DATA.length;
+  document.getElementById('kpi-ok').textContent = DATA.filter(b => b.statut === 'conforme').length;
+  const echCount = DATA.reduce((n,b) => n + b.verifications.filter(v => {
+    const dd = daysUntil(v.prochaine); return dd !== null && dd >= 0 && dd <= 90;
+  }).length, 0);
+  document.getElementById('kpi-ech').textContent = echCount;
+  document.getElementById('kpi-anom').textContent = DATA.reduce((n,b) => n + b._anomCount, 0);
+  document.getElementById('updated').textContent = 'Mise à jour : ' + fmtDate(today.toISOString().slice(0,10));
+
+  // ---- Filter state ----
+  const state = { q:'', type:null, cat:null, status:null, sort:'echeance' };
+
+  const STATUS_LABELS = { 'conforme':'Conforme', 'surveiller':'À surveiller', 'non-conforme':'Non conforme' };
+  const STATUS_CLASS  = { 'conforme':'ok', 'surveiller':'warn', 'non-conforme':'bad' };
+
+  const buildChips = (rowId, items, key, labelFn) => {
+    const row = document.getElementById(rowId);
+    items.forEach(item => {
+      const btn = document.createElement('button');
+      btn.className = 'chip';
+      const count = DATA.filter(b => String(b[key]) === String(item)).length;
+      btn.innerHTML = `${labelFn(item)} <span class="count">${count}</span>`;
+      btn.addEventListener('click', () => {
+        const active = state[rowId === 'type-row' ? 'type' : rowId === 'cat-row' ? 'cat' : 'status'] === item;
+        row.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+        if(active){
+          state[rowId === 'type-row' ? 'type' : rowId === 'cat-row' ? 'cat' : 'status'] = null;
+        } else {
+          btn.classList.add('active');
+          state[rowId === 'type-row' ? 'type' : rowId === 'cat-row' ? 'cat' : 'status'] = item;
+        }
+        render();
+      });
+      row.appendChild(btn);
+    });
+  };
+
+  const typeList = [...new Set(DATA.map(b => b.type_erp))].sort();
+  const catList  = [...new Set(DATA.map(b => b.categorie))].sort((a,b)=>a-b);
+  const statusList = ['conforme','surveiller','non-conforme'].filter(s => DATA.some(b => b.statut === s));
+
+  buildChips('type-row', typeList, 'type_erp', x => x === 'ERT' ? 'ERT' : `Type ${x}`);
+  buildChips('cat-row', catList, 'categorie', x => x === 0 ? 'ERT' : `${x}ᵉ`);
+  buildChips('status-row', statusList, 'statut', x => STATUS_LABELS[x]);
+
+  document.getElementById('q').addEventListener('input', e => { state.q = norm(e.target.value); render(); });
+  document.getElementById('sort').addEventListener('change', e => { state.sort = e.target.value; render(); });
+  document.getElementById('reset').addEventListener('click', () => {
+    state.q=''; state.type=null; state.cat=null; state.status=null; state.sort='echeance';
+    document.getElementById('q').value='';
+    document.getElementById('sort').value='echeance';
+    document.querySelectorAll('.chip.active').forEach(c => c.classList.remove('active'));
+    render();
+  });
+
+  const applyFilters = () => DATA.filter(b => {
+    if(state.type !== null && b.type_erp !== state.type) return false;
+    if(state.cat !== null && b.categorie !== state.cat) return false;
+    if(state.status !== null && b.statut !== state.status) return false;
+    if(state.q){
+      const hay = norm([b.nom,b.usage,b.ville,b.code_postal,b.type_libelle,b.exploitant_nom,b.prestataire].join(' '));
+      if(!hay.includes(state.q)) return false;
+    }
+    return true;
+  });
+
+  const applySort = arr => {
+    const c = arr.slice();
+    if(state.sort === 'echeance') c.sort((a,b)=> a._next - b._next || a.nom.localeCompare(b.nom));
+    else if(state.sort === 'name') c.sort((a,b)=> a.nom.localeCompare(b.nom));
+    else if(state.sort === 'cat') c.sort((a,b)=> a.categorie - b.categorie || a.nom.localeCompare(b.nom));
+    else if(state.sort === 'anom') c.sort((a,b)=> b._anomCount - a._anomCount || a._next - b._next);
+    return c;
+  };
+
+  function escapeHtml(s){
+    return (s||'').toString()
+      .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+  }
+
+  const avisClass = a => {
+    if(!a) return '';
+    if(/défavorable/i.test(a)) return 'defav';
+    if(/prescription/i.test(a)) return 'presc';
+    if(/favorable/i.test(a)) return 'fav';
+    return '';
+  };
+
+  const card = b => {
+    const sCls = STATUS_CLASS[b.statut] || 'warn';
+
+    const verifs = b.verifications.map(v => {
+      const u = urgency(v.prochaine, v.statut);
+      return `<div class="verif">
+        <span class="verif-label">${escapeHtml(v.label)}</span>
+        <span class="pill ${u}">${escapeHtml(relLabel(v.prochaine, v.statut))}</span>
+      </div>`;
+    }).join('');
+
+    let commissionHtml = '';
+    if(b.commission){
+      const av = b.commission.avis;
+      const proch = b.commission.prochaine;
+      const u = proch ? urgency(proch) : 'ok';
+      commissionHtml = `<div class="commission">
+        <span><span class="lbl">Commission</span> ${proch ? `<span class="pill ${u}">${escapeHtml(relLabel(proch))}</span>` : '<span class="pill ok">—</span>'}</span>
+        <span class="avis ${avisClass(av)}">${escapeHtml(av || '—')}</span>
+      </div>`;
+    } else {
+      commissionHtml = `<div class="commission">
+        <span class="lbl">Commission de sécurité</span>
+        <span class="avis">Non soumis (ERT)</span>
+      </div>`;
+    }
+
+    let anomHtml;
+    if(b.anomalies && b.anomalies.length){
+      anomHtml = `<div class="anoms">` + b.anomalies.map(a => `
+        <div class="anom ${a.gravite}">
+          <span class="grav">${escapeHtml(a.gravite)}</span>
+          <span>${escapeHtml(a.libelle)}<span style="color:var(--ink-mute)"> · ${escapeHtml(fmtDate(a.date))}</span></span>
+        </div>`).join('') + `</div>`;
+    } else {
+      anomHtml = `<div class="no-anom">
+        <svg class="ico" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6 9 17l-5-5"/></svg>
+        Aucune anomalie ouverte</div>`;
+    }
+
+    const contactLines = [];
+    if(b.exploitant_nom){
+      contactLines.push(`<div class="who">${escapeHtml(b.exploitant_nom)}${b.exploitant_fonction ? ` <span class="role">· ${escapeHtml(b.exploitant_fonction)}</span>` : ''}</div>`);
+    }
+    if(b.exploitant_mail){
+      contactLines.push(`<a href="mailto:${escapeHtml(b.exploitant_mail)}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>${escapeHtml(b.exploitant_mail)}</a>`);
+    }
+    if(b.exploitant_tel){
+      contactLines.push(`<a href="tel:${phoneClean(b.exploitant_tel)}"><svg class="ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.37 1.9.72 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.35 1.85.59 2.81.72A2 2 0 0 1 22 16.92z"/></svg>${escapeHtml(b.exploitant_tel)}</a>`);
+    }
+
+    return `<article class="card is-${sCls}">
+      <div class="card-head">
+        <div class="name">${escapeHtml(b.nom)}</div>
+        <span class="badge ${sCls}">${escapeHtml(STATUS_LABELS[b.statut] || b.statut)}</span>
+      </div>
+      <div class="usage">${escapeHtml(b.usage)}</div>
+      <div class="tags">
+        <span class="tag erp">${b.type_erp === 'ERT' ? 'ERT' : 'Type '+escapeHtml(b.type_erp)}</span>
+        <span class="tag cat">${escapeHtml(b._catLabel)}</span>
+        <span class="tag">Registre : ${escapeHtml(b.registre)}</span>
+      </div>
+      <div class="meta-row">
+        <span>📍 <b>${escapeHtml(b.code_postal)} ${escapeHtml(b.ville)}</b></span>
+        <span>👥 <b>${b.effectif_public}</b> public · ${b.effectif_personnel} pers.</span>
+        <span>📐 <b>${b.surface}</b> m²</span>
+      </div>
+      ${commissionHtml}
+      <div class="verifs">${verifs}</div>
+      ${anomHtml}
+      <div class="contact">
+        ${contactLines.join('')}
+        ${b.prestataire ? `<div class="presta">Prestataires : ${escapeHtml(b.prestataire)}</div>` : ''}
+      </div>
+    </article>`;
+  };
+
+  const grid = document.getElementById('grid');
+  const countEl = document.getElementById('count');
+  function render(){
+    const list = applySort(applyFilters());
+    countEl.textContent = list.length;
+    if(!list.length){
+      grid.innerHTML = `<div class="empty"><h3>Aucun bâtiment ne correspond.</h3>Élargissez les filtres ou modifiez la recherche.</div>`;
+      return;
+    }
+    grid.innerHTML = list.map(card).join('');
+  }
+  render();
+})();
+</script>
+</body>
+</html>
