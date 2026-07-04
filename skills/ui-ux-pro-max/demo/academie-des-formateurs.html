@@ -273,6 +273,21 @@ footer ul a:hover{color:var(--brand-300)}
 .enjeux-box{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid var(--brand-100);border-radius:var(--r-md);padding:var(--s4) var(--s5);color:var(--brand-900);font-size:.95rem}
 .two-cols{display:grid;gap:var(--s5)}
 @media(min-width:620px){.two-cols{grid-template-columns:1fr 1fr}}
+
+/* ===== Bande visuelle avec photo ===== */
+.band{padding:var(--s8) 0}
+.band-grid{display:grid;gap:var(--s6);align-items:center}
+@media(min-width:900px){.band-grid{grid-template-columns:1.05fr .95fr}}
+.band-media{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3;background:linear-gradient(135deg,var(--brand-400),var(--brand-700))}
+.band-media img{width:100%;height:100%;object-fit:cover;display:block}
+.band-media.noimg{aspect-ratio:4/3}
+.band-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,51,67,.28),transparent 55%)}
+.band-tag{position:absolute;left:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);color:var(--brand-700);font-weight:600;font-size:.82rem;padding:.5rem .9rem;border-radius:var(--r-full);box-shadow:var(--shadow-md)}
+.band-tag .lucide{width:16px;height:16px;color:var(--emerald-500)}
+.band-text h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:700;color:var(--brand-950);margin:.5rem 0 var(--s4)}
+.band-text p{color:var(--muted);font-size:1.05rem;margin:0 0 var(--s5)}
+.band-text .checklist{margin-bottom:var(--s5)}
+img.avatar{object-fit:cover}
 </style>
 </head>
 <body>
@@ -328,7 +343,7 @@ footer ul a:hover{color:var(--brand-300)}
     </div>
     <div class="hero-visual">
       <div class="hero-img">
-        <img src="https://academie-des-formateurs.vercel.app/accueil-formateurs.jpg" alt="Formateurs en session de formation" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--brand-400),var(--brand-700))';this.style.display='none'">
+        <img src="assets/hero-formateur.jpg" alt="Formateur animant une session devant un groupe" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--brand-400),var(--brand-700))';this.style.display='none'">
       </div>
       <div class="float-card">
         <span class="qual"><i data-lucide="badge-check"></i> Certifié Qualiopi</span>
@@ -353,6 +368,27 @@ footer ul a:hover{color:var(--brand-300)}
       <div class="feature reveal"><div class="ic"><i data-lucide="target"></i></div><h3>Des réponses concrètes</h3><p>Répondre aux besoins du terrain : animation, gestion de groupe, outils pédagogiques, intelligence artificielle, Qualiopi…</p></div>
       <div class="feature reveal"><div class="ic"><i data-lucide="trending-up"></i></div><h3>Une qualité en amélioration continue</h3><p>Garantir l'amélioration continue de la qualité des formations dispensées au sein de l'écosystème HOMNEO.</p></div>
       <div class="feature reveal"><div class="ic"><i data-lucide="messages-square"></i></div><h3>Une culture pédagogique partagée</h3><p>Créer un langage commun et une communauté de pratique où l'expérience de chacun nourrit le collectif.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDE VISUELLE ============ -->
+<section class="band">
+  <div class="container band-grid">
+    <div class="band-media">
+      <img src="assets/equipe-conception.jpg" alt="Formateurs concevant une formation ensemble" onerror="this.closest('.band-media').classList.add('noimg');this.remove()">
+      <span class="band-tag"><i data-lucide="badge-check"></i> Ancré sur le terrain</span>
+    </div>
+    <div class="band-text">
+      <span class="eyebrow"><i data-lucide="compass"></i> Notre approche</span>
+      <h2>L'expérience terrain au cœur de chaque formation</h2>
+      <p>Nos intervenants sont des praticiens : ils forment comme ils exercent. Chaque module part de situations réelles — concevoir, animer, évaluer — pour que vous repartiez avec des outils applicables dès le lundi suivant.</p>
+      <ul class="checklist">
+        <li><i data-lucide="check"></i> Des cas concrets issus du métier de formateur</li>
+        <li><i data-lucide="check"></i> Des mises en situation et un feedback personnalisé</li>
+        <li><i data-lucide="check"></i> Une communauté de pratique pour progresser ensemble</li>
+      </ul>
+      <a href="#catalogue" class="btn btn-primary">Explorer les modules <i data-lucide="arrow-right"></i></a>
     </div>
   </div>
 </section>
@@ -437,7 +473,7 @@ footer ul a:hover{color:var(--brand-300)}
       <p>Des retours d'expérience de formateurs passés par l'Académie.</p>
     </div>
     <div class="quotes">
-      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le module sur l'animation de groupe a transformé ma posture. J'ai des outils concrets que j'utilise dès le lundi suivant. »</p><div class="who"><span class="avatar">C</span><div><b>Camille D.</b><small>Formatrice en alternance</small></div></div></div>
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le module sur l'animation de groupe a transformé ma posture. J'ai des outils concrets que j'utilise dès le lundi suivant. »</p><div class="who"><img class="avatar" src="assets/portrait-pro.jpg" alt="Camille D." onerror="this.outerHTML='<span class=\'avatar\'>C</span>'"><div><b>Camille D.</b><small>Formatrice en alternance</small></div></div></div>
       <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le parcours certifiant m'a donné un cadre et une vraie reconnaissance. L'open badge est un atout sur mon profil. »</p><div class="who"><span class="avatar">Y</span><div><b>Yann M.</b><small>Formateur indépendant</small></div></div></div>
       <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Nous inscrivons toute notre équipe de formateurs. La culture commune qui en ressort fait une vraie différence. »</p><div class="who"><span class="avatar">S</span><div><b>Sofia B.</b><small>Responsable pédagogique</small></div></div></div>
     </div>
