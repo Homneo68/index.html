@@ -1,0 +1,614 @@
+<!DOCTYPE html>
+<html lang="fr" data-scroll-behavior="smooth">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>L'Académie des formateurs — Formation continue des formateurs</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20viewBox%3D%220%200%20120%20120%22%3E%3Crect%20width%3D%22120%22%20height%3D%22120%22%20rx%3D%2226%22%20fill%3D%22%230a2233%22/%3E%3Cpath%20d%3D%22M71.13%2015.37%20A46%2046%200%201%201%2052.80%2014.57%22%20fill%3D%22none%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M48.71%2028.99%20A33%2033%200%201%201%2030.09%2046.05%22%20fill%3D%22none%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22/%3E%3Cpath%20d%3D%22M70.50%2041.81%20A21%2021%200%201%201%2052.82%2040.27%22%20fill%3D%22none%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.5%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2271.13%22%20cy%3D%2215.37%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2252.80%22%20cy%3D%2214.57%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2248.71%22%20cy%3D%2228.99%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2230.09%22%20cy%3D%2246.05%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2270.50%22%20cy%3D%2241.81%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2252.82%22%20cy%3D%2240.27%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2283.00%22%20cy%3D%2220.16%22%20r%3D%222.2%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2267.99%22%20cy%3D%22105.30%22%20r%3D%222.4%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2237.00%22%20cy%3D%2299.84%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2220.16%22%20cy%3D%2283.00%22%20r%3D%222.2%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%22103.23%22%20cy%3D%2275.73%22%20r%3D%222.4%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%22104.43%22%20cy%3D%2248.09%22%20r%3D%222.4%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2276.50%22%20cy%3D%2231.42%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2260.00%22%20cy%3D%2293.00%22%20r%3D%222.4%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2231.42%22%20cy%3D%2276.50%22%20r%3D%222.2%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2291.01%22%20cy%3D%2271.29%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2276.50%22%20cy%3D%2288.58%22%20r%3D%222.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2252.82%22%20cy%3D%2279.73%22%20r%3D%222.2%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2270.50%22%20cy%3D%2278.19%22%20r%3D%222.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2239.08%22%20cy%3D%2261.83%22%20r%3D%222.0%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%2253.60%22%20y1%3D%2214.45%22%20x2%3D%2258.19%22%20y2%3D%228.03%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2253.60%22%20cy%3D%2214.45%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2258.19%22%20cy%3D%228.03%22%20r%3D%223.0%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%2220.16%22%20y1%3D%2283.00%22%20x2%3D%2214.97%22%20y2%3D%2286.00%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2220.16%22%20cy%3D%2283.00%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2214.97%22%20cy%3D%2286.00%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%22103.23%22%20y1%3D%2275.73%22%20x2%3D%22109.45%22%20y2%3D%2276.07%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%22103.23%22%20cy%3D%2275.73%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%22109.45%22%20cy%3D%2276.07%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%2230.09%22%20y1%3D%2246.05%22%20x2%3D%2235.57%22%20y2%3D%2251.11%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2230.09%22%20cy%3D%2246.05%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2235.57%22%20cy%3D%2251.11%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%2291.41%22%20y1%3D%2286.35%22%20x2%3D%2299.64%22%20y2%3D%2288.80%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2291.41%22%20cy%3D%2286.35%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2299.64%22%20cy%3D%2288.80%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Cline%20x1%3D%2252.36%22%20y1%3D%22103.33%22%20x2%3D%2247.42%22%20y2%3D%22110.46%22%20stroke%3D%22%2334bfe5%22%20stroke-width%3D%222.2%22%20stroke-linecap%3D%22round%22/%3E%3Ccircle%20cx%3D%2252.36%22%20cy%3D%22103.33%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3Ccircle%20cx%3D%2247.42%22%20cy%3D%22110.46%22%20r%3D%222.6%22%20fill%3D%22%2334bfe5%22/%3E%3C/svg%3E" />
+<meta name="description" content="La formation continue dédiée aux formateurs internes et externes. 25 modules de 3h30 en 6 blocs (150 € / module) et un parcours certifiant pour développer vos compétences pédagogiques." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet">
+<script src="https://unpkg.com/lucide@latest"></script>
+<style>
+:root{
+  /* ====== Palette EXACTE du site original ====== */
+  --brand-50:#ecfaff;--brand-100:#d2f2fc;--brand-200:#aae6f8;--brand-300:#71d5f1;--brand-400:#34bfe5;--brand-500:#14b2d5;--brand-600:#0d8dae;--brand-700:#11718d;--brand-800:#165d74;--brand-900:#184d62;--brand-950:#0a3343;
+  --accent-400:#ff8a6b;--accent-500:#ff6a47;--accent-600:#ec4d29;
+  --emerald-400:#00d294;--emerald-500:#00bb7f;--teal-400:#00d3bd;--teal-600:#009588;
+  --fuchsia-400:#ec6cff;--purple-600:#9810fa;
+
+  --text:#0b2530;--muted:#3f5a64;--subtle:#688590;
+  --bg:#ffffff;--surface:#f6fdff;--border:#e1f0f6;
+  --font-sans:"Inter",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+  --font-head:"Poppins",var(--font-sans);
+  --s1:.25rem;--s2:.5rem;--s3:.75rem;--s4:1rem;--s5:1.5rem;--s6:2rem;--s7:3rem;--s8:4rem;--s9:6rem;
+  --r-sm:8px;--r-md:14px;--r-lg:22px;--r-xl:30px;--r-full:9999px;
+  --shadow-sm:0 1px 3px rgba(10,51,67,.08);
+  --shadow-md:0 8px 24px rgba(10,51,67,.10);
+  --shadow-lg:0 24px 60px rgba(10,51,67,.16);
+  --shadow-brand:0 18px 40px rgba(13,141,174,.28);
+  --ease:cubic-bezier(.4,0,.2,1);--maxw:1200px;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font-sans);color:var(--text);background:var(--bg);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden}
+h1,h2,h3,h4{font-family:var(--font-head);line-height:1.12;margin:0;letter-spacing:-.02em}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+.container{width:100%;max-width:var(--maxw);margin-inline:auto;padding-inline:var(--s5)}
+:focus-visible{outline:3px solid var(--brand-400);outline-offset:2px;border-radius:6px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-family:var(--font-head);font-weight:600;font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--brand-600)}
+.eyebrow i{width:16px;height:16px}
+.muted{color:var(--muted)}
+.lucide{width:1.25em;height:1.25em;stroke-width:1.7}
+
+/* ===== Buttons ===== */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.55rem;font-family:var(--font-head);font-weight:600;font-size:.95rem;min-height:52px;padding:0 1.6rem;border-radius:var(--r-full);border:1.5px solid transparent;cursor:pointer;transition:transform .18s var(--ease),box-shadow .25s var(--ease),background .25s var(--ease);white-space:nowrap}
+.btn .lucide{width:18px;height:18px}
+.btn:active{transform:translateY(1px)}
+.btn-primary{background:linear-gradient(135deg,var(--brand-500),var(--brand-700));color:#fff;box-shadow:var(--shadow-brand)}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 22px 48px rgba(13,141,174,.4)}
+.btn-primary .lucide{transition:transform .25s var(--ease)}
+.btn-primary:hover .lucide{transform:translateX(4px)}
+.btn-accent{background:linear-gradient(135deg,var(--accent-400),var(--accent-600));color:#fff;box-shadow:0 16px 36px rgba(236,77,41,.32)}
+.btn-accent:hover{transform:translateY(-2px)}
+.btn-ghost{background:rgba(255,255,255,.7);color:var(--brand-700);border-color:var(--brand-200);backdrop-filter:blur(8px)}
+.btn-ghost:hover{background:#fff;border-color:var(--brand-400);transform:translateY(-2px)}
+.btn-sm{min-height:44px;font-size:.88rem;padding:0 1.1rem}
+.btn-light{background:#fff;color:var(--brand-700)}
+.btn-light:hover{transform:translateY(-2px);box-shadow:var(--shadow-lg)}
+.btn-outline-light{background:transparent;color:#fff;border-color:rgba(255,255,255,.4)}
+.btn-outline-light:hover{background:rgba(255,255,255,.12);border-color:#fff}
+
+/* ===== Header ===== */
+header.nav{position:sticky;top:0;z-index:50;transition:background .3s var(--ease),box-shadow .3s var(--ease),border-color .3s}
+header.nav.scrolled{background:rgba(255,255,255,.8);backdrop-filter:saturate(180%) blur(14px);box-shadow:0 1px 0 var(--border),0 10px 30px rgba(10,51,67,.06)}
+.nav-inner{display:flex;align-items:center;gap:var(--s5);height:74px}
+.brand{display:flex;align-items:center;gap:.7rem}
+.brand-badge{width:46px;height:46px;display:grid;place-items:center;color:var(--brand-600);flex:none}
+.brand-badge .lucide{width:24px;height:24px}
+.brand-logo{width:62%;height:62%}
+.brand-name{font-family:var(--font-head);font-weight:700;font-size:1.02rem;line-height:1.05;color:var(--brand-900)}
+.brand-name{white-space:nowrap}
+.brand-name span{display:block;color:var(--brand-500);font-weight:600;font-size:.82rem}
+.nav-links{display:none;gap:.3rem;margin-inline:auto}
+.nav-links a{font-weight:500;font-size:.94rem;color:var(--muted);padding:.5rem .8rem;border-radius:var(--r-full);transition:color .2s,background .2s}
+.nav-links a:hover{color:var(--brand-700);background:var(--brand-50)}
+.nav-actions{display:flex;align-items:center;gap:.4rem;margin-left:auto}
+.icon-btn{width:46px;height:46px;display:grid;place-items:center;border-radius:var(--r-full);color:var(--brand-700);background:transparent;border:none;cursor:pointer;transition:background .2s}
+.icon-btn:hover{background:var(--brand-50)}
+.menu-toggle{display:grid}
+@media(min-width:1024px){.nav-links{display:flex}.menu-toggle{display:none}.nav-actions{margin-left:0}}
+.mobile-menu{display:none;flex-direction:column;gap:.2rem;padding:var(--s4) var(--s5) var(--s5);background:#fff;border-top:1px solid var(--border)}
+.mobile-menu.open{display:flex}
+.mobile-menu a{padding:.8rem .6rem;border-radius:var(--r-sm);font-weight:500;color:var(--muted)}
+.mobile-menu a:hover{background:var(--brand-50);color:var(--brand-700)}
+
+/* ===== Hero ===== */
+.hero{position:relative;padding:var(--s8) 0 var(--s9);overflow:hidden}
+.hero-bg{position:absolute;inset:0;z-index:-2;background:
+  radial-gradient(60% 50% at 85% 0%,rgba(52,191,229,.22),transparent 70%),
+  radial-gradient(50% 45% at 0% 30%,rgba(255,138,107,.16),transparent 70%),
+  linear-gradient(180deg,var(--brand-50),#fff 60%)}
+.blob{position:absolute;border-radius:50%;filter:blur(60px);opacity:.5;z-index:-1;animation:float 16s var(--ease) infinite}
+.blob.b1{width:380px;height:380px;background:var(--brand-300);top:-120px;right:-60px}
+.blob.b2{width:300px;height:300px;background:var(--accent-400);bottom:-100px;left:-80px;animation-delay:-6s}
+@keyframes float{0%,100%{transform:translate(0,0)}50%{transform:translate(20px,30px)}}
+.hero-grid{display:grid;gap:var(--s7);align-items:center}
+@media(min-width:980px){.hero-grid{grid-template-columns:1.05fr .95fr}}
+.badge-pill{display:inline-flex;align-items:center;gap:.5rem;background:#fff;border:1px solid var(--brand-200);color:var(--brand-700);font-weight:600;font-size:.82rem;padding:.5rem 1rem;border-radius:var(--r-full);box-shadow:var(--shadow-sm)}
+.badge-pill .lucide{width:16px;height:16px;color:var(--accent-500)}
+.hero h1{font-size:clamp(2.4rem,5.5vw,4rem);font-weight:800;margin:var(--s4) 0;color:var(--brand-950)}
+.hero h1 .grad{background:linear-gradient(120deg,var(--brand-500),var(--accent-500));-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero p.lead{font-size:1.12rem;color:var(--muted);max-width:44ch}
+.hero-cta{display:flex;flex-wrap:wrap;gap:.8rem;margin-top:var(--s5)}
+.hero-stats{display:flex;flex-wrap:wrap;gap:var(--s5);margin-top:var(--s6);padding-top:var(--s5);border-top:1px solid var(--border)}
+.stat .n{font-family:var(--font-head);font-weight:800;font-size:1.7rem;color:var(--brand-700);line-height:1}
+.stat .l{font-size:.82rem;color:var(--subtle);margin-top:4px}
+/* hero visual */
+.hero-visual{position:relative}
+.hero-img{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/4.4}
+.hero-img img{width:100%;height:100%;object-fit:cover}
+.hero-img::after{content:"";position:absolute;inset:0;background:linear-gradient(to top,rgba(10,51,67,.45),transparent 45%)}
+.float-card{position:absolute;left:-8px;bottom:24px;z-index:2;background:rgba(255,255,255,.92);backdrop-filter:blur(10px);border:1px solid #fff;border-radius:var(--r-lg);box-shadow:var(--shadow-lg);padding:1.1rem 1.3rem;max-width:270px;animation:rise 1s var(--ease) both .3s}
+@keyframes rise{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:none}}
+.float-card .qual{display:inline-flex;align-items:center;gap:.4rem;color:var(--emerald-500);font-weight:600;font-size:.8rem;margin-bottom:.5rem}
+.float-card .qual .lucide{width:16px;height:16px}
+.float-card .t{font-family:var(--font-head);font-weight:700;color:var(--brand-900);line-height:1.2}
+.float-card .price{margin:.6rem 0 .3rem;font-family:var(--font-head);font-weight:800;font-size:1.5rem;color:var(--brand-600)}
+.float-card .price small{font-weight:500;font-size:.72rem;color:var(--subtle);display:block}
+.float-card a{font-size:.84rem;font-weight:600;color:var(--accent-600);display:inline-flex;align-items:center;gap:4px}
+
+/* ===== Sections ===== */
+section{padding:var(--s9) 0}
+.sec-head{max-width:680px;margin:0 auto var(--s7);text-align:center}
+.sec-head h2{font-size:clamp(1.9rem,3.5vw,2.6rem);font-weight:700;color:var(--brand-950);margin:.6rem 0}
+.sec-head p{color:var(--muted);font-size:1.05rem}
+.bg-soft{background:linear-gradient(180deg,#fff,var(--brand-50))}
+
+/* feature cards */
+.grid-4{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.feature{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5);transition:transform .25s var(--ease),box-shadow .25s var(--ease),border-color .25s}
+.feature:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:var(--brand-200)}
+.feature .ic{width:54px;height:54px;border-radius:16px;display:grid;place-items:center;color:#fff;background:linear-gradient(135deg,var(--brand-400),var(--brand-600));box-shadow:var(--shadow-brand);margin-bottom:var(--s4)}
+.feature:nth-child(2) .ic{background:linear-gradient(135deg,var(--accent-400),var(--accent-600));box-shadow:0 16px 36px rgba(236,77,41,.28)}
+.feature:nth-child(3) .ic{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.feature:nth-child(4) .ic{background:linear-gradient(135deg,var(--fuchsia-400),var(--purple-600))}
+.feature h3{font-size:1.15rem;font-weight:700;color:var(--brand-900);margin-bottom:.4rem}
+.feature p{color:var(--muted);font-size:.95rem;margin:0}
+
+/* module cards */
+.modules{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.mod{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s var(--ease),box-shadow .25s var(--ease)}
+.mod:hover{transform:translateY(-8px);box-shadow:var(--shadow-lg)}
+.mod-head{height:120px;position:relative;display:flex;align-items:flex-end;padding:var(--s4)}
+.mh1{background:linear-gradient(135deg,var(--brand-400),var(--brand-600))}
+.mh2{background:linear-gradient(135deg,var(--fuchsia-400),var(--purple-600))}
+.mh3{background:linear-gradient(135deg,var(--accent-400),var(--accent-600))}
+.mh4{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.mod-num{position:absolute;top:14px;left:16px;font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:rgba(255,255,255,.85)}
+.mod-cert{position:absolute;top:16px;right:16px;background:rgba(255,255,255,.95);color:var(--brand-700);font-weight:700;font-size:.68rem;letter-spacing:.05em;text-transform:uppercase;padding:.3rem .6rem;border-radius:var(--r-full)}
+.mod-cat{color:#fff;font-weight:600;font-size:.8rem;text-shadow:0 1px 4px rgba(0,0,0,.25)}
+.mod-body{padding:var(--s4) var(--s5) var(--s5);display:flex;flex-direction:column;flex:1}
+.mod-body h3{font-size:1.1rem;font-weight:700;color:var(--brand-900);margin-bottom:.4rem}
+.mod-body p{color:var(--muted);font-size:.92rem;margin:0 0 var(--s4)}
+.mod-meta{display:flex;gap:var(--s4);color:var(--subtle);font-size:.82rem;margin-bottom:var(--s4)}
+.mod-meta span{display:inline-flex;align-items:center;gap:.3rem}
+.mod-meta .lucide{width:15px;height:15px}
+.mod-foot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:var(--s4);border-top:1px solid var(--border)}
+.mod-price small{display:block;font-size:.7rem;color:var(--subtle)}
+.mod-price b{font-family:var(--font-head);font-size:1.3rem;color:var(--brand-600)}
+.mod-link{font-weight:600;font-size:.86rem;color:var(--accent-600);display:inline-flex;align-items:center;gap:4px;transition:gap .2s}
+.mod-link:hover{gap:9px}
+.center-link{display:flex;justify-content:center;margin-top:var(--s6)}
+
+/* two formats */
+.formats{display:grid;gap:var(--s5)}
+@media(min-width:840px){.formats{grid-template-columns:1fr 1fr}}
+.format{position:relative;border-radius:var(--r-xl);padding:var(--s7) var(--s6);border:1px solid var(--border);background:#fff;transition:transform .25s var(--ease),box-shadow .25s}
+.format:hover{transform:translateY(-4px);box-shadow:var(--shadow-md)}
+.format.reco{background:linear-gradient(155deg,var(--brand-700),var(--brand-950));color:#fff;border:none;box-shadow:var(--shadow-lg)}
+.format .ribbon{position:absolute;top:-14px;right:24px;background:linear-gradient(135deg,var(--accent-400),var(--accent-600));color:#fff;font-weight:700;font-size:.72rem;letter-spacing:.05em;text-transform:uppercase;padding:.4rem .9rem;border-radius:var(--r-full);box-shadow:0 10px 24px rgba(236,77,41,.4)}
+.format h3{font-size:1.5rem;font-weight:700;margin-bottom:.6rem;color:var(--brand-900)}
+.format.reco h3{color:#fff}
+.format>p{color:var(--muted);margin:0 0 var(--s5)}
+.format.reco>p{color:rgba(255,255,255,.82)}
+.checklist{list-style:none;padding:0;margin:0 0 var(--s6);display:flex;flex-direction:column;gap:.7rem}
+.checklist li{display:flex;align-items:flex-start;gap:.6rem;font-size:.95rem}
+.checklist .lucide{width:20px;height:20px;color:var(--emerald-500);flex-shrink:0;margin-top:1px}
+.format.reco .checklist .lucide{color:var(--brand-300)}
+
+/* trust */
+.trust{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(240px,1fr))}
+.trust .item{display:flex;gap:var(--s4);align-items:flex-start;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5)}
+.trust .ic{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;background:var(--brand-50);color:var(--brand-600);flex-shrink:0}
+.trust h3{font-size:1.05rem;font-weight:700;color:var(--brand-900);margin-bottom:.3rem}
+.trust p{margin:0;color:var(--muted);font-size:.92rem}
+
+/* testimonials */
+.quotes{display:grid;gap:var(--s5);grid-template-columns:repeat(auto-fit,minmax(280px,1fr))}
+.quote{background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s6);position:relative;transition:transform .25s var(--ease),box-shadow .25s}
+.quote:hover{transform:translateY(-6px);box-shadow:var(--shadow-md)}
+.quote .qi{color:var(--brand-200);width:38px;height:38px;margin-bottom:var(--s3)}
+.quote p{font-size:1rem;color:var(--text);margin:0 0 var(--s5);font-style:italic}
+.quote .who{display:flex;align-items:center;gap:.8rem}
+.avatar{width:46px;height:46px;border-radius:var(--r-full);display:grid;place-items:center;color:#fff;font-family:var(--font-head);font-weight:700;background:linear-gradient(135deg,var(--brand-400),var(--brand-700))}
+.quote:nth-child(2) .avatar{background:linear-gradient(135deg,var(--accent-400),var(--accent-600))}
+.quote:nth-child(3) .avatar{background:linear-gradient(135deg,var(--emerald-400),var(--teal-600))}
+.who b{font-family:var(--font-head);color:var(--brand-900);display:block;font-size:.95rem}
+.who small{color:var(--subtle)}
+
+/* final cta */
+.cta-final{position:relative;overflow:hidden;border-radius:var(--r-xl);padding:var(--s9) var(--s6);text-align:center;color:#fff;background:linear-gradient(140deg,var(--brand-600),var(--brand-950))}
+.cta-final::before{content:"";position:absolute;width:420px;height:420px;border-radius:50%;background:radial-gradient(circle,rgba(255,138,107,.35),transparent 70%);top:-150px;right:-80px}
+.cta-final::after{content:"";position:absolute;width:380px;height:380px;border-radius:50%;background:radial-gradient(circle,rgba(52,191,229,.4),transparent 70%);bottom:-160px;left:-60px}
+.cta-final .inner{position:relative;z-index:1;max-width:640px;margin:0 auto}
+.cta-final h2{font-size:clamp(1.9rem,4vw,2.7rem);font-weight:800;margin-bottom:var(--s4)}
+.cta-final p{color:rgba(255,255,255,.85);font-size:1.1rem;margin-bottom:var(--s6)}
+.cta-final .hero-cta{justify-content:center}
+
+/* footer */
+footer{background:var(--brand-950);color:rgba(255,255,255,.7);padding:var(--s9) 0 var(--s6)}
+.foot-grid{display:grid;gap:var(--s6);grid-template-columns:1fr;margin-bottom:var(--s7)}
+@media(min-width:760px){.foot-grid{grid-template-columns:1.6fr 1fr 1fr 1fr}}
+.foot-brand .brand-name,.foot-brand .brand-name span{color:#fff}
+.foot-brand p{font-size:.9rem;margin:var(--s4) 0;max-width:34ch}
+.foot-contact{display:flex;flex-direction:column;gap:.5rem;font-size:.88rem}
+.foot-contact a,.foot-contact span{display:flex;align-items:center;gap:.5rem;color:rgba(255,255,255,.7)}
+.foot-contact .lucide{width:16px;height:16px;color:var(--brand-300)}
+footer h4{color:#fff;font-size:.95rem;font-weight:600;margin-bottom:var(--s4)}
+footer ul{list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:.6rem}
+footer ul a{font-size:.88rem;transition:color .2s}
+footer ul a:hover{color:var(--brand-300)}
+.foot-bottom{border-top:1px solid rgba(255,255,255,.12);padding-top:var(--s5);display:flex;flex-wrap:wrap;gap:var(--s4);align-items:center;justify-content:space-between;font-size:.82rem}
+.foot-badges{display:flex;gap:.6rem}
+.foot-badges span{display:inline-flex;align-items:center;gap:.35rem;background:rgba(255,255,255,.08);padding:.4rem .8rem;border-radius:var(--r-full);color:#fff}
+.foot-badges .lucide{width:15px;height:15px;color:var(--emerald-400)}
+
+/* scroll reveal */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .7s var(--ease),transform .7s var(--ease)}
+.reveal.in{opacity:1;transform:none}
+@media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none}.blob{animation:none}}
+
+/* ===== Catalogue (25 modules) ===== */
+.bloc{margin-bottom:var(--s8)}
+.bloc-head{display:flex;align-items:center;gap:var(--s4);margin-bottom:var(--s5)}
+.bloc-badge{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-family:var(--font-head);font-weight:800;font-size:1.6rem;color:#fff;flex-shrink:0;box-shadow:var(--shadow-md)}
+.bloc-head .bt{font-family:var(--font-head);font-weight:700;font-size:1.35rem;color:var(--brand-950);line-height:1.15}
+.bloc-head .cnt{font-size:.85rem;color:var(--subtle);margin-top:2px}
+.bloc-grid{display:grid;gap:var(--s4);grid-template-columns:repeat(auto-fill,minmax(min(300px,100%),1fr))}
+.mcard{position:relative;background:#fff;border:1px solid var(--border);border-radius:var(--r-lg);padding:var(--s5) var(--s5) var(--s5) calc(var(--s5) + 6px);display:flex;flex-direction:column;gap:.55rem;cursor:pointer;transition:transform .22s var(--ease),box-shadow .22s var(--ease),border-color .22s;overflow:hidden;text-align:left;width:100%;font:inherit}
+.mcard::before{content:"";position:absolute;left:0;top:0;bottom:0;width:6px;background:var(--mc)}
+.mcard:hover{transform:translateY(-6px);box-shadow:var(--shadow-md);border-color:transparent}
+.mcard .code{align-self:flex-start;font-family:var(--font-head);font-weight:700;font-size:.72rem;letter-spacing:.06em;color:#fff;padding:.28rem .6rem;border-radius:var(--r-full);background:var(--mc)}
+.mcard h4{font-size:1.04rem;font-weight:700;color:var(--brand-900);line-height:1.25;margin:0}
+.mcard .sub{font-size:.9rem;color:var(--muted);flex:1;margin:0}
+.mcard .meta{display:flex;flex-wrap:wrap;gap:.9rem;font-size:.78rem;color:var(--subtle);margin-top:.2rem}
+.mcard .meta span{display:inline-flex;align-items:center;gap:.3rem}
+.mcard .meta .lucide{width:14px;height:14px}
+.mcard .more{font-weight:600;font-size:.84rem;color:var(--brand-600);display:inline-flex;align-items:center;gap:5px;margin-top:.3rem;transition:gap .2s}
+.mcard:hover .more{gap:9px}
+.mfoot{display:flex;align-items:center;justify-content:space-between;margin-top:auto;padding-top:.7rem;border-top:1px solid var(--border)}
+.mprice{font-family:var(--font-head);font-weight:800;font-size:1.15rem;color:var(--brand-600);display:inline-flex;align-items:baseline;gap:.25rem}
+.mprice small{font-weight:500;font-size:.68rem;color:var(--subtle)}
+/* modal */
+.cat-modal-backdrop{position:fixed;inset:0;z-index:80;background:rgba(10,51,67,.55);backdrop-filter:blur(4px);display:none;padding:var(--s4)}
+.cat-modal-backdrop.open{display:grid;place-items:start center;overflow-y:auto}
+.cat-modal{background:#fff;border-radius:var(--r-xl);max-width:760px;width:100%;margin:var(--s6) auto;box-shadow:var(--shadow-lg);overflow:hidden;animation:rise .3s var(--ease)}
+.cat-modal .top{padding:var(--s6);color:#fff;position:relative}
+.cat-modal .top .code{font-family:var(--font-head);font-weight:700;font-size:.8rem;letter-spacing:.1em}
+.cat-modal .top h3{font-size:clamp(1.3rem,3vw,1.7rem);margin:.5rem 0 .3rem;color:#fff}
+.cat-modal .top p{margin:0;opacity:.95;font-size:1.02rem}
+.cat-modal .close{position:absolute;top:16px;right:16px;width:40px;height:40px;border:none;border-radius:50%;background:rgba(255,255,255,.22);color:#fff;cursor:pointer;display:grid;place-items:center;transition:background .2s}
+.cat-modal .close:hover{background:rgba(255,255,255,.4)}
+.cat-modal .close .lucide{width:20px;height:20px}
+.cat-modal .body{padding:var(--s6)}
+.info-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:var(--s4);margin-bottom:var(--s6);padding-bottom:var(--s5);border-bottom:1px solid var(--border)}
+.info-row .i .k{font-size:.7rem;text-transform:uppercase;letter-spacing:.06em;color:var(--subtle);font-weight:700}
+.info-row .i .v{font-size:.92rem;color:var(--text);margin-top:3px;font-weight:500}
+.msec{margin-bottom:var(--s5)}
+.msec h4{font-family:var(--font-head);font-size:1.02rem;color:var(--brand-700);margin:0 0 .7rem;display:flex;align-items:center;gap:.5rem}
+.msec h4 .lucide{width:18px;height:18px;color:var(--accent-500)}
+.msec ul{margin:0;padding-left:1.2rem;display:flex;flex-direction:column;gap:.45rem}
+.msec ul li{color:var(--muted)}
+.msec>p{margin:0;color:var(--muted)}
+.enjeux-box{background:linear-gradient(135deg,var(--brand-50),#fff);border:1px solid var(--brand-100);border-radius:var(--r-md);padding:var(--s4) var(--s5);color:var(--brand-900);font-size:.95rem}
+.two-cols{display:grid;gap:var(--s5)}
+@media(min-width:620px){.two-cols{grid-template-columns:1fr 1fr}}
+
+/* ===== Bande visuelle avec photo ===== */
+.band{padding:var(--s8) 0}
+.band-grid{display:grid;gap:var(--s6);align-items:center}
+@media(min-width:900px){.band-grid{grid-template-columns:1.05fr .95fr}}
+.band-media{position:relative;border-radius:var(--r-xl);overflow:hidden;box-shadow:var(--shadow-lg);aspect-ratio:4/3;background:linear-gradient(135deg,var(--brand-400),var(--brand-700))}
+.band-media img{width:100%;height:100%;object-fit:cover;display:block}
+.band-media.noimg{aspect-ratio:4/3}
+.band-media::after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,rgba(10,51,67,.28),transparent 55%)}
+.band-tag{position:absolute;left:16px;bottom:16px;z-index:2;display:inline-flex;align-items:center;gap:.4rem;background:rgba(255,255,255,.92);backdrop-filter:blur(6px);color:var(--brand-700);font-weight:600;font-size:.82rem;padding:.5rem .9rem;border-radius:var(--r-full);box-shadow:var(--shadow-md)}
+.band-tag .lucide{width:16px;height:16px;color:var(--emerald-500)}
+.band-text h2{font-size:clamp(1.7rem,3.2vw,2.4rem);font-weight:700;color:var(--brand-950);margin:.5rem 0 var(--s4)}
+.band-text p{color:var(--muted);font-size:1.05rem;margin:0 0 var(--s5)}
+.band-text .checklist{margin-bottom:var(--s5)}
+img.avatar{object-fit:cover}
+.brand-logo{width:100%;height:100%}
+img.brand-logo{object-fit:contain}
+.foot-brand .brand-badge{color:var(--brand-300)}
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header class="nav" id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="brand">
+      <span class="brand-badge"><img src="assets/logo.svg" alt="l'académie des formateurs" class="brand-logo" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="brand-logo" viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="M71.13 15.37 A46 46 0 1 1 52.80 14.57" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M48.71 28.99 A33 33 0 1 1 30.09 46.05" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M70.50 41.81 A21 21 0 1 1 52.82 40.27" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="71.13" cy="15.37" r="3.0" fill="currentColor"/><circle cx="52.80" cy="14.57" r="3.0" fill="currentColor"/><circle cx="48.71" cy="28.99" r="3.0" fill="currentColor"/><circle cx="30.09" cy="46.05" r="3.0" fill="currentColor"/><circle cx="70.50" cy="41.81" r="3.0" fill="currentColor"/><circle cx="52.82" cy="40.27" r="3.0" fill="currentColor"/><circle cx="83.00" cy="20.16" r="2.2" fill="currentColor"/><circle cx="67.99" cy="105.30" r="2.4" fill="currentColor"/><circle cx="37.00" cy="99.84" r="2.6" fill="currentColor"/><circle cx="20.16" cy="83.00" r="2.2" fill="currentColor"/><circle cx="103.23" cy="75.73" r="2.4" fill="currentColor"/><circle cx="104.43" cy="48.09" r="2.4" fill="currentColor"/><circle cx="76.50" cy="31.42" r="2.6" fill="currentColor"/><circle cx="60.00" cy="93.00" r="2.4" fill="currentColor"/><circle cx="31.42" cy="76.50" r="2.2" fill="currentColor"/><circle cx="91.01" cy="71.29" r="2.6" fill="currentColor"/><circle cx="76.50" cy="88.58" r="2.0" fill="currentColor"/><circle cx="52.82" cy="79.73" r="2.2" fill="currentColor"/><circle cx="70.50" cy="78.19" r="2.0" fill="currentColor"/><circle cx="39.08" cy="61.83" r="2.0" fill="currentColor"/><line x1="53.60" y1="14.45" x2="58.19" y2="8.03" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="53.60" cy="14.45" r="3.0" fill="currentColor"/><circle cx="58.19" cy="8.03" r="3.0" fill="currentColor"/><line x1="20.16" y1="83.00" x2="14.97" y2="86.00" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="20.16" cy="83.00" r="2.6" fill="currentColor"/><circle cx="14.97" cy="86.00" r="2.6" fill="currentColor"/><line x1="103.23" y1="75.73" x2="109.45" y2="76.07" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="103.23" cy="75.73" r="2.6" fill="currentColor"/><circle cx="109.45" cy="76.07" r="2.6" fill="currentColor"/><line x1="30.09" y1="46.05" x2="35.57" y2="51.11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="30.09" cy="46.05" r="2.6" fill="currentColor"/><circle cx="35.57" cy="51.11" r="2.6" fill="currentColor"/><line x1="91.41" y1="86.35" x2="99.64" y2="88.80" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="91.41" cy="86.35" r="2.6" fill="currentColor"/><circle cx="99.64" cy="88.80" r="2.6" fill="currentColor"/><line x1="52.36" y1="103.33" x2="47.42" y2="110.46" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="52.36" cy="103.33" r="2.6" fill="currentColor"/><circle cx="47.42" cy="110.46" r="2.6" fill="currentColor"/></svg></span>
+      <span class="brand-name">l'académie<span>des formateurs</span></span>
+    </a>
+    <nav class="nav-links">
+      <a href="#academie">l'académie</a>
+      <a href="#catalogue">Catalogue</a>
+      <a href="#parcours">Parcours certifiant</a>
+      <a href="#temoignages">Témoignages</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <div class="nav-actions">
+      <button class="icon-btn" aria-label="Panier"><i data-lucide="shopping-cart"></i></button>
+      <button class="icon-btn" aria-label="Connexion"><i data-lucide="user-round"></i></button>
+      <a href="#" class="btn btn-primary btn-sm">Créer mon compte</a>
+      <button class="icon-btn menu-toggle" id="menuBtn" aria-label="Menu"><i data-lucide="menu"></i></button>
+    </div>
+  </div>
+  <div class="mobile-menu" id="mobileMenu">
+    <a href="#academie">l'académie</a>
+    <a href="#catalogue">Catalogue</a>
+    <a href="#parcours">Parcours certifiant</a>
+    <a href="#temoignages">Témoignages</a>
+    <a href="#contact">Contact</a>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="blob b1"></div><div class="blob b2"></div>
+  <div class="container hero-grid">
+    <div>
+      <span class="badge-pill"><i data-lucide="sparkles"></i> Écosystème HOMNEO · Formation &amp; alternance</span>
+      <h1>Devenez le formateur <span class="grad">qui marque les esprits</span></h1>
+      <p class="lead">L'Académie des formateurs accompagne les formateurs internes et externes dans le développement de leurs compétences pédagogiques, techniques et humaines. 25 modules de 3h30 organisés en 6 blocs thématiques, un parcours certifiant, et toujours au plus près du terrain.</p>
+      <div class="hero-cta">
+        <a href="#catalogue" class="btn btn-primary">Découvrir le catalogue <i data-lucide="arrow-right"></i></a>
+        <a href="#" class="btn btn-ghost">Créer mon compte</a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat"><div class="n">25</div><div class="l">modules de 3h30</div></div>
+        <div class="stat"><div class="n">6</div><div class="l">blocs thématiques</div></div>
+        <div class="stat"><div class="n">100 %</div><div class="l">applicabilité terrain</div></div>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-img">
+        <img src="assets/hero-formateur.jpg" alt="Formateur animant une session devant un groupe" onerror="this.parentElement.style.background='linear-gradient(135deg,var(--brand-400),var(--brand-700))';this.style.display='none'">
+      </div>
+      <div class="float-card">
+        <span class="qual"><i data-lucide="badge-check"></i> Certifié Qualiopi</span>
+        <div class="t">Catalogue 2025 — 2026<br>Former ceux qui forment</div>
+        <div class="price"><small>Tarif par module</small>150 &euro;</div>
+        <a href="#catalogue">Voir le catalogue <i data-lucide="arrow-right" style="width:14px;height:14px"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ POURQUOI ============ -->
+<section id="academie" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="compass"></i> Pourquoi l'Académie</span>
+      <h2>Une académie pensée pour les formateurs</h2>
+      <p>Quatre engagements guident chacune de nos formations, pour faire grandir les compétences pédagogiques au service de l'impact terrain.</p>
+    </div>
+    <div class="grid-4">
+      <div class="feature reveal"><div class="ic"><i data-lucide="layers"></i></div><h3>Un espace de formation continue</h3><p>Offrir aux formateurs internes et externes un lieu dédié pour entretenir et développer leurs compétences tout au long de leur parcours.</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="target"></i></div><h3>Des réponses concrètes</h3><p>Répondre aux besoins du terrain : animation, gestion de groupe, outils pédagogiques, intelligence artificielle, Qualiopi…</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="trending-up"></i></div><h3>Une qualité en amélioration continue</h3><p>Garantir l'amélioration continue de la qualité des formations dispensées au sein de l'écosystème HOMNEO.</p></div>
+      <div class="feature reveal"><div class="ic"><i data-lucide="messages-square"></i></div><h3>Une culture pédagogique partagée</h3><p>Créer un langage commun et une communauté de pratique où l'expérience de chacun nourrit le collectif.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ BANDE VISUELLE ============ -->
+<section class="band">
+  <div class="container band-grid">
+    <div class="band-media">
+      <img src="assets/equipe-conception.jpg" alt="Formateurs concevant une formation ensemble" onerror="this.closest('.band-media').classList.add('noimg');this.remove()">
+      <span class="band-tag"><i data-lucide="badge-check"></i> Ancré sur le terrain</span>
+    </div>
+    <div class="band-text">
+      <span class="eyebrow"><i data-lucide="compass"></i> Notre approche</span>
+      <h2>L'expérience terrain au cœur de chaque formation</h2>
+      <p>Nos intervenants sont des praticiens : ils forment comme ils exercent. Chaque module part de situations réelles — concevoir, animer, évaluer — pour que vous repartiez avec des outils applicables dès le lundi suivant.</p>
+      <ul class="checklist">
+        <li><i data-lucide="check"></i> Des cas concrets issus du métier de formateur</li>
+        <li><i data-lucide="check"></i> Des mises en situation et un feedback personnalisé</li>
+        <li><i data-lucide="check"></i> Une communauté de pratique pour progresser ensemble</li>
+      </ul>
+      <a href="#catalogue" class="btn btn-primary">Explorer les modules <i data-lucide="arrow-right"></i></a>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CATALOGUE ============ -->
+<section id="catalogue">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="library-big"></i> Catalogue 2025 — 2026</span>
+      <h2>25 modules pour maîtriser tous les enjeux du métier</h2>
+      <p>Six blocs thématiques progressifs, 25 modules de 3h30 chacun. Suivez-les indépendamment ou composez votre parcours personnalisé — chaque module est directement applicable sur le terrain.</p>
+    </div>
+    <div id="blocs"></div>
+  </div>
+</section>
+
+<!-- Module detail modal -->
+<div class="cat-modal-backdrop" id="modBackdrop" role="dialog" aria-modal="true" aria-labelledby="modTitle">
+  <div class="cat-modal" id="modBox">
+    <div class="top" id="modTop">
+      <button class="close" id="modClose" aria-label="Fermer"><i data-lucide="x"></i></button>
+      <div class="code" id="modCode"></div>
+      <h3 id="modTitle"></h3>
+      <p id="modSub"></p>
+    </div>
+    <div class="body" id="modBody"></div>
+  </div>
+</div>
+
+<!-- ============ DEUX FORMATS ============ -->
+<section id="parcours" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="git-fork"></i> Deux façons de se former</span>
+      <h2>Modules à la carte ou parcours certifiant</h2>
+      <p>Choisissez la formule qui correspond à votre besoin : une montée en compétence ciblée, ou un parcours structurant et certifiant.</p>
+    </div>
+    <div class="formats">
+      <div class="format reveal">
+        <h3>Modules à la carte</h3>
+        <p>Inscrivez-vous à un ou plusieurs modules indépendants, selon vos priorités. Chaque module donne lieu à une attestation ou un open badge.</p>
+        <ul class="checklist">
+          <li><i data-lucide="check"></i> Liberté totale de composition</li>
+          <li><i data-lucide="check"></i> Sessions en présentiel ou à distance</li>
+          <li><i data-lucide="check"></i> Idéal pour un besoin précis et rapide</li>
+          <li><i data-lucide="check"></i> 150 &euro; par module de 3h30</li>
+        </ul>
+        <a href="#catalogue" class="btn btn-primary">Explorer le catalogue <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="format reco reveal">
+        <span class="ribbon">Recommandé</span>
+        <h3>Parcours certifiant</h3>
+        <p>Six modules articulés en un parcours cohérent, avec suivi individualisé et certification « Formateur professionnel ».</p>
+        <ul class="checklist">
+          <li><i data-lucide="check"></i> Un fil rouge pédagogique structurant</li>
+          <li><i data-lucide="check"></i> Un référent de parcours dédié</li>
+          <li><i data-lucide="check"></i> Un certificat et un open badge reconnus</li>
+        </ul>
+        <a href="#" class="btn btn-accent">Découvrir le parcours <i data-lucide="arrow-right"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TRUST ============ -->
+<section>
+  <div class="container">
+    <div class="trust">
+      <div class="item reveal"><div class="ic"><i data-lucide="shield-check"></i></div><div><h3>Organisme certifié Qualiopi</h3><p>Des formations conformes aux exigences qualité de la formation professionnelle.</p></div></div>
+      <div class="item reveal"><div class="ic"><i data-lucide="award"></i></div><div><h3>Attestations &amp; open badges</h3><p>Chaque module validé donne lieu à une attestation ou un open badge numérique.</p></div></div>
+      <div class="item reveal"><div class="ic"><i data-lucide="users"></i></div><div><h3>Des formateurs experts</h3><p>Des intervenants praticiens, ancrés dans la réalité du métier de formateur.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ TEMOIGNAGES ============ -->
+<section id="temoignages" class="bg-soft">
+  <div class="container">
+    <div class="sec-head reveal">
+      <span class="eyebrow"><i data-lucide="message-circle-heart"></i> Ils nous font confiance</span>
+      <h2>La parole aux formateurs</h2>
+      <p>Des retours d'expérience de formateurs passés par l'Académie.</p>
+    </div>
+    <div class="quotes">
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le module sur l'animation de groupe a transformé ma posture. J'ai des outils concrets que j'utilise dès le lundi suivant. »</p><div class="who"><img class="avatar" src="assets/portrait-pro.jpg" alt="Camille D." onerror="this.outerHTML='<span class=\'avatar\'>C</span>'"><div><b>Camille D.</b><small>Formatrice en alternance</small></div></div></div>
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Le parcours certifiant m'a donné un cadre et une vraie reconnaissance. L'open badge est un atout sur mon profil. »</p><div class="who"><span class="avatar">Y</span><div><b>Yann M.</b><small>Formateur indépendant</small></div></div></div>
+      <div class="quote reveal"><i data-lucide="quote" class="qi"></i><p>« Nous inscrivons toute notre équipe de formateurs. La culture commune qui en ressort fait une vraie différence. »</p><div class="who"><span class="avatar">S</span><div><b>Sofia B.</b><small>Responsable pédagogique</small></div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CTA FINAL ============ -->
+<section>
+  <div class="container">
+    <div class="cta-final reveal">
+      <div class="inner">
+        <h2>Faites grandir vos compétences de formateur dès aujourd'hui</h2>
+        <p>Créez votre compte, explorez le catalogue et inscrivez-vous en ligne en quelques minutes.</p>
+        <div class="hero-cta">
+          <a href="#catalogue" class="btn btn-light">Découvrir le catalogue <i data-lucide="arrow-right"></i></a>
+          <a href="#" class="btn btn-outline-light">Créer mon compte</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer id="contact">
+  <div class="container">
+    <div class="foot-grid">
+      <div class="foot-brand">
+        <div class="brand">
+          <span class="brand-badge"><img src="assets/logo.svg" alt="l'académie des formateurs" class="brand-logo" onload="this.nextElementSibling.style.display='none'" onerror="this.remove()"><svg class="brand-logo" viewBox="0 0 120 120" fill="none" aria-hidden="true"><path d="M71.13 15.37 A46 46 0 1 1 52.80 14.57" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M48.71 28.99 A33 33 0 1 1 30.09 46.05" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><path d="M70.50 41.81 A21 21 0 1 1 52.82 40.27" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/><circle cx="71.13" cy="15.37" r="3.0" fill="currentColor"/><circle cx="52.80" cy="14.57" r="3.0" fill="currentColor"/><circle cx="48.71" cy="28.99" r="3.0" fill="currentColor"/><circle cx="30.09" cy="46.05" r="3.0" fill="currentColor"/><circle cx="70.50" cy="41.81" r="3.0" fill="currentColor"/><circle cx="52.82" cy="40.27" r="3.0" fill="currentColor"/><circle cx="83.00" cy="20.16" r="2.2" fill="currentColor"/><circle cx="67.99" cy="105.30" r="2.4" fill="currentColor"/><circle cx="37.00" cy="99.84" r="2.6" fill="currentColor"/><circle cx="20.16" cy="83.00" r="2.2" fill="currentColor"/><circle cx="103.23" cy="75.73" r="2.4" fill="currentColor"/><circle cx="104.43" cy="48.09" r="2.4" fill="currentColor"/><circle cx="76.50" cy="31.42" r="2.6" fill="currentColor"/><circle cx="60.00" cy="93.00" r="2.4" fill="currentColor"/><circle cx="31.42" cy="76.50" r="2.2" fill="currentColor"/><circle cx="91.01" cy="71.29" r="2.6" fill="currentColor"/><circle cx="76.50" cy="88.58" r="2.0" fill="currentColor"/><circle cx="52.82" cy="79.73" r="2.2" fill="currentColor"/><circle cx="70.50" cy="78.19" r="2.0" fill="currentColor"/><circle cx="39.08" cy="61.83" r="2.0" fill="currentColor"/><line x1="53.60" y1="14.45" x2="58.19" y2="8.03" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="53.60" cy="14.45" r="3.0" fill="currentColor"/><circle cx="58.19" cy="8.03" r="3.0" fill="currentColor"/><line x1="20.16" y1="83.00" x2="14.97" y2="86.00" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="20.16" cy="83.00" r="2.6" fill="currentColor"/><circle cx="14.97" cy="86.00" r="2.6" fill="currentColor"/><line x1="103.23" y1="75.73" x2="109.45" y2="76.07" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="103.23" cy="75.73" r="2.6" fill="currentColor"/><circle cx="109.45" cy="76.07" r="2.6" fill="currentColor"/><line x1="30.09" y1="46.05" x2="35.57" y2="51.11" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="30.09" cy="46.05" r="2.6" fill="currentColor"/><circle cx="35.57" cy="51.11" r="2.6" fill="currentColor"/><line x1="91.41" y1="86.35" x2="99.64" y2="88.80" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="91.41" cy="86.35" r="2.6" fill="currentColor"/><circle cx="99.64" cy="88.80" r="2.6" fill="currentColor"/><line x1="52.36" y1="103.33" x2="47.42" y2="110.46" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"/><circle cx="52.36" cy="103.33" r="2.6" fill="currentColor"/><circle cx="47.42" cy="110.46" r="2.6" fill="currentColor"/></svg></span>
+          <span class="brand-name">l'académie<span>Écosystème HOMNEO</span></span>
+        </div>
+        <p>La formation continue dédiée aux formateurs internes et externes : développez vos compétences pédagogiques, techniques et humaines, au plus près du terrain.</p>
+        <div class="foot-contact">
+          <span><i data-lucide="map-pin"></i> HOMNEO Business School — France</span>
+          <a href="mailto:academie@homneo.fr"><i data-lucide="mail"></i> academie@homneo.fr</a>
+          <span><i data-lucide="phone"></i> 01 00 00 00 00</span>
+        </div>
+      </div>
+      <div><h4>Se former</h4><ul><li><a href="#catalogue">Catalogue des formations</a></li><li><a href="#parcours">Parcours certifiant</a></li><li><a href="#">Calendrier des sessions</a></li><li><a href="#">Mon panier</a></li></ul></div>
+      <div><h4>l'académie</h4><ul><li><a href="#academie">Notre mission</a></li><li><a href="#">Questions fréquentes</a></li><li><a href="#contact">Nous contacter</a></li><li><a href="#">Espace apprenant</a></li></ul></div>
+      <div><h4>Informations</h4><ul><li><a href="#">Mentions légales</a></li><li><a href="#">Conditions générales de vente</a></li><li><a href="#">Confidentialité &amp; RGPD</a></li><li><a href="#">Certification Qualiopi</a></li></ul></div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 L'Académie des formateurs — Groupe HOMNEO. Tous droits réservés.</span>
+      <div class="foot-badges"><span><i data-lucide="badge-check"></i> Certifié Qualiopi</span><span><i data-lucide="award"></i> Actions de formation</span></div>
+    </div>
+  </div>
+</footer>
+
+<script>
+  lucide.createIcons();
+  // sticky header bg
+  const nav=document.getElementById('nav');
+  const onScroll=()=>nav.classList.toggle('scrolled',window.scrollY>10);
+  onScroll();window.addEventListener('scroll',onScroll,{passive:true});
+  // mobile menu
+  const mb=document.getElementById('menuBtn'),mm=document.getElementById('mobileMenu');
+  mb.addEventListener('click',()=>mm.classList.toggle('open'));
+  mm.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>mm.classList.remove('open')));
+  // scroll reveal
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.12});
+  document.querySelectorAll('.reveal').forEach((el,i)=>{el.style.transitionDelay=(i%4*60)+'ms';io.observe(el);});
+</script>
+
+<script id="catalogue-data" type="application/json">{"blocs": [{"code": "A", "titre": "Identité & Statut du Formateur", "modules": [{"code": "A1", "titre": "Devenir formateur : identité, posture et légitimité professionnelle", "soustitre": "Construire une identité professionnelle solide et assumée", "public": "Toute personne débutant une activité de formateur …", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Aucun prérequis — module d'entrée dans le par…", "objectifs": ["Définir ce qu'est le métier de formateur et ses différentes facettes", "Analyser sa trajectoire professionnelle pour identifier ses expertises mobilisables", "Adopter une posture de facilitateur d'apprentissage centré sur l'apprenant", "Construire son récit professionnel et affirmer sa légitimité"], "methodes": "Réflexion individuelle guidée, échanges en binôme, exercice de pitch, études de parcours", "evaluation": "Auto-positionnement pré/post formation + présentation orale du pitch professionnel", "enjeux": "Dans un marché de la formation en pleine recomposition, l'identité du formateur est son premier capital. Face à la montée du digital et de l'IA, affirmer sa valeur ajoutée humaine devient stratégique.", "programme": ["Le formateur aujourd'hui : entre expert, pédagogue et facilitateur", "Cartographie des rôles : formateur, consultant, coach, tuteur — les frontières", "Analyse réflexive de son parcours et de ses compétences transférables", "La posture du formateur : autorité, bienveillance et neutralité", "Développer sa légitimité face à des publics variés", "Élaborer son pitch professionnel en 3 minutes"]}, {"code": "A2", "titre": "Statuts du formateur : salarié, indépendant, auto-entrepreneur, portage salarial", "soustitre": "Choisir et sécuriser son statut juridique et social", "public": "Formateurs en activité ou en reconversion souhaita…", "duree": "3h30", "modalites": "Présentiel / Distanciel / Hybride", "prerequis": "Aucun", "objectifs": ["Comparer les différents statuts juridiques disponibles pour exercer comme formateur", "Identifier les obligations fiscales, sociales et contractuelles de chaque statut", "Évaluer les avantages et risques de chaque option selon sa situation personnelle", "Préparer les démarches administratives de création ou de transition"], "methodes": "Apports théoriques, études de cas chiffrées, outil de simulation interactif, quiz", "evaluation": "Étude de cas individuelle : choisir et justifier un statut adapté à sa situation", "enjeux": "Avec plus de 80 000 formateurs indépendants en France, le choix du statut conditionne la viabilité économique et la protection sociale. Les récentes réformes de l'auto-entreprise et du portage rendent ce sujet plus complexe que jamais.", "programme": ["Vue d'ensemble : salarié, CDD d'usage, auto-entrepreneur, EIRL, SASU, portage salarial", "Le régime de l'auto-entrepreneur : plafonds, cotisations, TVA et limites", "Le portage salarial : fonctionnement, coûts, protection sociale et avantages", "Les contrats types : contrat de formation, convention de prestation, obligations légales", "Protection sociale, retraite et prévoyance selon le statut choisi", "Simulation comparative : chiffre d'affaires net selon les statuts"]}, {"code": "A3", "titre": "Construire son offre de formation et sa proposition de valeur", "soustitre": "De l'expertise métier à l'offre commerciale structurée", "public": "Formateurs souhaitant développer leur activité com…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Expérience formateur ou expertise métier dans…", "objectifs": ["Identifier et formuler ses domaines d'expertise en termes de bénéfices clients", "Concevoir une offre de formation structurée, différenciante et vendable", "Élaborer un catalogue et une grille tarifaire cohérents avec le marché", "Développer des outils de prospection et de présentation commerciale"], "methodes": "Ateliers de co-construction, canvas offre, retours croisés entre participants", "evaluation": "Production d'une fiche-programme complète et d'un argumentaire commercial", "enjeux": "La professionnalisation du secteur et l'exigence Qualiopi imposent des offres clairement formalisées. Un positionnement précis est la condition d'une activité durable et rentable.", "programme": ["Audit de ses compétences : de l'expertise à l'offre pédagogique", "Analyse du marché et positionnement concurrentiel", "Les composantes d'une offre : titre, accroche, public, objectifs, programme, tarif", "Construire sa grille tarifaire : méthodes de calcul et benchmarks sectoriels", "Supports de vente : plaquette, page web, fiche programme réglementaire", "Prospection et fidélisation : canaux et messages efficaces"]}, {"code": "A4", "titre": "Éthique, déontologie et responsabilité du formateur", "soustitre": "Exercer avec intégrité dans un cadre professionnel exigeant", "public": "Tout formateur souhaitant ancrer sa pratique dans …", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Aucun", "objectifs": ["Identifier les enjeux éthiques spécifiques au métier de formateur", "Appliquer les principes déontologiques dans les situations professionnelles courantes", "Gérer les conflits d'intérêts, la confidentialité et les limites du rôle", "Construire une charte personnelle d'éthique professionnelle"], "methodes": "Dilemmes éthiques, études de situations réelles, débats structurés, production de charte", "evaluation": "Analyse d'un cas éthique complexe + présentation de sa charte personnelle", "enjeux": "Dans un contexte de montée des contentieux et de diversification des publics (incluant des personnes vulnérables), le cadre éthique du formateur devient un enjeu de responsabilité et de qualité.", "programme": ["Définir l'éthique professionnelle : valeurs, principes, règles déontologiques", "Le devoir de neutralité : opinions politiques, religieuses, philosophiques en formation", "Confidentialité et RGPD : données des apprenants, évaluations, dossiers", "Conflits d'intérêts et situations limites : comment les anticiper et les gérer", "Responsabilité civile et pénale du formateur", "Élaboration d'une charte éthique personnelle"]}]}, {"code": "B", "titre": "Cadre Réglementaire & Qualiopi", "modules": [{"code": "B1", "titre": "La formation professionnelle en France : acteurs, financeurs et réglementation", "soustitre": "Comprendre l'écosystème pour mieux s'y positionner", "public": "Formateurs débutants et tout professionnel entrant…", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Aucun", "objectifs": ["Cartographier les acteurs institutionnels de la formation professionnelle", "Identifier les sources de financement et les dispositifs associés (CPF, OPCO, FNE, etc.)", "Comprendre le cadre légal issu de la loi du 5 septembre 2018", "Positionner son activité dans l'écosystème formation"], "methodes": "Cartographie interactive, apports illustrés, quiz de positionnement, jeu de rôles", "evaluation": "Schéma annoté de l'écosystème + QCM de 15 questions", "enjeux": "La contraction des budgets CPF et les réformes successives complexifient l'environnement. Maîtriser ces mécanismes est indispensable pour conseiller les apprenants et sécuriser ses financements.", "programme": ["Chronologie réglementaire : de la loi de 1971 à la réforme de 2018", "Les acteurs clés : État, Régions, OPCO, France Travail, DREETS, CARIF-OREF", "Les dispositifs de financement : CPF, Pro-A, Plan de développement, FSE+", "Rôle et fonctionnement des OPCO par secteur", "Les obligations de l'employeur et les droits du salarié en formation", "Tendances 2025-2026 : réforme du CPF, enjeux de financement"]}, {"code": "B2", "titre": "Qualiopi — Comprendre et répondre aux 7 critères du RNQ", "soustitre": "Maîtriser le Référentiel National Qualité pour certifier son organisme", "public": "Dirigeants et responsables qualité d'organismes de…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Connaissance de base du secteur de la formati…", "objectifs": ["Expliquer les fondements et les objectifs de la certification Qualiopi", "Analyser les 32 indicateurs du RNQ et leur niveau d'exigence", "Identifier les preuves documentaires attendues pour chaque indicateur", "Construire un plan d'action qualité adapté à sa structure"], "methodes": "Analyse de textes réglementaires, grille d'auto-évaluation, mise en situation documentaire", "evaluation": "Auto-évaluation guidée sur les 32 indicateurs avec identification des écarts", "enjeux": "Qualiopi est obligatoire depuis 2022 pour accéder aux financements publics et mutualisés. Environ 30 000 organismes sont certifiés — mais les audits de surveillance révèlent des fragilités documentaires récurrentes.", "programme": ["Historique et fondements de Qualiopi : pourquoi cette certification ?", "Architecture du RNQ : 7 critères, 32 indicateurs, indicateurs supplémentaires", "Critère 1 : Information du public — exigences et preuves attendues", "Critères 2 à 5 : Identification des besoins, conception, réalisation, accessibilité", "Critères 6 et 7 : Veille et amélioration continue — démarche qualité vivante", "Cartographie des preuves et construction de son système documentaire"]}, {"code": "B3", "titre": "Préparer et réussir son audit Qualiopi", "soustitre": "Audit initial et surveillance : anticiper, préparer, convaincre", "public": "Responsables qualité et dirigeants d'organismes de…", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Avoir suivi B2 ou posséder une bonne connaiss…", "objectifs": ["Distinguer les exigences de l'audit initial et de l'audit de surveillance", "Préparer son dossier documentaire selon les attentes des organismes certificateurs", "Simuler un entretien d'audit et répondre aux questions des auditeurs", "Mettre en place un système de veille pour maintenir la certification"], "methodes": "Simulation d'audit en jeu de rôles, analyse de dossiers réels anonymisés, checklist", "evaluation": "Simulation complète d'entretien d'audit + plan de correction des écarts identifiés", "enjeux": "Le taux d'échec ou de suspension lors des audits de surveillance reste significatif. Une préparation méthodique et des simulations réalistes font la différence entre certification maintenue et activité menacée.", "programme": ["Les organismes certificateurs accrédités et leurs méthodes d'audit", "Phase de préparation : organisation documentaire, sélection des preuves", "Les points de contrôle prioritaires en audit initial", "Simulation d'entretien auditeur/audité sur cas réels", "Gestion des non-conformités et des écarts", "Plan de surveillance annuelle et revue de direction"]}, {"code": "B4", "titre": "Obligations documentaires du formateur et de l'organisme de formation", "soustitre": "Produire, organiser et conserver les bons documents", "public": "Formateurs indépendants, assistants administratifs…", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Activité de formateur en cours", "objectifs": ["Identifier l'ensemble des documents obligatoires avant, pendant et après une formation", "Rédiger des conventions de formation, programmes et feuilles d'émargement conformes", "Organiser un système de classement et d'archivage sécurisé et conforme", "Appliquer les exigences RGPD à la gestion des données apprenants"], "methodes": "Analyse de documents types, exercices de rédaction, audit documentaire sur cas pratique", "evaluation": "Production d'un dossier documentaire complet pour une action de formation fictive", "enjeux": "L'indicateur 7 de Qualiopi et les contrôles URSSAF ciblent en priorité la conformité documentaire. Une lacune documentaire peut entraîner remboursement de financements et perte de certification.", "programme": ["Panorama des obligations documentaires : légales, contractuelles, Qualiopi", "La convention de formation : mentions obligatoires et pièges à éviter", "Programme de formation, livret d'accueil, règlement intérieur — rédaction et mise à jour", "Feuilles d'émargement, certificats de réalisation, attestations de formation", "Évaluations de satisfaction et de compétences : modèles et conservation", "RGPD appliqué à la formation : consentement, durées de conservation, registre"]}]}, {"code": "C", "titre": "Connaître & Adapter ses Publics", "modules": [{"code": "C1", "titre": "Analyser les besoins et attentes des apprenants adultes", "soustitre": "Positionner chaque apprenant pour une formation sur-mesure et efficace", "public": "Formateurs souhaitant améliorer l'adéquation entre…", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Aucun", "objectifs": ["Distinguer besoin de formation, attente, motivation et demande", "Concevoir et conduire un entretien de positionnement pédagogique", "Analyser les résultats d'un recueil de besoins et en tirer des orientations", "Adapter le contenu et le rythme de formation aux profils identifiés"], "methodes": "Jeux de rôles, analyse de profils, co-construction d'outils de recueil", "evaluation": "Conception et passation d'un outil de positionnement + analyse des résultats", "enjeux": "La réforme de 2018 place l'individualisation au cœur des exigences Qualiopi (indicateurs 5 et 6). Mieux connaître ses apprenants est la première condition d'un impact mesurable.", "programme": ["Le triangle besoin/attente/motivation : définitions et distinctions clés", "Les spécificités de l'apprenant adulte : andragogie et apprentissage expérientiel", "Outils de recueil : questionnaire en amont, entretien individuel, test de positionnement", "Grille d'analyse des besoins et construction du profil groupe", "Différenciation pédagogique : adapter sans exclure", "Cas pratiques : analyser des profils complexes et hétérogènes"]}, {"code": "C2", "titre": "Intégrer les apprenants en situation de handicap", "soustitre": "Accessibilité universelle et référent handicap en formation", "public": "Formateurs et référents handicap d'organismes de f…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Aucun", "objectifs": ["Identifier les différents types de handicap et leurs impacts sur les apprentissages", "Mettre en œuvre les adaptations pédagogiques et matérielles nécessaires", "Assurer le rôle de référent handicap au sein d'un organisme de formation", "Connaître le cadre légal et les ressources disponibles (AGEFIPH, FIPHFP, etc.)"], "methodes": "Mises en situation, analyse de cas, outils de diagnostic accessibilité, témoignages", "evaluation": "Plan d'adaptation pour un cas réel présenté par un participant", "enjeux": "En France, 12 millions de personnes sont en situation de handicap. Les OF doivent désormais démontrer leur capacité d'accueil et d'adaptation dans le cadre de Qualiopi et des appels d'offres publics.", "programme": ["Panorama du handicap : 4 grandes catégories et troubles invisibles (troubles DYS, TDA/H)", "Cadre légal : loi de 2005, obligations des OF, Qualiopi indicateur 8", "Adaptations pédagogiques : temps supplémentaire, supports adaptés, outils numériques accessibles", "Le rôle du référent handicap : missions, posture, réseau partenarial", "Financement des adaptations : AGEFIPH, FIPHFP, OPCO", "Études de cas : concevoir un parcours adapté pour 3 profils différents"]}, {"code": "C3", "titre": "Former des publics en difficulté : illettrisme, FLE, publics éloignés de l'emploi", "soustitre": "Adapter sa pédagogie à des publics fragilisés", "public": "Formateurs intervenant en organismes d'insertion, …", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Expérience de formation avec adultes", "objectifs": ["Comprendre les mécanismes et manifestations de l'illettrisme et du FLE", "Adapter ses méthodes, supports et posture à des publics en grande fragilité", "Développer une approche de confiance et de valorisation des compétences", "Articuler formation et accompagnement socio-professionnel"], "methodes": "Ateliers de co-construction de supports, études de cas, échanges de pratiques", "evaluation": "Création d'un support pédagogique adapté à un public spécifique défini", "enjeux": "Avec 2,5 millions d'illettrismes déclarés et une croissance de la population FLE, ces publics représentent un enjeu social majeur. Les formations financées par le PIC (Plan d'Investissement dans les Compétences) ciblent prioritairement ces publics.", "programme": ["Illettrisme vs analphabétisme vs FLE : définitions, chiffres, repérage", "Psychologie de l'apprenant fragilisé : honte, blocages, stratégies d'évitement", "Techniques de remédiation et supports facilitateurs : pictogrammes, oral, numérique simplifié", "Le français langue étrangère en formation professionnelle : spécificités et outils", "Travailler en réseau : assistants sociaux, conseillers France Travail, CHRS", "Posture de bienveillance radicale et valorisation des compétences informelles"]}, {"code": "C4", "titre": "Gérer les dynamiques de groupe et les personnalités difficiles", "soustitre": "Maintenir un cadre sécurisant et productif pour tous les apprenants", "public": "Formateurs souhaitant renforcer leur maîtrise des …", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Pratique régulière de l'animation de groupe", "objectifs": ["Analyser les phases de vie d'un groupe et les dynamiques qui s'y jouent", "Identifier les différents profils comportementaux et leurs ressorts", "Désamorcer les tensions et conflits de manière non-violente et constructive", "Maintenir un cadre pédagogique sécurisant tout en respectant chaque individu"], "methodes": "Mises en situation, jeux de rôles filmés, analyse de séquences vidéo, feedback structuré", "evaluation": "Mise en situation filmée de gestion d'un conflit de groupe + débriefing", "enjeux": "La diversification des publics (mixité générationnelle, culturelle, niveaux hétérogènes) multiplie les situations de tension. La gestion de groupe est citée comme principal point de difficulté dans les enquêtes sur les besoins des formateurs.", "programme": ["La vie d'un groupe : les phases de Tuckman (forming, storming, norming, performing)", "Cartographie des personnalités : le difficile, le dominant, l'absent, le saboteur", "Communication non-violente (CNV) appliquée à la formation", "Gestion des conflits ouverts en séance : protocoles et postures", "L'apprenant démotivé ou réticent : comprendre et remobiliser", "Superviser sans dominer : la régulation par le cadre"]}]}, {"code": "D", "titre": "Techniques d'Animation & Pédagogie Active", "modules": [{"code": "D1", "titre": "Concevoir et structurer un scénario pédagogique engageant", "soustitre": "Passer de la liste de contenus au parcours d'apprentissage cohérent", "public": "Formateurs souhaitant professionnaliser la concept…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Aucun", "objectifs": ["Distinguer objectifs généraux, spécifiques et opérationnels selon la taxonomie de Bloom", "Structurer un parcours pédagogique en séquences logiques et progressives", "Sélectionner les méthodes et activités adaptées à chaque objectif", "Équilibrer temps d'apport, d'activité et de synthèse dans un déroulé"], "methodes": "Atelier de conception guidé, templates, retours croisés, grille d'évaluation de scénario", "evaluation": "Production d'un scénario pédagogique complet évalué par les pairs", "enjeux": "La capacité à concevoir des formations structurées et progressives est au cœur de l'indicateur 2 de Qualiopi. La pédagogie active, portée par les neurosciences de l'apprentissage, s'impose comme standard.", "programme": ["Objectifs pédagogiques : la taxonomie de Bloom révisée appliquée à la conception", "Le séquençage pédagogique : progression, spirale, différenciation", "Le guide du formateur et le scénario pédagogique : structure et utilisation", "Choix des activités pédagogiques selon les objectifs visés", "Gestion du temps en formation : rythme, pauses, récupération cognitive", "Atelier : concevoir un scénario complet pour une séquence de 3h30"]}, {"code": "D2", "titre": "Les méthodes actives et participatives : jeux, mises en situation, études de cas", "soustitre": "Rendre les apprenants acteurs de leur apprentissage", "public": "Formateurs souhaitant diversifier et dynamiser leu…", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Expérience d'animation de formation", "objectifs": ["Recenser et maîtriser un répertoire de méthodes pédagogiques actives", "Choisir la méthode adaptée à chaque objectif et chaque public", "Concevoir et animer une étude de cas, un jeu pédagogique ou une mise en situation", "Débriefter une activité pour ancrer les apprentissages"], "methodes": "Expérimentation directe des méthodes présentées, conception d'outils, pairs-feedback", "evaluation": "Animation d'une activité pédagogique de 20 min devant le groupe + évaluation croisée", "enjeux": "Les neurosciences confirment que l'apprentissage actif améliore la mémorisation de 50 à 80%. La demande des commanditaires pour des formations dynamiques et participatives est en forte croissance.", "programme": ["Panorama des méthodes : expositive, démonstrative, interrogative, active — quand utiliser quoi", "Les jeux pédagogiques : serious game, jeu de rôles, simulation — conception et animation", "L'étude de cas : types, rédaction, animation et synthèse", "Le brainstorming, le world café, le fishbowl — méthodes collaboratives en formation", "La mise en situation et le jeu de rôle : consignes, animation, débriefing", "Atelier : concevoir et tester une activité pédagogique active"]}, {"code": "D3", "titre": "Facilitation et intelligence collective en formation", "soustitre": "Transformer le groupe en laboratoire d'apprentissage collectif", "public": "Formateurs souhaitant intégrer des pratiques de fa…", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Bonne pratique de l'animation de groupe", "objectifs": ["Distinguer le rôle de formateur et celui de facilitateur", "Maîtriser les outils clés de l'intelligence collective (Design Thinking, World Café, etc.)", "Créer les conditions psychologiques d'une participation collective de qualité", "Synthétiser les productions collectives et les relier aux objectifs pédagogiques"], "methodes": "Expérimentation en groupe, facilitation graphique en direct, retours réflexifs", "evaluation": "Facilitation d'une séquence d'intelligence collective de 45 min + compte-rendu", "enjeux": "L'essor des formations en équipe, des team building pédagogiques et des séminaires participatifs crée une demande forte en formateurs-facilitateurs. Cette double compétence est très valorisée sur le marché.", "programme": ["Facilitation vs formation : complémentarité et glissements de posture", "Créer un espace de confiance : sécurité psychologique, règles du groupe", "Les outils de facilitation graphique : sketchnoting, mind mapping, fresque", "World Café, Open Space Technology, 1-2-4-All — mise en pratique", "Synthèse et capitalisation des productions collectives", "Intégrer une séquence de facilitation dans un parcours de formation"]}, {"code": "D4", "titre": "Storytelling et communication orale du formateur", "soustitre": "Captiver, convaincre et marquer les esprits par la parole", "public": "Formateurs souhaitant développer leur impact et le…", "duree": "3h30", "modalites": "Présentiel", "prerequis": "Pratique régulière de l'animation", "objectifs": ["Comprendre les mécanismes neuropsychologiques du storytelling", "Construire et intégrer des récits pédagogiques percutants dans ses formations", "Maîtriser les techniques d'expression orale : voix, regard, gestuelle, posture", "Adapter son niveau de langage et son registre aux différents publics"], "methodes": "Exercices de prise de parole filmés, coaching vocal, ateliers d'écriture narrative", "evaluation": "Présentation de 10 minutes intégrant une histoire pédagogique + feedback vidéo", "enjeux": "Dans un monde saturé d'informations, la capacité à raconter devient une compétence différenciante. Le storytelling pédagogique améliore la mémorisation et l'engagement de façon mesurable.", "programme": ["Pourquoi les histoires captent l'attention : dopamine, mémorisation et apprentissage", "La structure du récit : héros, obstacles, transformation — appliqués à la pédagogie", "Construire une anecdote pédagogique en 5 étapes", "Techniques vocales : débit, intonation, pause, silence — exercices pratiques", "Communication non-verbale : gestuelle, regard, occupation de l'espace", "Gérer son trac et ses émotions en situation de formation"]}, {"code": "D5", "titre": "Animer en distanciel : outils, posture et engagement des apprenants", "soustitre": "Créer de la présence et de l'interaction derrière l'écran", "public": "Formateurs débutant ou souhaitant professionnalise…", "duree": "3h30", "modalites": "Distanciel exclusivement", "prerequis": "Utilisation courante d'un ordinateur et d'une…", "objectifs": ["Maîtriser les principales plateformes de classe virtuelle (Zoom, Teams, Klaxoon, etc.)", "Adapter son animation et sa posture au format distanciel", "Concevoir des activités interactives qui maintiennent l'engagement à distance", "Anticiper et gérer les problèmes techniques courants"], "methodes": "Formation entièrement en distanciel avec expérimentation live de chaque outil", "evaluation": "Animation d'une séquence de 30 min en distanciel avec usage de 3 outils interactifs", "enjeux": "Depuis 2020, plus de 40% des heures de formation sont réalisées à distance. La qualité pédagogique en distanciel est désormais un critère d'achat des commanditaires et un indicateur Qualiopi.", "programme": ["Spécificités du distanciel : fatigue cognitive, isolement, durée d'attention réduite", "Panorama des outils : Zoom, Teams, Klaxoon, Wooclap, Miro, Padlet", "Rythmer la classe virtuelle : règle des 10 minutes et activités brise-ennui", "Techniques d'engagement : sondages, chatbox, salles de sous-groupes, quiz en direct", "Produire des activités asynchrones complémentaires : capsules vidéo, exercices auto-corrigés", "Posture caméra : cadrage, éclairage, fond, regard écran"]}]}, {"code": "E", "titre": "Ingénierie de Formation & Référentiels", "modules": [{"code": "E1", "titre": "Lire, analyser et exploiter un référentiel de certification", "soustitre": "RNCP, RS, blocs de compétences : comprendre la logique certifiante", "public": "Formateurs et concepteurs pédagogiques intervenant…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Expérience en conception ou animation de form…", "objectifs": ["Distinguer les différents types de certifications professionnelles (RNCP, RS, CQP)", "Analyser la structure d'un référentiel et identifier les compétences visées", "Aligner une ingénierie de formation sur les exigences du référentiel", "Utiliser France Compétences comme outil de veille certificationnelle"], "methodes": "Analyse de référentiels réels, travaux de groupe, outil de mise en correspondance", "evaluation": "Tableau de correspondance référentiel / objectifs pédagogiques sur un cas réel", "enjeux": "La montée en puissance des certifications (plus de 35 000 certifications actives sur France Compétences) impose aux formateurs de maîtriser cette logique pour concevoir des formations finançables et reconnues.", "programme": ["Panorama des certifications : RNCP, RS, CQP, titres professionnels — différences et usages", "Architecture d'un référentiel RNCP : activités-types, compétences, blocs, critères d'évaluation", "Lire entre les lignes d'un référentiel : ce que France Compétences attend vraiment", "Aligner objectifs de formation et compétences du référentiel", "Les blocs de compétences : accès partiel, capitalisation, passerelles", "Atelier : décomposer un référentiel et en extraire un plan de formation"]}, {"code": "E2", "titre": "Concevoir une ingénierie de formation alignée sur les compétences visées", "soustitre": "Du référentiel au parcours pédagogique opérationnel", "public": "Concepteurs pédagogiques, responsables pédagogique…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Avoir suivi E1 ou posséder une connaissance d…", "objectifs": ["Appliquer une méthodologie d'ingénierie de formation de bout en bout", "Construire une progression pédagogique cohérente avec les compétences à certifier", "Dimensionner un parcours (durée, modalités, séquençage) selon les objectifs", "Intégrer l'évaluation certificative dans le parcours pédagogique"], "methodes": "Atelier de conception de parcours, templates ADDIE, échanges de pratiques entre pairs", "evaluation": "Conception d'un parcours certifiant complet sur un référentiel RNCP choisi", "enjeux": "L'AFEST (Action de Formation En Situation de Travail) et les formations hybrides imposent de nouvelles compétences en ingénierie. Qualiopi exige une traçabilité totale de la démarche de conception.", "programme": ["Le modèle ADDIE appliqué à la formation certifiante", "Analyse des besoins et du contexte : outil d'analyse des écarts de compétences", "Design pédagogique : de la compétence à l'activité d'apprentissage", "Choix des modalités : présentiel, distanciel, AFEST, e-learning — critères de sélection", "Construire le tableau de bord pédagogique d'un parcours certifiant", "Intégrer les modalités d'évaluation certificative au parcours"]}, {"code": "E3", "titre": "Créer des ressources pédagogiques impactantes", "soustitre": "Supports, fiches, outils : concevoir des ressources mémorables et utilisables", "public": "Formateurs souhaitant améliorer la qualité et l'im…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Pratique de la création de supports (PowerPoi…", "objectifs": ["Appliquer les principes du design pédagogique à la création de supports", "Concevoir des supports visuels clairs, aérés et conformes aux règles de la charge cognitive", "Créer des fiches mémo, guides pratiques et ressources post-formation", "Optimiser ses supports pour différentes modalités (présentiel, distanciel, hybride)"], "methodes": "Création immédiate de supports, critique constructive, modèles annotés, test utilisateur", "evaluation": "Refonte d'un support existant selon les critères vus en formation + présentation", "enjeux": "Un support mal conçu peut devenir un obstacle à l'apprentissage. Les attentes des apprenants en termes de qualité visuelle ont fortement augmenté avec la démocratisation d'outils comme Canva et les plateformes vidéo.", "programme": ["Les principes de la théorie de la charge cognitive appliqués aux supports", "Design thinking des supports : clarté, hiérarchie visuelle, cohérence graphique", "PowerPoint/Canva : les 10 commandements du support pédagogique efficace", "La fiche mémo : concevoir en 1 page ce qui doit rester", "Ressources post-formation : guide de transfert, plan d'action individuel, QR codes", "Accessibilité des supports : contrastes, tailles, alternatives textuelles"]}, {"code": "E4", "titre": "Répondre à un appel d'offres de formation et construire son cahier des charges", "soustitre": "Remporter des marchés publics et privés avec une proposition structurée", "public": "Dirigeants et responsables commerciaux d'organisme…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Activité commerciale en formation professionn…", "objectifs": ["Identifier et analyser les appels d'offres pertinents pour son activité", "Comprendre la structure et les critères d'évaluation d'un marché public formation", "Rédiger un cahier des charges technique et pédagogique convaincant", "Construire un budget de formation juste et transparent"], "methodes": "Analyse d'AO réels, ateliers de rédaction, simulation de soutenance", "evaluation": "Rédaction complète d'une réponse à un appel d'offres fictif + soutenance de 10 min", "enjeux": "Les marchés publics de formation représentent plusieurs milliards d'euros annuels. La concurrence s'intensifie : savoir répondre à un AO est une compétence business critique pour les OF de toute taille.", "programme": ["Panorama des marchés formation : publics (BOAMP, PLACE), privés, OPCO", "Lire et décrypter un cahier des charges de commande de formation", "Les critères d'évaluation : méthodologie, expérience, qualité, prix", "Rédiger sa réponse : mémoire technique, références, équipe pédagogique", "Construire son budget : coûts réels, marges, présentation transparente", "L'entretien de soutenance : préparer et convaincre l'acheteur"]}]}, {"code": "F", "titre": "Évaluation, Numérique & IA", "modules": [{"code": "F1", "titre": "Concevoir et conduire l'évaluation des acquis en formation", "soustitre": "Évaluer pour apprendre, pas pour contrôler", "public": "Formateurs souhaitant améliorer leurs pratiques d'…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Expérience en animation de formation", "objectifs": ["Distinguer les différents types d'évaluation et leurs fonctions pédagogiques", "Concevoir des outils d'évaluation valides, fiables et adaptés aux objectifs", "Conduire une évaluation en situation de formation de façon bienveillante", "Donner un feedback constructif favorisant la progression de l'apprenant"], "methodes": "Conception d'outils, mise en situation d'évaluation, pratique du feedback croisé", "evaluation": "Construction d'un dispositif d'évaluation complet pour une formation définie", "enjeux": "L'évaluation est l'indicateur 6 de Qualiopi — souvent le plus fragilisé lors des audits. La montée des certifications RNCP renforce l'exigence d'évaluations robustes et documentées.", "programme": ["Les quatre niveaux d'évaluation : diagnostic, formative, sommative, certificative", "Critères de qualité d'un outil d'évaluation : validité, fiabilité, faisabilité", "Concevoir des QCM, grilles d'observation, études de cas évaluatives", "L'évaluation en situation de travail : AFEST et situations professionnelles reconstituées", "Donner du feedback : la règle sandwich, le feedback situation-impact-alternative", "Documenter les évaluations pour Qualiopi et la traçabilité"]}, {"code": "F2", "titre": "Mesurer l'impact de la formation : à chaud, à froid, transfert", "soustitre": "Démontrer la valeur ajoutée de la formation par des données probantes", "public": "Formateurs, responsables formation et dirigeants d…", "duree": "3h30", "modalites": "Présentiel / Distanciel", "prerequis": "Expérience en animation ou en gestion de form…", "objectifs": ["Appliquer le modèle de Kirkpatrick aux différents niveaux d'impact de la formation", "Concevoir des outils d'évaluation à chaud, à froid et de transfert", "Analyser et interpréter les données collectées pour améliorer ses formations", "Communiquer sur l'impact formation auprès des commanditaires"], "methodes": "Conception d'outils, analyse de données réelles anonymisées, atelier de rédaction de rapport", "evaluation": "Conception d'un dispositif complet d'évaluation d'impact + présentation de rapport", "enjeux": "Les commanditaires exigent de plus en plus la preuve de l'efficacité des formations. Le retour sur investissement (ROI) devient un argument de vente différenciant pour les OF qui savent le mesurer.", "programme": ["Le modèle de Kirkpatrick révisé (Phillips) : 4 niveaux + ROI", "L'évaluation à chaud : questionnaire de satisfaction — conception et pièges à éviter", "L'évaluation à froid : 30/60/90 jours — outils et logistique", "Mesurer le transfert des apprentissages en situation de travail", "Analyse des données : interprétation, tendances, amélioration continue", "Produire un rapport d'impact pour un commanditaire"]}, {"code": "F3", "titre": "Intégrer les outils numériques et les LMS dans sa pratique", "soustitre": "Du LMS au social learning : maîtriser l'environnement numérique de la formation", "public": "Formateurs et responsables pédagogiques souhaitant…", "duree": "3h30", "modalites": "Présentiel / Hybride", "prerequis": "Aisance informatique de base", "objectifs": ["Identifier les différents types d'outils numériques et leur usage pédagogique", "Choisir et prendre en main un LMS adapté à sa structure et ses besoins", "Créer des contenus e-learning simples et efficaces", "Intégrer le digital dans un parcours hybride cohérent"], "methodes": "Prise en main guidée d'outils, création de module e-learning, tour de table comparatif", "evaluation": "Création d'un mini-module e-learning (15 min) sur un sujet défini + intégration LMS", "enjeux": "Le marché des LMS connaît une croissance annuelle de 20%. La capacité à créer et gérer des parcours hybrides est devenue une compétence attendue de tout formateur professionnel.", "programme": ["Panorama des outils : LMS (Moodle, 360Learning, Talentsoft), outils auteur, classes virtuelles", "Choisir son LMS : critères de sélection, comparatif, coûts", "Créer un module e-learning avec un outil auteur (Storyline, Rise, H5P)", "Pédagogie du blended learning : articuler synchrone et asynchrone", "Le social learning : forums, peer learning, communautés d'apprenants", "SCORM et standards e-learning : que doit-on savoir ?"]}, {"code": "F4", "titre": "Intelligence artificielle et formation : usages éthiques et outils pour le formateur", "soustitre": "Intégrer l'IA générative dans sa pratique pédagogique avec discernement", "public": "Tout formateur souhaitant comprendre et utiliser l…", "duree": "3h30", "modalites": "Présentiel / Hybride / Distanciel", "prerequis": "Aisance informatique de base", "objectifs": ["Comprendre le fonctionnement de l'IA générative et ses limites", "Utiliser l'IA pour gagner du temps sur la conception et l'administration", "Adopter une posture critique et éthique vis-à-vis des contenus générés", "Accompagner les apprenants dans un usage responsable de l'IA"], "methodes": "Expérimentation live des outils, ateliers de prompt engineering, débat éthique structuré", "evaluation": "Création d'un plan de formation de 3h30 généré avec l'IA + analyse critique des résultats", "enjeux": "En 2025, 67% des formateurs déclarent utiliser l'IA dans leur pratique mais seulement 23% se sentent réellement compétents. Cette formation répond à un besoin urgent de montée en compétences éthique et pratique.", "programme": ["Fondamentaux de l'IA générative : LLM, hallucinations, biais, données d'entraînement", "Cas d'usage pour le formateur : conception de scénarios, quiz, supports, fiches mémo", "Rédiger des prompts efficaces pour la pédagogie : techniques et exemples", "Panorama des outils IA utiles au formateur : ChatGPT, Perplexity, Canva IA, Gamma", "Enjeux éthiques : plagiat, droit d'auteur, données personnelles, RGPD", "Intégrer l'IA comme sujet de formation et accompagner les apprenants"]}]}]}</script>
+<script>
+(function(){
+  var COLORS={A:'linear-gradient(135deg,#34bfe5,#0d8dae)',B:'linear-gradient(135deg,#ff8a6b,#ec4d29)',C:'linear-gradient(135deg,#00d294,#009588)',D:'linear-gradient(135deg,#ec6cff,#9810fa)',E:'linear-gradient(135deg,#71d5f1,#11718d)',F:'linear-gradient(135deg,#34bfe5,#9810fa)'};
+  var CAT=JSON.parse(document.getElementById('catalogue-data').textContent);
+  function esc(s){return String(s==null?'':s).replace(/[&<>"]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c];});}
+  var host=document.getElementById('blocs');
+  CAT.blocs.forEach(function(b){
+    var col=COLORS[b.code]||COLORS.A;
+    var cards=b.modules.map(function(m,i){
+      return '<button class="mcard reveal" style="--mc:'+col+'" data-bloc="'+b.code+'" data-idx="'+i+'">'
+        +'<span class="code">'+esc(m.code)+'</span>'
+        +'<h4>'+esc(m.titre)+'</h4>'
+        +'<p class="sub">'+esc(m.soustitre)+'</p>'
+        +'<div class="meta"><span><i data-lucide="clock"></i> '+esc(m.duree)+'</span><span><i data-lucide="map-pin"></i> '+esc(m.modalites)+'</span></div>'
+        +'<div class="mfoot"><span class="mprice">150 € <small>/ module</small></span><span class="more">Voir le programme <i data-lucide="arrow-right"></i></span></div>'
+        +'</button>';
+    }).join('');
+    var sec=document.createElement('div');
+    sec.className='bloc';
+    sec.innerHTML='<div class="bloc-head reveal"><div class="bloc-badge" style="background:'+col+'">'+esc(b.code)+'</div>'
+      +'<div><div class="bt">Bloc '+esc(b.code)+' — '+esc(b.titre)+'</div><div class="cnt">'+b.modules.length+' modules \u00b7 3h30 chacun</div></div></div>'
+      +'<div class="bloc-grid">'+cards+'</div>';
+    host.appendChild(sec);
+  });
+
+  var bd=document.getElementById('modBackdrop'),top=document.getElementById('modTop'),
+      body=document.getElementById('modBody');
+  function li(arr){return '<ul>'+arr.map(function(x){return '<li>'+esc(x)+'</li>';}).join('')+'</ul>';}
+  function open(bloc,idx){
+    var b=CAT.blocs.filter(function(x){return x.code===bloc;})[0];
+    var m=b.modules[idx];var col=COLORS[bloc]||COLORS.A;
+    top.style.background=col;
+    document.getElementById('modCode').textContent='Bloc '+bloc+' \u00b7 '+m.code;
+    document.getElementById('modTitle').textContent=m.titre;
+    document.getElementById('modSub').textContent=m.soustitre;
+    body.innerHTML=
+      '<div class="info-row">'
+      +'<div class="i"><div class="k">Public</div><div class="v">'+esc(m.public)+'</div></div>'
+      +'<div class="i"><div class="k">Dur\u00e9e</div><div class="v">'+esc(m.duree)+'</div></div>'
+      +'<div class="i"><div class="k">Modalit\u00e9s</div><div class="v">'+esc(m.modalites)+'</div></div>'
+      +'<div class="i"><div class="k">Pr\u00e9requis</div><div class="v">'+esc(m.prerequis)+'</div></div>'
+      +'<div class="i"><div class="k">Tarif</div><div class="v" style="color:var(--brand-600);font-weight:700">150 € par module</div></div>'
+      +'</div>'
+      +'<div class="msec"><h4><i data-lucide="target"></i> Objectifs p\u00e9dagogiques</h4>'+li(m.objectifs)+'</div>'
+      +'<div class="msec"><h4><i data-lucide="list-checks"></i> Programme</h4>'+li(m.programme)+'</div>'
+      +'<div class="two-cols">'
+      +'<div class="msec"><h4><i data-lucide="presentation"></i> M\u00e9thodes</h4><p>'+esc(m.methodes)+'</p></div>'
+      +'<div class="msec"><h4><i data-lucide="clipboard-check"></i> \u00c9valuation</h4><p>'+esc(m.evaluation)+'</p></div>'
+      +'</div>'
+      +'<div class="msec"><h4><i data-lucide="trending-up"></i> Enjeux 2025-2026</h4><div class="enjeux-box">'+esc(m.enjeux)+'</div></div>';
+    bd.classList.add('open');document.body.style.overflow='hidden';
+    if(window.lucide)lucide.createIcons();
+  }
+  function close(){bd.classList.remove('open');document.body.style.overflow='';}
+  host.addEventListener('click',function(e){var c=e.target.closest('.mcard');if(c)open(c.dataset.bloc,+c.dataset.idx);});
+  document.getElementById('modClose').addEventListener('click',close);
+  bd.addEventListener('click',function(e){if(e.target===bd)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+
+  if(window.lucide)lucide.createIcons();
+  // observe the freshly injected .reveal elements
+  var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}});},{threshold:.1});
+  document.querySelectorAll('#blocs .reveal').forEach(function(el){io.observe(el);});
+})();
+</script>
+</body>
+</html>

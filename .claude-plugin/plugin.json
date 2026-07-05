@@ -1,0 +1,19 @@
+{
+  "name": "ui-ux-pro-max",
+  "version": "1.0.0",
+  "description": "Skill UI/UX pro max : audit, refonte et amélioration d'interfaces web (accessibilité, design system, responsive, micro-interactions). Spécialisé pour applications HTML/CSS/JS comme AlternancePilot.",
+  "author": {
+    "name": "Homneo",
+    "email": "r.spindler@homneo.fr"
+  },
+  "keywords": [
+    "ui",
+    "ux",
+    "design",
+    "accessibility",
+    "responsive",
+    "design-system",
+    "html",
+    "css"
+  ]
+}
